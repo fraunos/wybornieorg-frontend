@@ -1,8 +1,10 @@
 <template>
 <div class="hello">
   <quotes></quotes>
-  <h3>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
+  <div class="">
+    <h3>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
 </h3>
+  </div>
 </div>
 </template>
 
@@ -10,11 +12,10 @@
 import Quotes from '@/components/Quotes'
 
 export default {
-  data () {
-    return {
-      msg: 'Witaj w serwisie, który uratuje Polskę!'
-    }
-  },
+  // data() {
+  //   return {
+  //   }
+  // },
   components: {
     Quotes
   }
@@ -23,14 +24,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div{
-  background-color: blanchedalmond;
-  padding: 10px;
+div {
+  padding: 20px;
   flex-flow: row;
-}
-h1,
-h2 {
-  font-weight: normal;
 }
 
 ul {
@@ -43,7 +39,4 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: #42b983;
-}
 </style>

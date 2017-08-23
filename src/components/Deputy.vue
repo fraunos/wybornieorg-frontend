@@ -1,6 +1,6 @@
 <template>
 <div class="deputy">
-  <img v-bind:class="[zgodnosc ? 'zgodny' : 'niezgodny', '']" src="http://www.simchajtv.com/wp-content/uploads/2013/05/Warrior-face-3c.jpg" alt="">
+  <img v-bind:class="[zgodnosc ? 'zgodny' : 'niezgodny', '']" :src="imgURL" alt="">
   {{singleDeputy.name}}
   {{singleDeputy.vote}}
   {{singleDeputy.group}}
@@ -29,6 +29,12 @@ export default {
     zgodnosc: function () {
       if (votingValues[this.userVoteCurrent] === 0) return
       return votingValues[this.userVoteCurrent] === this.voteValue
+    },
+    imgURL: function () {
+      // $.get('https://api.qwant.com/api/search/images?count=1&locale=pl_pl&offset=1&q=' + this.singleDeputy.name.replace(' ', '+')).done(data => {
+      //   console.log(data)
+      // })
+      return
     }
   },
   created () {

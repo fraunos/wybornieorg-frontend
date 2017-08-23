@@ -53,15 +53,18 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div {
-  background-color: yellow;
+  background-color: gold;
   padding: 10px;
   max-width: 30%;
   flex-flow: column;
+  color: black;
+  /*font-weight: bold;*/
+  padding: 2em;
+
 }
 
 p {
-  color: #880;
   text-align: justify;
-  padding: 20px;
+  font-style: italic;
 }
 </style>

@@ -1,5 +1,8 @@
 # sejmor-webpack
 
+TODO:
+- zbieranie opisów projektów
+- 
 > sejmor z webpackiem
 
 ## Build Setup
