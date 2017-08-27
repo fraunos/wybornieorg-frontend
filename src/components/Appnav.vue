@@ -4,9 +4,9 @@
     <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></a>
   </div>
   <div class="links">
-    <a href="#main">Projekty</a>
-    <a href="#staty">Statystyki</a>
-    <a href="#ostronie">O stronie</a>
+    <a href="#main"><i data-feather="file-text"></i> Projekty</a>
+    <a href="#staty"><i data-feather="pie-chart"></i> Statystyki</a>
+    <a href="#ostronie"><i data-feather="info"></i> O stronie</a>
 
   </div>
 </div>
@@ -55,16 +55,5 @@ a {
 }
 
 
-a:active {
-  outline-style: solid;
-}
 
-
-/*a:visited {
-  color: green;
-}*/
-
-a:hover {
-  color: hotpink;
-}
 </style>

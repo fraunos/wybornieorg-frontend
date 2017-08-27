@@ -53,4 +53,11 @@ a {
   outline: none;
   font-weight: bold;
 }
+a:active {
+  outline-style: solid;
+}
+
+a:hover {
+  color: hotpink;
+}
 </style>

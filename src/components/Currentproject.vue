@@ -1,8 +1,8 @@
 <template>
 <div id="cp" class="currentProject">
 <div id="buttons">
-  <button type="button" name="voteFor" v-on:click="userVote('Za')">ZA</button>
-  <button type="button" name="voteAgainst" v-on:click="userVote('Przeciw')">PRZECIW</button>
+  <button type="button" name="voteFor" v-on:click="userVote('Za')"><i data-feather="thumbs-up"></i> ZA</button>
+  <button type="button" name="voteAgainst" v-on:click="userVote('Przeciw')"><i data-feather="thumbs-down"></i> PRZECIW</button>
 </div>
   <div id="data">
     {{userVotes}}

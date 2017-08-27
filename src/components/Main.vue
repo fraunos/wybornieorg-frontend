@@ -1,6 +1,5 @@
 <template>
 <div class="main">
-  <h1>MAIN</h1>
   <projects></projects>
 </div>
 </template>

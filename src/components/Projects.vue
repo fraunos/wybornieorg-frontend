@@ -13,6 +13,7 @@ c<template>
 import Currentproject from '@/components/Currentproject'
 
 const $ = require('jquery')
+
 export default {
   name: 'projectslist',
   components: {
