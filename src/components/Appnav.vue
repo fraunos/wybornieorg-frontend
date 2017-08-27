@@ -1,7 +1,7 @@
 <template>
 <div class="appnav">
   <div id="logo" class="links">
-    <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.pl</h1></a>
+    <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></a>
   </div>
   <div class="links">
     <a href="#main">Projekty</a>
