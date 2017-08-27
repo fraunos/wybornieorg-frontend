@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <appnav></appnav>
-    <router-view></router-view>
+    <div class="app">
+      <appnav></appnav>
+      <router-view></router-view>
+    </div>
+    <Appfooter></Appfooter>
   </div>
 </template>
 
 <script>
 import Appnav from '@/components/Appnav'
+import Appfooter from '@/components/Appfooter'
 
 export default {
   name: 'app',
   components: {
-    Appnav
+    Appnav, Appfooter
   }
 }
 </script>
 
 <style>
 body{
-  background-color: midnightblue;
+  background-color: #090960;
   margin: 0 8%;
 }
 div{
@@ -31,6 +35,10 @@ div{
   /*-moz-osx-font-smoothing: grayscale;*/
   text-align: center;
   color: white;
+}
+.app{
+  background-color: midnightblue;
+  margin: 1.5em 0;
 }
 button{
   border-radius: 0;

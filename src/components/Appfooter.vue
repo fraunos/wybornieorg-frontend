@@ -1,6 +1,6 @@
 <template>
 <div class="footer">
-  <a href="https://www.facebook.com/wybornieorg/"><i data-feather="facebook"></i> fb.com/wybornie</a>
+  <a href="https://www.facebook.com/wybornieorg/"><i data-feather="facebook"></i> fb.com/wybornieorg</a>
 
 </div>
 </template>
