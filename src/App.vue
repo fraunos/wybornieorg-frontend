@@ -2,11 +2,13 @@
 <div id="app">
   <div class="app">
     <div id="info">
-      <h1>Strona w budowie</h1>
+      <h1><alert-triangle-icon></alert-triangle-icon> Strona w budowie <alert-triangle-icon></alert-triangle-icon></h1>
     </div>
 
     <appnav></appnav>
-    <router-view></router-view>
+    <div class="router">
+      <router-view ></router-view>
+    </div>
   </div>
   <Appfooter></Appfooter>
 </div>
@@ -15,17 +17,29 @@
 <script>
 import Appnav from '@/components/Appnav'
 import Appfooter from '@/components/Appfooter'
+import {
+  AlertTriangleIcon
+} from 'vue-feather-icons'
 
 export default {
   name: 'app',
   components: {
     Appnav,
-    Appfooter
+    Appfooter,
+    AlertTriangleIcon
   }
 }
 </script>
 
 <style>
+.router{
+  margin: 2em;
+}
+#info svg {
+  width: 48px;
+  height: 48px;
+}
+
 #info {
   background: repeating-linear-gradient( 45deg,
   orange,
@@ -33,17 +47,22 @@ export default {
   darkslategrey 20px,
   darkslategrey 40px);
 }
-#info h1{
+
+#info h1 {
   background-color: orange;
   color: darkslategrey;
+  stroke: darkslategrey;
   padding: 20px;
 }
 
 body {
   background-color: #090960;
-  margin: 0 8%;
+  margin: 0 5%;
 }
+p{
+  text-align: justify;
 
+}
 div {
   display: flex;
   flex-flow: column;
@@ -60,11 +79,10 @@ div {
 
 .app {
   background-color: midnightblue;
-  margin: 1.5em 0;
 }
 
 button {
-  border-radius: 0;
+  border-radius: 1em;
   border-style: none;
   margin: 10px;
   background-color: royalblue;
@@ -77,8 +95,7 @@ button:hover {
 }
 
 button:active {
-  right: 0;
-  outline-style: none;
+  outline-style: double;
 }
 
 svg,

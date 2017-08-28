@@ -2,8 +2,8 @@
 <div class="hello">
   <quotes></quotes>
   <div id="text">
-    <h4>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
-</h4>
+    <p>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
+</p>
 <h4>Zaczynajmy!</h4>
 <h3><a href="#main">Wybornie!</a></h3>
   </div>
