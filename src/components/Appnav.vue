@@ -4,9 +4,9 @@
     <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></a>
   </div>
   <div class="links">
-    <a href="#main"><i data-feather="file-text"></i> Projekty</a>
-    <a href="#staty"><i data-feather="pie-chart"></i> Statystyki</a>
-    <a href="#ostronie"><i data-feather="info"></i> O stronie</a>
+    <a href="#main"><feather-icon class="blue" type="file-text"></feather-icon> Projekty</a>
+    <a href="#staty"><feather-icon type="pie-chart"></feather-icon> Statystyki</a>
+    <a href="#ostronie"><feather-icon type="info"></feather-icon> O stronie</a>
 
   </div>
 </div>
