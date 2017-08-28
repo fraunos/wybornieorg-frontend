@@ -1,7 +1,7 @@
 <template>
-<div class="quotes">
-  <p>{{ quote.quote }}</p>
-  <span>{{ quote.name }}</span>
+<div class="quotes" v-on:click="randomQuote()" title="Kliknij, aby wylosować nowy cytat!">
+  <p>{{ currentQuote.quote }}</p>
+  <span>{{ currentQuote.name }}</span>
 </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
   name: 'quotes',
   data () {
     return {
+      currentQuote: {},
       people: [{
         name: 'Murray Rothbard',
         quotes: [
@@ -37,14 +38,17 @@ export default {
       ]
     }
   },
-  computed: {
-    quote: function () {
+  methods: {
+    randomQuote () {
       let person = this.people[Math.floor(Math.random() * this.people.length)]
-      return {
+      this.currentQuote = {
         name: person.name,
         quote: person.quotes[Math.floor(Math.random() * person.quotes.length)]
       }
     }
+  },
+  created () {
+    this.randomQuote()
   }
 
 }
