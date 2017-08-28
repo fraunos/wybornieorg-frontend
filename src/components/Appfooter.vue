@@ -1,17 +1,29 @@
 <template>
 <div class="footer">
-  <a href="https://www.facebook.com/wybornieorg/"><facebook-icon></facebook-icon> fb.com/wybornieorg</a>
-
+  <div class="links">
+    <h4>Linki</h4>
+    <a target="_blank" href="https://www.facebook.com/wybornieorg/"><facebook-icon></facebook-icon> fb.com/wybornieorg</a>
+    <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon></github-icon> github.com/fraunos/wybornieorg-frontend</a>
+    <a target="_blank" href="https://github.com/fraunos/wybornieorg-backend"><github-icon></github-icon> github.com/fraunos/wybornieorg-backend</a>
+  </div>
+  <div class="links">
+    <h4>Kontakt</h4>
+    <a target="_blank" href="mailto:michal.marian.woloszyn@gmail.com"><mail-icon></mail-icon> michal.marian.woloszyn@gmail.com</a>
+  </div>
+  <div class="links">
+    <h4>Polecane</h4>
+    <a target="_blank" href="https://sejmlog.pl/"><globe-icon></globe-icon> sejmlog.pl</a>
+  </div>
 </div>
 </template>
 
 <script>
-import { FacebookIcon } from 'vue-feather-icons'
+import { FacebookIcon, GithubIcon, MailIcon, GlobeIcon } from 'vue-feather-icons'
 
 export default {
   name: 'footer',
   components: {
-    FacebookIcon
+    FacebookIcon, GithubIcon, MailIcon, GlobeIcon
   }
   // data () {
   //   return {}
@@ -22,41 +34,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .links {
-  justify-content: space-around;
-  flex-direction: row;
+  /*justify-content: space-around;*/
+  font-size: 75%;
+  flex-direction: column;
   align-items: center;
+  font-weight: normal;
 }
-
-#logo {
-  /*font-size: 0.6em;*/
-}
-
-h1 {
-  display: inline-flex;
-  margin: 0;
-}
-
-img {
-  height: 64px;
-}
-
-
-a {
-  padding: 0.4em;
-}
-
-
-a:active {
-  outline-style: solid;
-}
-
-
-
-/*a:visited {
-  color: green;
-}*/
-
-a:hover {
-  color: hotpink;
+.footer{
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2em 0;
 }
 </style>
