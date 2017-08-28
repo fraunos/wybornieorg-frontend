@@ -53,7 +53,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div {
-  background-color: gold;
+  background-color: orange;
   padding: 10px;
   max-width: 30%;
   flex-flow: column;

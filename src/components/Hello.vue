@@ -1,9 +1,11 @@
 <template>
 <div class="hello">
   <quotes></quotes>
-  <div class="">
-    <h3>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
-</h3>
+  <div id="text">
+    <h4>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
+</h4>
+<h4>Zaczynajmy!</h4>
+<h3><a href="#main">Wybornie!</a></h3>
   </div>
 </div>
 </template>
@@ -28,6 +30,9 @@ div {
   padding: 20px;
   flex-flow: row;
 }
+#text{
+  flex-flow: column;
+}
 
 ul {
   list-style-type: none;
@@ -38,5 +43,4 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-
 </style>
