@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Main from '@/components/Main'
 import About from '@/components/About'
+import Stats from '@/components/Stats'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/ostronie',
       name: 'about',
       component: About
+    },
+    {
+      path: '/staty',
+      name: 'stats',
+      component: Stats
     }
   ]
 })

@@ -2,7 +2,7 @@
 
 TODO:
 - zbieranie opisów projektów
-- 
+- frekwencja posłów
 > sejmor z webpackiem
 
 ## Build Setup

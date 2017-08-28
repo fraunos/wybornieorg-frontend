@@ -10,27 +10,15 @@
 <script>
 const $ = require('jquery')
 
-let votingValues = {
-  'Za': 1,
-  'Przeciw': -1,
-  'Nieobecny': 0,
-  'Wstrzymał się': 0
-}
-
 export default {
-  props: ['singleDeputy', 'userVoteCurrent'],
-  data () {
-    return {}
-  },
+  props: ['singleDeputy'],
   computed: {
-    voteValue: function () {
-      return votingValues[this.singleDeputy.vote]
+    zgodnosc () {
+      let result = this.$store.state.userVotes[this.$store.state.currentProject.drukNr] === this.singleDeputy.vote
+      this.$store.commit('setDeputyStat', {deputy: this.singleDeputy, vote: result})
+      return result
     },
-    zgodnosc: function () {
-      if (votingValues[this.userVoteCurrent] === 0) return
-      return votingValues[this.userVoteCurrent] === this.voteValue
-    },
-    imgURL: function () {
+    imgURL () {
       // $.get('https://api.qwant.com/api/search/images?count=1&locale=pl_pl&offset=1&q=' + this.singleDeputy.name.replace(' ', '+')).done(data => {
       //   console.log(data)
       // })
@@ -41,7 +29,7 @@ export default {
     // this.fetchIMG()
   },
   methods: {
-    fetchIMG: function () {
+    fetchIMG () {
       var self = this
       $.get('https://api.qwant.com/api/search/images?count=1&locale=pl_pl&offset=1&q=Adam+Abramowicz').done(data => {
         self.projects = data
