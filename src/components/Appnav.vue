@@ -4,17 +4,22 @@
     <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></a>
   </div>
   <div class="links">
-    <a href="#main"><feather-icon class="blue" type="file-text"></feather-icon> Projekty</a>
-    <a href="#staty"><feather-icon type="pie-chart"></feather-icon> Statystyki</a>
-    <a href="#ostronie"><feather-icon type="info"></feather-icon> O stronie</a>
+    <a href="#main"><file-text-icon></file-text-icon> Projekty</a>
+    <a href="#staty"><pie-chart-icon type="pie-chart"></pie-chart-icon> Statystyki</a>
+    <a href="#ostronie"><info-icon type="info"></info-icon> O stronie</a>
 
   </div>
 </div>
 </template>
 
 <script>
+import { FileTextIcon, PieChartIcon, InfoIcon } from 'vue-feather-icons'
+
 export default {
-  name: 'appnav'
+  name: 'appnav',
+  components: {
+    FileTextIcon, PieChartIcon, InfoIcon
+  }
   // data () {
   //   return {}
   // }

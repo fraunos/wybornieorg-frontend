@@ -14,8 +14,8 @@
     <!-- <p>{{currentProject.groupLinks}}</p> -->
   </div>
   <div id="buttons">
-    <button type="button" name="voteFor" v-on:click="userVote('Za')"><feather-icon type="thumbs-up"></feather-icon></button>
-    <button type="button" name="voteAgainst" v-on:click="userVote('Przeciw')"><feather-icon type="thumbs-down"></feather-icon></button>
+    <button type="button" name="voteFor" v-on:click="userVote('Za')"><thumbs-up-icon></thumbs-up-icon></button>
+    <button type="button" name="voteAgainst" v-on:click="userVote('Przeciw')"><thumbs-down-icon></thumbs-down-icon></button>
   </div>
   <ul id="deputies">
     <li v-for='deputy in currentProject.deputies'>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { ThumbsUpIcon, ThumbsDownIcon } from 'vue-feather-icons'
 import Deputy from '@/components/Deputy'
 
 export default {
@@ -35,7 +36,7 @@ export default {
   //   }
   // },
   components: {
-    Deputy
+    Deputy, ThumbsUpIcon, ThumbsDownIcon
   },
   computed: {
     userVotes () {

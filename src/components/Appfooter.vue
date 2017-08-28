@@ -1,13 +1,18 @@
 <template>
 <div class="footer">
-  <a href="https://www.facebook.com/wybornieorg/"><feather-icon type="facebook"></feather-icon> fb.com/wybornieorg</a>
+  <a href="https://www.facebook.com/wybornieorg/"><facebook-icon></facebook-icon> fb.com/wybornieorg</a>
 
 </div>
 </template>
 
 <script>
+import { FacebookIcon } from 'vue-feather-icons'
+
 export default {
-  name: 'footer'
+  name: 'footer',
+  components: {
+    FacebookIcon
+  }
   // data () {
   //   return {}
   // }

@@ -5,9 +5,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import VueFeatherIcon from 'vue-feather-icon'
 
-Vue.use(VueFeatherIcon)
+Vue.use(router)
 
 Vue.config.productionTip = false
 
@@ -18,4 +17,4 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
-})
+}).$mount('#app')
