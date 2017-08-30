@@ -1,8 +1,7 @@
 <template>
 <div class="main">
   <div class="projects">
-    <h2>Projekty</h2>
-      <button v-for="project in projects" type="button" v-on:click="fetchProject(project)"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
+      <button v-for="project in projects" type="button" v-on:click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
   </div>
   <currentproject></currentproject>
 
@@ -36,6 +35,7 @@ export default {
       return this.$store.dispatch('fetchProjects')
     },
     fetchProject (project) {
+      document.getElementById('data').scrollIntoView({behavior: 'smooth'})
       return this.$store.dispatch('fetchProject', project)
     }
   }
