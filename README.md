@@ -1,33 +1,13 @@
-# sejmor-webpack
+# wybornie.org - frontend
+
+To repozytorium zawiera kod, z którego generowana jest aplikacja uruchamiana po stronie użytkownika po wejściu na stronę http://wybornie.org/.
+
+Aplikacja wyświetla dane pobrane z serwera - [backend](https://github.com/fraunos/wybornieorg-backend).
+
 
 TODO:
-- zbieranie opisów projektów
-- frekwencja posłów
-> sejmor z webpackiem
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+- [x] głosowanie na projekty z wyświetlaniem wyników
+- [ ] opisy projektów (nazwy zwyczajowe i artykuły w sieci)
+- [ ] frekwencja posłów
+- [ ] szybka ankieta - najbardziej popularne projekty
+- [ ] widok układu parlamentu zamiast okręgów
