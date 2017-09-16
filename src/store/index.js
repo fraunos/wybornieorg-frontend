@@ -7,7 +7,7 @@ export default new Vuex.Store({
     projects: [],
     currentProject: [],
     userVotes: {},
-    deputiesStats: {}
+    deputiesStats: new Map()
   },
   mutations: {
     loadProjects (state, data) {
@@ -20,19 +20,22 @@ export default new Vuex.Store({
       Vue.set(state.userVotes, state.currentProject.drukNr, vote)
     },
     setDeputyStat (state, {deputy, vote}) {
-      if (state.deputiesStats[deputy.name] === undefined) {
-        state.deputiesStats[deputy.name] = {
+      let temp = state.deputiesStats.get(deputy.name)
+      if (temp === undefined) {
+        temp = {
           zgodne: new Set(),
           niezgodne: new Set()
         }
       }
       if (vote) {
-        state.deputiesStats[deputy.name].niezgodne.delete(state.currentProject.drukNr)
-        state.deputiesStats[deputy.name].zgodne.add(state.currentProject.drukNr)
+        temp.niezgodne.delete(state.currentProject.drukNr)
+        temp.zgodne.add(state.currentProject.drukNr)
       } else {
-        state.deputiesStats[deputy.name].zgodne.delete(state.currentProject.drukNr)
-        state.deputiesStats[deputy.name].niezgodne.add(state.currentProject.drukNr)
+        temp.zgodne.delete(state.currentProject.drukNr)
+        temp.niezgodne.add(state.currentProject.drukNr)
       }
+      temp.zgodnoscProcent = Math.floor(100 * temp.zgodne.size / (temp.zgodne.size + temp.niezgodne.size))
+      state.deputiesStats.set(deputy.name, temp)
     }
   },
   actions: {
