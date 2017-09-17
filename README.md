@@ -14,3 +14,4 @@ TODO:
 - [ ] frekwencja posłów
 - [ ] szybka ankieta - najbardziej popularne projekty
 - [ ] widok układu parlamentu zamiast okręgów
+- [ ] zaznaczanie projektów, na które został oddany głos

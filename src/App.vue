@@ -95,7 +95,7 @@ button:hover {
 }
 
 button:active {
-  outline-style: double;
+  background-color: crimson;
 }
 
 svg,

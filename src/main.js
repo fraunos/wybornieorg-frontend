@@ -11,10 +11,12 @@ Vue.use(router)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+let wybornie = new Vue({
   el: '#app',
   store,
   router,
   template: '<App/>',
   components: { App }
 }).$mount('#app')
+
+console.log(wybornie)
