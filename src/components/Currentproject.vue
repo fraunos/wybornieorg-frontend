@@ -17,11 +17,18 @@
     <button type="button" name="voteFor" v-on:click="userVote('Za')"><thumbs-up-icon></thumbs-up-icon></button>
     <button type="button" name="voteAgainst" v-on:click="userVote('Przeciw')"><thumbs-down-icon></thumbs-down-icon></button>
   </div>
-  <ul id="deputies">
+
+  <!-- <ul id="deputies">
     <li v-for='deputy in currentProject.deputies'>
       <deputy :singleDeputy='deputy'></deputy>
     </li>
-  </ul>
+  </ul> -->
+<svg class="deputies" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)"></deputy>
+  </g>
+
+</svg>
 </div>
 </template>
 
@@ -30,11 +37,15 @@ import { ThumbsUpIcon, ThumbsDownIcon } from 'vue-feather-icons'
 import Deputy from '@/components/Deputy'
 
 export default {
-  // data () {
-  //   return {
-  //     userVotes: {}
-  //   }
-  // },
+  data () {
+    return {
+      z1: 1,
+      z2: 1,
+      z3: 1,
+      z4: 1,
+      s1: 32
+    }
+  },
   components: {
     Deputy, ThumbsUpIcon, ThumbsDownIcon
   },
@@ -45,6 +56,7 @@ export default {
     currentProject () {
       return this.$store.state.currentProject
     }
+
   },
   methods: {
     userVote (vote) {
@@ -52,6 +64,14 @@ export default {
         this.$store.commit('userVote', vote)
         this.$forceUpdate()
       }
+    },
+    placeX (x) {
+      let result = 450 + (Math.cos((x) * (Math.PI / this.s1)) * (10 * (Math.floor(x / this.s1) + 15))) * (Math.pow(-1, Math.floor(x / this.s1)))
+      return result
+    },
+    placeY (y) {
+      let result = 450 - (Math.sin((y) * (Math.PI / this.s1)) * (10 * (Math.floor(y / this.s1) + 15))) * (Math.pow(-1, Math.floor(y / this.s1)))
+      return result
     }
   }
 }
@@ -76,5 +96,9 @@ button{
   flex-wrap: wrap;
   display: flex;
   list-style: none;
+}
+svg.deputies{
+  width: auto;
+  height: 1000px;
 }
 </style>

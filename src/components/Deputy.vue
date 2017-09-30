@@ -1,28 +1,41 @@
 <template>
-<div class="deputy">
-  <img v-bind:class="[zgodnosc ? 'zgodny' : 'niezgodny', '']" :src="imgURL" alt="">
-  {{singleDeputy.name}}
-  {{singleDeputy.vote}}
-  {{singleDeputy.group}}
-</div>
+<g>
+  <g v-if="show">
+    <text :x="cx+20" :y="cy" font-family="Sans" font-size="35">
+      {{singleDeputy.name}}
+    </text>
+    <text :x="cx+20" :y="cy+40" font-family="Sans" font-size="35">
+      {{singleDeputy.vote}}
+    </text>
+    <text :x="cx+20" :y="cy+80" font-family="Sans" font-size="35">
+      {{singleDeputy.group}}
+    </text>
+  </g>
+  <circle :cx='cx' :cy='cy' :r="5" :class="[zgodnosc ? 'zgodny' : 'niezgodny']" @click='show=!show' />
+
+</g>
 </template>
 
 <script>
 const $ = require('jquery')
 
 export default {
-  props: ['singleDeputy'],
+  props: ['singleDeputy', 'cx', 'cy'],
+  data () {
+    return {
+      r: 5,
+      show: false
+    }
+  },
   computed: {
     zgodnosc () {
+      // console.log(`${this.$store.state.userVotes[this.$store.state.currentProject.drukNr]} ${this.singleDeputy.vote}`)
       let result = this.$store.state.userVotes[this.$store.state.currentProject.drukNr] === this.singleDeputy.vote
-      this.$store.commit('setDeputyStat', {deputy: this.singleDeputy, vote: result})
+      this.$store.commit('setDeputyStat', {
+        deputy: this.singleDeputy,
+        vote: result
+      })
       return result
-    },
-    imgURL () {
-      // $.get('https://api.qwant.com/api/search/images?count=1&locale=pl_pl&offset=1&q=' + this.singleDeputy.name.replace(' ', '+')).done(data => {
-      //   console.log(data)
-      // })
-      return
     }
   },
   created () {
@@ -34,6 +47,9 @@ export default {
       $.get('https://api.qwant.com/api/search/images?count=1&locale=pl_pl&offset=1&q=Adam+Abramowicz').done(data => {
         self.projects = data
       })
+    },
+    log () {
+      console.log(this.singleDeputy.name)
     }
   },
   watch: {
@@ -47,18 +63,42 @@ export default {
 div {
   width: 100px;
 }
-img {
-  height: 80px;
-  width: 80px;
-  border-style: inset;
-  border-radius: 100%;
-  border-width: 8px;
-  border-color: grey;
+
+.zgodny {
+  fill: green;
 }
-.zgodny{
-  border-color: green;
+
+.niezgodny {
+  fill: red;
 }
-.niezgodny{
-  border-color: red;
+circle {
+  stroke: none;
+  fill: grey;
 }
+circle:hover {
+    -webkit-transform: perspective(17px);
+  }
+
+  /*.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}*/
 </style>
