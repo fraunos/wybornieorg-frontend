@@ -10,9 +10,11 @@
     <text :x="cx+20" :y="cy+80" font-family="Sans" font-size="35">
       {{singleDeputy.group}}
     </text>
+        <!-- <set attributeName="visibility" from="hidden" to="visible" begin="thingyouhoverover.mouseover" end="thingyouhoverover.mouseout"/> -->
   </g>
-  <circle :cx='cx' :cy='cy' :r="5" :class="[zgodnosc ? 'zgodny' : 'niezgodny']" @click='show=!show' />
-
+  <circle :cx='cx' :cy='cy' :r="5" :class="koloryzuj" @click='show=!show'>
+  </circle>
+  <!-- <text :x="cx+20" :y="cy" font-family="Sans" font-size="10" stroke="none" fill="white">{{i}}</text> -->
 </g>
 </template>
 
@@ -20,10 +22,10 @@
 const $ = require('jquery')
 
 export default {
-  props: ['singleDeputy', 'cx', 'cy'],
+  props: ['singleDeputy', 'cx', 'cy', 'i'],
   data () {
     return {
-      r: 5,
+      r: 10,
       show: false
     }
   },
@@ -35,6 +37,17 @@ export default {
         deputy: this.singleDeputy,
         vote: result
       })
+      return result
+    },
+    koloryzuj () {
+      let result = ''
+      if (this.singleDeputy.vote === 'Wstrzymał się') {
+        result = 'wstrzymanie'
+      } else if (this.singleDeputy.vote === 'Nieobecny') {
+        result = 'nieobecnosc'
+      } else {
+        result = this.zgodnosc ? 'zgodny' : 'niezgodny'
+      }
       return result
     }
   },
@@ -66,14 +79,27 @@ div {
 
 .zgodny {
   fill: green;
+  transition: 1s;
 }
 
 .niezgodny {
-  fill: red;
+  fill: crimson;
+  transition: 1s;
+}
+.nieobecnosc {
+  fill: darkslategray;
+  transition: 1s;
+}
+.wstrzymanie {
+  fill: darkorchid;
+  transition: 1s;
+}
+text {
+  stroke: red;
 }
 circle {
   stroke: none;
-  fill: grey;
+  fill: black;
 }
 circle:hover {
     -webkit-transform: perspective(17px);
