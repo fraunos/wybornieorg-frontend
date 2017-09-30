@@ -25,7 +25,7 @@
   </ul> -->
 <svg class="deputies" xmlns="http://www.w3.org/2000/svg">
   <g>
-    <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)"></deputy>
+    <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
   </g>
 
 </svg>
@@ -39,11 +39,7 @@ import Deputy from '@/components/Deputy'
 export default {
   data () {
     return {
-      z1: 1,
-      z2: 1,
-      z3: 1,
-      z4: 1,
-      s1: 32
+      s1: 32 // ilość osób w kolumnie
     }
   },
   components: {
@@ -66,11 +62,11 @@ export default {
       }
     },
     placeX (x) {
-      let result = 450 + (Math.cos((x) * (Math.PI / this.s1)) * (10 * (Math.floor(x / this.s1) + 15))) * (Math.pow(-1, Math.floor(x / this.s1)))
+      let result = 450 - Math.cos(x * (Math.PI / 460)) * 400 * Math.cos(Math.floor((x % 10) + 15) * (Math.PI / 70))
       return result
     },
     placeY (y) {
-      let result = 450 - (Math.sin((y) * (Math.PI / this.s1)) * (10 * (Math.floor(y / this.s1) + 15))) * (Math.pow(-1, Math.floor(y / this.s1)))
+      let result = 450 - Math.sin(y * (Math.PI / 460)) * 400 * Math.cos(Math.floor((y % 10) + 15) * (Math.PI / 70))
       return result
     }
   }
