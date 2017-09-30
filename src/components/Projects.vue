@@ -1,7 +1,9 @@
 <template>
 <div class="main">
   <div class="projects">
-      <button v-for="project in projects" type="button" v-on:click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
+    <transition-group name="fade">
+      <button v-for="project in projects" type="button" :key="project" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
+    </transition-group>
   </div>
   <currentproject></currentproject>
 
@@ -60,5 +62,12 @@ div {
 ul {
   list-style-type: none;
   padding: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: .5s;
+  opacity: 1;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

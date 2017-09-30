@@ -7,7 +7,9 @@
 
     <appnav></appnav>
     <div class="router">
-      <router-view ></router-view>
+      <transition name="fade" mode="out-in">
+        <router-view ></router-view>
+      </transition>
     </div>
   </div>
   <Appfooter></Appfooter>
@@ -88,10 +90,14 @@ button {
   background-color: royalblue;
   padding: 10px;
   color: white;
+  opacity: 1;
+  transition: .5s;
 }
 
 button:hover {
   background-color: lightcoral;
+  opacity: .5;
+  transition: .5s;
 }
 
 button:active {
@@ -111,6 +117,8 @@ a {
   text-decoration: none;
   outline: none;
   font-weight: bold;
+  opacity: 1;
+  transition: .5s;
 }
 
 a:active {
@@ -120,5 +128,15 @@ a:active {
 a:hover {
   color: hotpink;
   stroke: hotpink;
+  opacity: .5;
+  transition: .5s;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+  z-index: 0;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  z-index: 10;
 }
 </style>
