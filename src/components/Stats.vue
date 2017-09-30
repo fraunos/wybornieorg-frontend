@@ -1,11 +1,13 @@
 <template>
 <div class="stats">
-  <p></p>
-  <ol>
-    <li v-for="(value, key, index) of deputiesStatsSorted">
-      {{value[0]}} : Zgodność: {{value[1].zgodne.size}}/{{value[1].zgodne.size + value[1].niezgodne.size}},  {{value[1].zgodnoscProcent}}%
-    </li>
-  </ol>
+  <p v-if='userVoted'>Brak statystyk! Zagłosuj najpierw</p>
+  <div v-else>
+    <ol>
+      <li v-for="(value, key, index) of deputiesStatsSorted">
+        {{value[0]}} : Zgodność: {{value[1].zgodne.size}}/{{value[1].zgodne.size + value[1].niezgodne.size}},  {{value[1].zgodnoscProcent}}%
+      </li>
+    </ol>
+  </div>
 </div>
 </template>
 
@@ -18,6 +20,10 @@ export default {
   computed: {
     deputiesStats () {
       return [...this.$store.state.deputiesStats.entries()]
+    },
+    userVoted () {
+      console.log(this.$store.state.userVotes)
+      return JSON.stringify(this.$store.state.userVotes) === '{}'
     },
     deputiesStatsSorted () {
       return this.deputiesStats.sort((a, b) => {
