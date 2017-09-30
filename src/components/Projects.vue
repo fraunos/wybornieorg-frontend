@@ -2,7 +2,7 @@
 <div class="main">
   <div class="projects">
     <transition-group name="fade">
-      <button v-for="project in projects" type="button" :key="project" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
+      <button v-for="(project, index) in projects" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
     </transition-group>
   </div>
   <currentproject></currentproject>
