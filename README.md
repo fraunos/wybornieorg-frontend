@@ -8,7 +8,7 @@ Aplikacja wyświetla dane pobrane z serwera - [backend](https://github.com/fraun
 TODO:
 - [x] głosowanie na projekty z wyświetlaniem wyników
 - [ ] persistent storage - zapisywanie pobranych z serwera i od użytkownika danych w localStorage cache (dodanie do backendu daty aktualizacji, żeby sprawdzać kiedy należy pobrać ponownie dane na klienta)
-- [ ] sortowanie i wyszukiwanie projektów (po numerze, dacie głosowania, liczbie oddanych głosów)
+- [ ] sortowanie i wyszukiwanie projektów (po frekwencji, numerze, dacie głosowania, liczbie oddanych głosów)
 - [x] sortowanie statystyk posłów (wg. zgodności)
 - [ ] opisy projektów (nazwy zwyczajowe i artykuły w sieci)
 - [ ] frekwencja posłów
@@ -19,3 +19,5 @@ TODO:
 - [ ] lepszy wygląd
 - [ ] portrety posłów
 - [ ] animacje przy głosowaniu i ładowaniu statystyk
+- [x] zaznacznie nieobecności na szaro, wstrzymania się na fioletowo
+- [ ] redesign strony

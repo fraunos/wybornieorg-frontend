@@ -1,13 +1,16 @@
 <template>
 <div class="appnav">
   <div id="logo" class="links">
-    <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></a>
+    <router-link to="/"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></router-link>
+    <!-- <a href="#"><img src="./../assets/logo.svg"><h1>wybornie.org</h1></a> -->
   </div>
   <div class="links">
-    <a href="#main"><file-text-icon></file-text-icon> Projekty</a>
-    <a href="#staty"><pie-chart-icon type="pie-chart"></pie-chart-icon> Statystyki</a>
-    <a href="#ostronie"><info-icon type="info"></info-icon> O stronie</a>
-
+    <router-link to="main"><file-text-icon></file-text-icon> Projekty</router-link>
+    <router-link to="staty"><pie-chart-icon type="pie-chart"></pie-chart-icon> Statystyki</router-link>
+    <router-link to="ostronie"><info-icon type="info"></info-icon> O stronie</router-link>
+    <!-- <a href="#main"><file-text-icon></file-text-icon> Projekty</a> -->
+    <!-- <a href="#staty"><pie-chart-icon type="pie-chart"></pie-chart-icon> Statystyki</a> -->
+    <!-- <a href="#ostronie"><info-icon type="info"></info-icon> O stronie</a> -->
   </div>
 </div>
 </template>
@@ -39,6 +42,7 @@ export default {
 }
 
 h1 {
+  font-family: serif;
   display: inline-flex;
   margin: 0;
 }

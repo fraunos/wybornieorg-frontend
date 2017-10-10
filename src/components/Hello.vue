@@ -32,6 +32,7 @@ div {
 }
 #text{
   flex-flow: column;
+  margin: 0 10%;
 }
 
 ul {

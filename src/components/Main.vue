@@ -1,5 +1,12 @@
 <template>
 <div class="main">
+  <!-- <div id="sorting" class="">
+    <ul>
+      <li><input type="checkbox" name="" value="">asdd</li>
+      <li><input type="checkbox" name="" value="">asdas</li>
+    </ul>
+  </div> -->
+
   <projects></projects>
 </div>
 </template>

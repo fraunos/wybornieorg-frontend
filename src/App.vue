@@ -1,8 +1,13 @@
 <template>
 <div id="app">
   <div class="app">
-    <div id="info">
-      <h1><alert-triangle-icon></alert-triangle-icon> Strona w budowie <alert-triangle-icon></alert-triangle-icon></h1>
+    <div id="wipcontainer" v-show="popup">
+      <div id="wip">
+        <x-icon @click="popup=!popup" class="pointer"></x-icon>
+        <span><alert-triangle-icon></alert-triangle-icon> Strona w budowie
+           <alert-triangle-icon></alert-triangle-icon></span>
+           <span>Jeśli chcesz wesprzeć projekt - skontaktuj się ze mną - adres w stopce.</span>
+      </div>
     </div>
 
     <appnav></appnav>
@@ -20,7 +25,7 @@
 import Appnav from '@/components/Appnav'
 import Appfooter from '@/components/Appfooter'
 import {
-  AlertTriangleIcon
+  AlertTriangleIcon, XIcon
 } from 'vue-feather-icons'
 
 export default {
@@ -28,29 +33,60 @@ export default {
   components: {
     Appnav,
     Appfooter,
-    AlertTriangleIcon
+    AlertTriangleIcon,
+    XIcon
+  },
+  data () {
+    return {
+      popup: true
+    }
   }
 }
 </script>
 
 <style>
+svg{
+  vertical-align: bottom;
+}
+img{
+  border: black 2px;
+}
 .router{
   margin: 2em;
 }
-#info svg {
+#wip svg {
   width: 48px;
   height: 48px;
 }
 
-#info {
+#wip {
+  position: absolute;
+  font-weight: bold;
+  width: 40vw;
+  left: 30vw;
+  height: auto;
+  top: 20vh;
   background: repeating-linear-gradient( 45deg,
   orange,
   orange 20px,
   darkslategrey 20px,
   darkslategrey 40px);
 }
+#wipcontainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.9);
+}
+.pointer {
+  cursor: pointer;
+  background: black;
+  border-radius: 100%;
+}
 
-#info h1 {
+#wip span {
   background-color: orange;
   color: darkslategrey;
   stroke: darkslategrey;
@@ -61,7 +97,7 @@ body {
   background-color: #090960;
   margin: 0 5%;
 }
-p{
+p {
   text-align: justify;
 
 }
@@ -75,12 +111,12 @@ div {
   /*-webkit-font-smoothing: antialiased;*/
   /*-moz-osx-font-smoothing: grayscale;*/
   text-align: center;
-  color: white;
+  color: black;
   stroke: white;
 }
 
 .app {
-  background-color: midnightblue;
+  background-color: white;
 }
 
 button {
@@ -124,12 +160,13 @@ a {
 a:active {
   outline-style: solid;
 }
-
+.router-link-exact-active {
+  border-bottom: 0.2em solid #f00;
+}
 a:hover {
   color: hotpink;
   stroke: hotpink;
-  opacity: .5;
-  transition: .5s;
+  /*opacity: .5;*/
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

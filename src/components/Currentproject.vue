@@ -7,9 +7,12 @@
     <p>{{currentProject.status}}</p>
     <p>{{currentProject.drukNr}}</p>
 
-    <p><a :href="currentProject.tresc">treść ustawy</a></p>
-    <p><a :href="currentProject.przebieg">przebieg projektu</a></p>
-    <p><a :href="currentProject.votingLink">decydujące głosowanie</a></p>
+    <p><a target="_blank" :href="currentProject.tresc">treść ustawy</a></p>
+    <p><a target="_blank" :href="currentProject.przebieg">przebieg projektu</a></p>
+    <p><a target="_blank" :href="currentProject.votingLink">decydujące głosowanie</a></p>
+    <p><a target="_blank" :href="mediaLink">media o projekcie</a></p>
+
+    <p>Frekwencja {{Math.floor(currentProject.attendance*100)}}%</p>
     <!-- <p>{{currentProject.votingData}}</p> -->
     <!-- <p>{{currentProject.groupLinks}}</p> -->
   </div>
@@ -23,7 +26,7 @@
       <deputy :singleDeputy='deputy'></deputy>
     </li>
   </ul> -->
-<svg class="deputies" xmlns="http://www.w3.org/2000/svg">
+<svg class="deputies" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
   </g>
@@ -51,8 +54,18 @@ export default {
     },
     currentProject () {
       return this.$store.state.currentProject
-    }
+    },
+    mediaLink () {
+      let result = ''
+      try {
+        result = 'https://encrypted.google.com/search?q=' + this.currentProject.tytul.replace(/ /g, '+') + '&tbm=nws'
+      } catch (e) {
 
+      } finally {
+
+      }
+      return result
+    }
   },
   methods: {
     userVote (vote) {
@@ -62,11 +75,11 @@ export default {
       }
     },
     placeX (x) {
-      let result = 450 - Math.cos(x * (Math.PI / 460)) * 400 * Math.cos(Math.floor((x % 10) + 15) * (Math.PI / 70))
+      let result = 450 - Math.cos(x * (Math.PI / 460)) * Math.cos(Math.floor((x % 10) + 15) * (Math.PI / 70)) * 550
       return result
     },
     placeY (y) {
-      let result = 450 - Math.sin(y * (Math.PI / 460)) * 400 * Math.cos(Math.floor((y % 10) + 15) * (Math.PI / 70))
+      let result = 450 - Math.sin(y * (Math.PI / 460)) * Math.cos(Math.floor((y % 10) + 15) * (Math.PI / 70)) * 550
       return result
     }
   }
@@ -94,7 +107,8 @@ button{
   list-style: none;
 }
 svg.deputies{
-  width: auto;
+  width: 100%;
   height: 1000px;
+  background: midnightblue;
 }
 </style>

@@ -1,18 +1,23 @@
 <template>
 <g>
-  <g v-if="show">
-    <text :x="cx+20" :y="cy" font-family="Sans" font-size="35">
+   <!-- v-if="show" -->
+  <!-- <g>
+    <text :x="300" :y="450" font-family="Sans" font-size="35">
       {{singleDeputy.name}}
     </text>
-    <text :x="cx+20" :y="cy+40" font-family="Sans" font-size="35">
+    <text :x="300" :y="450+40" font-family="Sans" font-size="35">
       {{singleDeputy.vote}}
     </text>
-    <text :x="cx+20" :y="cy+80" font-family="Sans" font-size="35">
+    <text :x="300" :y="450+80" font-family="Sans" font-size="35">
       {{singleDeputy.group}}
     </text>
-        <!-- <set attributeName="visibility" from="hidden" to="visible" begin="thingyouhoverover.mouseover" end="thingyouhoverover.mouseout"/> -->
-  </g>
-  <circle :cx='cx' :cy='cy' :r="5" :class="koloryzuj" @click='show=!show'>
+        <set attributeName="visibility" from="hidden" to="visible" :begin="i + '.mouseover'" :end="i + '.mouseout'"/>
+  </g> -->
+  <!--  @click='show=!show' -->
+  <title class="tooltip">{{singleDeputy.name}}
+{{singleDeputy.vote}}
+{{singleDeputy.group}}</title>
+  <circle :cx='cx' :cy='cy' :r="7" :class="koloryzuj" :id="i">
   </circle>
   <!-- <text :x="cx+20" :y="cy" font-family="Sans" font-size="10" stroke="none" fill="white">{{i}}</text> -->
 </g>
@@ -25,7 +30,7 @@ export default {
   props: ['singleDeputy', 'cx', 'cy', 'i'],
   data () {
     return {
-      r: 10,
+      r: 15,
       show: false
     }
   },
@@ -45,9 +50,23 @@ export default {
         result = 'wstrzymanie'
       } else if (this.singleDeputy.vote === 'Nieobecny') {
         result = 'nieobecnosc'
+      } else if (this.$store.state.userVotes[this.$store.state.currentProject.drukNr] === undefined) {
       } else {
         result = this.zgodnosc ? 'zgodny' : 'niezgodny'
       }
+
+      // if (this.singleDeputy.group === 'PiS') {
+      //   result += ' pis'
+      // } else if (this.singleDeputy.group === 'PO') {
+      //   result += ' po'
+      // } else if (this.singleDeputy.group === 'Kukiz15') {
+      //   result += ' kukiz'
+      // } else if (this.singleDeputy.group === 'N') {
+      //   result += ' nowoczesna'
+      // } else if (this.singleDeputy.group === 'PSL') {
+      //   result += ' psl'
+      // }
+
       return result
     }
   },
@@ -76,55 +95,47 @@ export default {
 div {
   width: 100px;
 }
-
+.pis{
+  stroke: firebrick;
+}
+.po{
+  stroke: gold;
+}
+.kukiz{
+  stroke: black;
+}
+.nowoczesna{
+  stroke: blue;
+}
+.psl{
+  stroke: green;
+}
 .zgodny {
   fill: green;
   transition: 1s;
 }
 
 .niezgodny {
-  fill: crimson;
+  fill: red;
   transition: 1s;
 }
 .nieobecnosc {
-  fill: darkslategray;
+  fill: #111;
   transition: 1s;
 }
 .wstrzymanie {
   fill: darkorchid;
   transition: 1s;
 }
-text {
-  stroke: red;
-}
 circle {
   stroke: none;
+  stroke-width: 2;
   fill: black;
 }
 circle:hover {
-    -webkit-transform: perspective(17px);
-  }
-
-  /*.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
+  -webkit-transform: perspective(17px);
 }
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    position: absolute;
-    z-index: 1;
+title {
+  font-size: 24px;
 }
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}*/
 </style>

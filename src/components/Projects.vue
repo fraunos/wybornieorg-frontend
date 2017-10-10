@@ -2,7 +2,7 @@
 <div class="main">
   <div class="projects">
     <transition-group name="fade">
-      <button v-for="(project, index) in projects" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}</button>
+      <button v-for="(project, index) in projectsSorted" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}<br>Frekwencja: {{Math.floor(project.attendance*100)}}%<br>{{project.status}}</button>
     </transition-group>
   </div>
   <currentproject></currentproject>
@@ -21,6 +21,11 @@ export default {
   computed: {
     projects () {
       return this.$store.state.projects
+    },
+    projectsSorted () {
+      return this.$store.state.projects.sort((a, b) => {
+        return b.attendance - a.attendance
+      })
     }
   },
   // data () {

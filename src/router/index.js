@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Main from '@/components/Main'
 import About from '@/components/About'
 import Stats from '@/components/Stats'
+import Dev from '@/components/Dev'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/staty',
       name: 'stats',
       component: Stats
+    },
+    {
+      path: '/dev',
+      name: 'dev',
+      component: Dev
     }
   ]
 })

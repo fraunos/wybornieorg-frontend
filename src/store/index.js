@@ -42,7 +42,7 @@ export default new Vuex.Store({
     fetchProjects: ({
       commit
     }) => {
-      $.get('http://89.70.23.117:3000/dev/projekty')
+      $.get('http://localhost:3000/dev/projekty')
         .done(data => {
           commit('loadProjects', data)
         })
@@ -50,7 +50,7 @@ export default new Vuex.Store({
     fetchProject: ({
       commit
     }, project) => {
-      $.get('http://89.70.23.117:3000/dev/projekty/' + project.drukNr)
+      $.get('http://localhost:3000/dev/projekty/' + project.drukNr)
         .done(data => {
           commit('loadProject', data)
         })

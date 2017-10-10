@@ -3,7 +3,7 @@
   <p v-if='userVoted'>Brak statystyk! Zagłosuj najpierw</p>
   <div v-else>
     <ol>
-      <li v-for="(value, key, index) of deputiesStatsSorted">
+      <li v-for="(value, key, index) of deputiesStatsSortedZgodne">
         {{value[0]}} : Zgodność: {{value[1].zgodne.size}}/{{value[1].zgodne.size + value[1].niezgodne.size}},  {{value[1].zgodnoscProcent}}%
       </li>
     </ol>
@@ -25,9 +25,14 @@ export default {
       console.log(this.$store.state.userVotes)
       return JSON.stringify(this.$store.state.userVotes) === '{}'
     },
-    deputiesStatsSorted () {
+    deputiesStatsSortedZgodnoscProcent () {
       return this.deputiesStats.sort((a, b) => {
         return b[1].zgodnoscProcent - a[1].zgodnoscProcent
+      })
+    },
+    deputiesStatsSortedZgodne () {
+      return this.deputiesStats.sort((a, b) => {
+        return (b[1].zgodne.size - b[1].niezgodne.size) - (a[1].zgodne.size - a[1].niezgodne.size)
       })
     }
   }
@@ -35,4 +40,7 @@ export default {
 </script>
 
 <style scoped>
+li:first-child {
+  font-weight: bold;
+}
 </style>
