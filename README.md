@@ -16,8 +16,7 @@ TODO:
 - [x] widok układu parlamentu zamiast okręgów
 - [ ] zaznaczanie projektów, na które został oddany głos
 - [ ] responsywność - dostosowanie do różnych ekranów
-- [ ] lepszy wygląd
+- [x] lepszy wygląd (nowe logo, struktura aplikacji)
 - [ ] portrety posłów
 - [ ] animacje przy głosowaniu i ładowaniu statystyk
 - [x] zaznacznie nieobecności na szaro, wstrzymania się na fioletowo
-- [ ] redesign strony
