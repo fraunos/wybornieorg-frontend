@@ -1,30 +1,28 @@
 <template>
 <div id="app">
-    <!-- <div id="wipcontainer" v-show="popup">
-      <div id="wip">
-        <x-icon @click="popup=!popup" class="pointer"></x-icon>
-        <span><alert-triangle-icon></alert-triangle-icon> Strona w budowie
-           <alert-triangle-icon></alert-triangle-icon></span>
-           <span>Jeśli chcesz wesprzeć projekt - skontaktuj się ze mną - adres w stopce.</span>
-      </div>
-    </div> -->
-
-    <div class="router">
-      <transition name="fade" mode="out-in">
-        <router-view ></router-view>
-      </transition>
-    </div>
+  <appnav></appnav>
+  <div class="router">
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
+  </div>
+  <!-- <appfooter></appfooter> -->
 </div>
 </template>
 
 <script>
+import Appfooter from '@/components/Appfooter'
+import Appnav from '@/components/Appnav'
 import {
-  AlertTriangleIcon, XIcon
+  AlertTriangleIcon,
+  XIcon
 } from 'vue-feather-icons'
 
 export default {
   name: 'app',
   components: {
+    Appnav,
+    Appfooter,
     AlertTriangleIcon,
     XIcon
   },
@@ -37,5 +35,37 @@ export default {
 </script>
 
 <style>
+/*@import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre');*/
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body{
+  font-family: 'Lato', sans-serif;
+  font-size: 3.5vmin;
+  text-align: justify;
+
+  margin: 0 10vw;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.router {
+  vertical-align: middle;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to
+{
+  opacity: 0;
+  z-index: 10;
+}
 
 </style>

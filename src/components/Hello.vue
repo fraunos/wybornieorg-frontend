@@ -1,47 +1,26 @@
 <template>
 <div class="hello">
-  <quotes></quotes>
-  <div id="text">
-    <p>Zbliżają się wybory, a Ty nie wiesz komu można zaufać? Wciel się w posła, zagłosuj na kluczowe projekty minionej kadencji i przekonaj się kto może Cię godnie reprezentować!
-</p>
-<h4>Zaczynajmy!</h4>
-<h3><a href="#main">Wybornie!</a></h3>
-  </div>
+  <h1>Witaj!</h1>
+  <p>Znalazłeś się na stronie <a href="#">wybornie.org</a>! Jest to aplikacja poświęcona wyborom. Jeśli tu jesteś to za pewne zastanawiasz się na kogo zagłosować? Kto jest godny Twojego zaufania? Właśnie w tym postaram się Ci pomóc!</p>
+  <p>Dzięki tej aplikacji możesz głosować zupełnie jak posłowie. Wystarczy znaleźć interesujące Cię projekty ustaw i wybrać głos 'Za' lub 'Przeciw'. Następnie, po przejściu w zakładkę Statystyk program wyświetli wyniki - w kolejności - z którym z posłów zgadzasz się najbardziej!</p>
+  <p>Powodzenia i rozsądnych wyborów!</p>
+  <h3>Wybornie!</h3>
 </div>
 </template>
 
 <script>
-import Quotes from '@/components/Quotes'
-
 export default {
-  // data() {
-  //   return {
-  //   }
-  // },
-  components: {
-    Quotes
-  }
+  data () {
+    return {}
+  },
+  created () {},
+  components: {},
+  methods: {}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div {
-  padding: 20px;
-  flex-flow: row;
-}
-#text{
-  flex-flow: column;
-  margin: 0 10%;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
+.hello {
 }
 </style>
