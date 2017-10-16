@@ -1,7 +1,5 @@
 <template>
-<div class="appnav">
-
-
+<div class="app-nav">
   <div :class="['logo', { menuhidden: !showMenu }]" id="logo" @click="showMenu=!showMenu"></div>
 
   <transition name="fade" mode="out-in">
@@ -41,7 +39,6 @@ export default {
 </script>
 
 <style scoped>
-
 .menu {
   position: fixed;
   display: flex;
@@ -52,7 +49,7 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   height: 100vh;
   width: 100vw;
-  z-index: 1;
+  z-index: 98;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -88,25 +85,15 @@ export default {
 .menuhidden:hover {
 }
 
-/*#proj{
-  left: calc(60%);
-}
-#staty{
-  left: calc(40%);
-}
-#ostronie{
-  left: calc(20%);
-}*/
-
 .small {
-  /*width: 15vmin;*/
+  width: 20vmin;
   height: 15vmin;
   padding: 0.5em;
   margin: 1em;
 }
 
 .circle {
-  background: white;
+  background: cornflowerblue;
 
   display: flex;
   align-items: center;
@@ -129,6 +116,17 @@ export default {
 
 .router-link-exact-active {
     color: red;
+}
+@media screen and (max-aspect-ratio: 1/1) {
+  .menu {
+    flex-direction: column;
+
+  }
+  .circle {
+    width: 35vmin;
+    height: 10vmin;
+    top: 20px;
+  }
 }
 
 @keyframes pulse {

@@ -1,11 +1,8 @@
 <template>
 <div class="projects">
   <projectslist></projectslist>
-  <div v-show="projekt == null" class="">
-    Wybierz projekt z listy!
-  </div>
+  <p v-show="projekt == null" class="">Wybierz projekt z listy!</p>
   <currentproject v-if="projekt"></currentproject>
-
 </div>
 </template>
 
@@ -18,25 +15,13 @@ export default {
   props: ['projekt'],
   data () {
     return {
-      projects: [],
-      pagination: 0,
-      itemsPerPage: 10
+      projects: []
     }
   },
   components: {
     Currentproject, Projectslist
   },
   computed: {
-    projectsSorted () {
-      return this.projects.sort((a, b) => {
-        return b.attendance - a.attendance
-      })
-    },
-    projectsSortedRange () {
-      return this.projects.sort((a, b) => {
-        return b.attendance - a.attendance
-      }).slice(this.itemsPerPage * this.pagination, this.itemsPerPage * this.pagination + this.itemsPerPage)
-    },
     userVotes () {
       return this.$store.state.userVotes
     }
@@ -52,30 +37,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-span{
-  font-weight: bold;
-}
 div {
-  padding: 10px;
-  flex-flow: row;
 }
 .projects {
   display: flex;
-  flex-flow: row;
-}
-.projlist{
-  flex-basis: 30%;
-
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: .5s;
-  opacity: 1;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+  /*align-items: center;*/
 }
 </style>

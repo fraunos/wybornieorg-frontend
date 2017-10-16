@@ -53,7 +53,7 @@ body{
 
 }
 .router {
-  vertical-align: middle;
+  /*vertical-align: middle;*/
 }
 
 .fade-enter-active,
@@ -66,6 +66,9 @@ body{
 {
   opacity: 0;
   z-index: 10;
+}
+a{
+  text-decoration: none;
 }
 
 </style>

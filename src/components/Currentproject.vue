@@ -11,8 +11,8 @@
       </g>
     </svg>
     <div id="buttons">
-      <button type="button" name="voteFor" @click="userVote('Za')"><thumbs-up-icon></thumbs-up-icon></button>
-      <button type="button" name="voteAgainst" @click="userVote('Przeciw')"><thumbs-down-icon></thumbs-down-icon></button>
+      <div @click="userVote('Za')"><thumbs-up-icon></thumbs-up-icon></div>
+      <div @click="userVote('Przeciw')"><thumbs-down-icon></thumbs-down-icon></div>
     </div>
     <div id="data">
       {{userVotes}}
@@ -45,7 +45,8 @@ export default {
     return {
       s1: 10, // ilość osób w kolumnie
       loading: false,
-      currentProject: null
+      currentProject: null,
+      size: window.innerWidth
     }
   },
   components: {
@@ -107,12 +108,23 @@ export default {
   /*flex-basis: 70%;*/
 }
 #buttons{
+  position: relative;
+  z-index: 1;
+  top: -10vmin;
+  display: flex;
   flex-direction: row;
   justify-content: center;
 }
-button{
+#buttons div{
   border-radius: 100%;
-  width: 48px;
+  width: 15vmin;
+  height: 15vmin;
+  background: cornflowerblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10vw;
 }
 #deputies {
   flex-wrap: wrap;
@@ -122,7 +134,7 @@ button{
 svg.deputies{
   width: 100%;
   height: 500px;
-  /*background: midnightblue;*/
+  background: midnightblue;
 }
 .loading {
   position: fixed;
