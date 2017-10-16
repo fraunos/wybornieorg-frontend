@@ -96,7 +96,7 @@ export default {
     fetchProject () {
       this.loading = true
       // document.getElementById('cp').scrollIntoView({behavior: 'smooth'})
-      $.get('http://localhost:3000/dev/projekty/' + this.$route.params.projekt)
+      $.get('http://wybornie.org:3000/dev/projekty/' + this.$route.params.projekt)
         .done(data => {
           this.loading = false
           this.currentProject = data

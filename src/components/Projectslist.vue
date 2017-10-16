@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     fetchProjects () {
-      $.get('http://localhost:3000/dev/projekty')
+      $.get('http://wybornie.org:3000/dev/projekty')
         .done(data => {
           this.projects = data
         })
