@@ -40,12 +40,12 @@ export default {
   computed: {
     projectsSorted () {
       return this.projects.sort((a, b) => {
-        return b.attendance - a.attendance
+        return b.frekwencja - a.frekwencja
       })
     },
     projectsSortedRange () {
       return this.projects.sort((a, b) => {
-        return b.attendance - a.attendance
+        return b.frekwencja - a.frekwencja
       }).slice(this.itemsPerPage * this.pagination, this.itemsPerPage * this.pagination + this.itemsPerPage)
     },
     userVotes () {
