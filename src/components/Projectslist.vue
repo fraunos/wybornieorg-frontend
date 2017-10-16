@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     fetchProjects () {
-      $.get('http://192.168.0.47:3000/dev/projekty')
+      $.get('http://localhost:3000/dev/projekty')
         .done(data => {
           this.projects = data
         })
