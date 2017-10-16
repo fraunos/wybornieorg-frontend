@@ -42,7 +42,7 @@ body{
   font-family: 'Lato', sans-serif;
   font-size: 3.5vmin;
   text-align: justify;
-
+  background: cornsilk;
   margin: 0 10vw;
 }
 

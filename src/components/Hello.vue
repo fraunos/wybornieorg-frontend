@@ -5,6 +5,8 @@
   <p>Dzięki tej aplikacji możesz głosować zupełnie jak posłowie. Wystarczy znaleźć interesujące Cię projekty ustaw i wybrać głos 'Za' lub 'Przeciw'. Następnie, po przejściu w zakładkę Statystyk program wyświetli wyniki - w kolejności - z którym z posłów zgadzasz się najbardziej!</p>
   <p>Powodzenia i rozsądnych wyborów!</p>
   <h3>Wybornie!</h3>
+  <p style="text-align: center;">By rozpocząć, użyj ikony w rogu.</p>
+
 </div>
 </template>
 

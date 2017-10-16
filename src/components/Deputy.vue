@@ -5,7 +5,7 @@
 {{singleDeputy.vote}}
 {{singleDeputy.group}}
 </title>
-  <circle :cx='cx' :cy='cy' :r="7" :class="koloryzuj" :id="i">
+  <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloryzuj" :id="i">
   </circle>
   <!-- <text :x="cx" :y="cy" font-family="Sans" font-size="10" stroke="none" fill="white">{{i+1}}</text> -->
 </g>
@@ -18,7 +18,8 @@ export default {
   data () {
     return {
       r: 15,
-      show: false
+      show: false,
+      dotSize: window.innerWidth / 200
     }
   },
   computed: {

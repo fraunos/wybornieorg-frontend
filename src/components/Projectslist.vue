@@ -4,8 +4,8 @@
     <!-- <button v-for="(project, index) in projectsSortedRange" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}<br>Frekwencja: {{Math.floor(project.frekwencja*100)}}%<br>{{project.status}}</button> -->
 <div class="scrollable-container">
   <div class="project-list">
-    <router-link :id="project.drukNr" v-for="(project, index) in projectsSortedRange" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { projekt: project.drukNr } }"  >
-      {{project.drukNr}} <span class="at">Frekwencja: {{Math.floor(project.frekwencja * 100)}}%</span>
+    <router-link :id="project.drukNr" v-for="(project, index) in projectsSorted" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { projekt: project.drukNr } }"  >
+      <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span>
     </router-link>
   </div>
 <div class="project-list-filters">
@@ -86,7 +86,7 @@ div {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100vmin;
   height: 100vh;
   background: cornflowerblue;
 
@@ -108,7 +108,7 @@ div {
 
 }
 .list-hidden{
-  left: -100vw;
+  left: -100vmin;
 }
 #fold-button{
   position: absolute;
@@ -116,8 +116,10 @@ div {
   height: 15vmin;
   background: red;
   top: calc(50vh - 7.5vmin);
-  left: calc(100vw - 7.5vmin);
+  left: calc(100vmin - 7.5vmin);
   border-radius: 100%;
+
+  cursor: pointer;
 }
 .project-list-item{
   background: white;
@@ -126,8 +128,17 @@ div {
   border: black solid;
   border-width: 0.1em;
   border-radius: 2em;
+  font-size: 70%;
+
 }
-div.project-list-item a.router-link-exact-active{
-  border-width: 2em;
+a.router-link-exact-active{
+  /*border-width: 2em;*/
+  background-color: lightcoral;
+}
+.tytul{
+  font-size: 90%;
+}
+span{
+  margin: 0.2em;
 }
 </style>
