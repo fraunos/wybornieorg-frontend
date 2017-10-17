@@ -125,7 +125,7 @@ export default {
   border-radius: 100%;
   width: 15vmin;
   height: 15vmin;
-  background: cornflowerblue;
+  background: var(--color-3);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -133,6 +133,15 @@ export default {
   margin: 0 10vw;
   user-select: none;
   cursor: pointer;
+  border: 1px solid;
+  transition: 0.5s;
+}
+#buttons div:hover{
+  background: var(--color-4);
+}
+#buttons div:active{
+  transition: 0s;
+  background: var(--color-1);
 }
 #buttons svg {
   transform: scale(2);
@@ -157,7 +166,7 @@ svg.deputies-graph{
   width: 10em;
   top: calc(50vh);
   left: calc(50vw - 10em / 2);
-  background: midnightblue;
+  background: var(--color-0);
   color: white;
   z-index: 99;
   /*animation: rotate 2s infinite;*/

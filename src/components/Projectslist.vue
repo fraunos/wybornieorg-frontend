@@ -87,8 +87,7 @@ div {
   left: 0;
   width: 100vmin;
   height: 100vh;
-  background: cornflowerblue;
-
+  background: var(--color-1-op);
   z-index: 89;
   transition: 1s ease-in-out;
 
@@ -99,7 +98,6 @@ div {
   display: flex;
   flex-flow: column;
   height: auto;
-
 }
 .scrollable-container{
   height: 100vh;
@@ -113,13 +111,18 @@ div {
   position: absolute;
   width: 15vmin;
   height: 15vmin;
-  background: red;
+  background: var(--color-0);
   top: calc(50vh - 7.5vmin);
   left: calc(100vmin - 7.5vmin);
   border-radius: 100%;
-
+  opacity: 0.7;
+  transition: 0.5s;
   cursor: pointer;
 }
+#fold-button:hover{
+  opacity: 1;
+}
+
 .project-list-item{
   background: white;
   padding: 1em;
@@ -132,7 +135,8 @@ div {
 }
 a.router-link-exact-active{
   /*border-width: 2em;*/
-  background-color: lightcoral;
+  background-color: var(--color-0);
+  color: black;
 }
 .tytul{
   font-size: 90%;

@@ -94,7 +94,7 @@ export default {
 }
 
 .circle {
-  background: cornflowerblue;
+  background: var(--color-4);
 
   display: flex;
   align-items: center;
@@ -104,19 +104,15 @@ export default {
   border: solid 0.2em;
   transition: 0.5s;
   cursor: pointer;
+  color: black;
 
 }
 .circle:hover {
   box-shadow: 0 0 15px 6px #fff;
 }
 
-.circle:active {
-  background-color: rgba(200, 100, 100, 1);
-  /*animation: rotate(360deg) scale(0.1, 0.1);*/
-}
-
 .router-link-exact-active {
-    color: red;
+    background: var(--color-3);
 }
 @media screen and (max-aspect-ratio: 1/1) {
   .menu {
