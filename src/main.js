@@ -5,18 +5,19 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import VueResource from 'vue-resource'
 
+Vue.use(VueResource)
 Vue.use(router)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-let wybornie = new Vue({
+new Vue({
   el: '#app',
   store,
   router,
+  http: { root: '/root' },
   template: '<App/>',
   components: { App }
 }).$mount('#app')
-
-console.log(wybornie)

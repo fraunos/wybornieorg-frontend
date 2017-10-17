@@ -43,8 +43,6 @@
 import { ThumbsUpIcon, ThumbsDownIcon } from 'vue-feather-icons'
 import Deputy from '@/components/Deputy'
 
-const $ = require('jquery')
-
 export default {
   data () {
     return {
@@ -95,12 +93,13 @@ export default {
     },
     fetchProject () {
       this.loading = true
-      // document.getElementById('cp').scrollIntoView({behavior: 'smooth'})
-      $.get('http://wybornie.org:3000/dev/projekty/' + this.$route.params.projekt)
-        .done(data => {
-          this.loading = false
-          this.currentProject = data
-        })
+
+      this.$http.get('http://wybornie.org:3000/dev/projekty/' + this.$route.params.projekt).then(response => {
+        this.currentProject = response.body
+        this.loading = false
+      }, response => {
+        // error callback
+      })
     }
   }
 }

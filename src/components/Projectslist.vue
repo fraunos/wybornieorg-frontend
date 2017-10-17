@@ -21,8 +21,6 @@
 <script>
 import { ArrowLeftIcon, ArrowRightIcon } from 'vue-feather-icons'
 
-const $ = require('jquery')
-
 export default {
   name: 'projectslist',
   data () {
@@ -60,10 +58,11 @@ export default {
   },
   methods: {
     fetchProjects () {
-      $.get('http://wybornie.org:3000/dev/projekty')
-        .done(data => {
-          this.projects = data
-        })
+      this.$http.get('http://wybornie.org:3000/dev/projekty/').then(response => {
+        this.projects = response.body
+      }, response => {
+        // error callback
+      })
     },
     hideList () {
       this.listHidden = true

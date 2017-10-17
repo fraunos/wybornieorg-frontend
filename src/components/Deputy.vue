@@ -12,7 +12,6 @@
 </template>
 
 <script>
-const $ = require('jquery')
 export default {
   props: ['singleDeputy', 'cx', 'cy', 'i'],
   data () {
@@ -62,10 +61,7 @@ export default {
   },
   methods: {
     fetchIMG () {
-      var self = this
-      $.get('https://api.qwant.com/api/search/images?count=1&locale=pl_pl&offset=1&q=Adam+Abramowicz').done(data => {
-        self.projects = data
-      })
+      return
     },
     log () {
       console.log(this.singleDeputy.name)
