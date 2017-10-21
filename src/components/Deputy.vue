@@ -34,7 +34,7 @@ export default {
     },
     koloryzuj () {
       let result = ''
-      if (this.singleDeputy.vote === 'Wstrzymał się') {
+      if (this.singleDeputy.vote === 'Wstrzymał się' || this.singleDeputy.vote === 'Nie oddał głosu') {
         result = 'wstrzymanie'
       } else if (this.singleDeputy.vote === 'Nieobecny') {
         result = 'nieobecnosc'

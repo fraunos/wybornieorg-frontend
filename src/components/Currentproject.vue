@@ -22,8 +22,9 @@
       <!-- {{userVotes}} -->
       <p>Druk nr {{currentProject.drukNr}}</p>
       <h3>{{currentProject.tytul}}</h3>
-      <p>{{currentProject.status}} {{new Date(currentProject.votingData.votingDate).toLocaleString()}}</p>
+      <p>{{currentProject.status}} {{new Date(currentProject.votingDate).toLocaleString()}}</p>
       <p>{{currentProject.opis}}</p>
+      <p>{{currentProject.deputies.length}}</p>
       <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
 
       <p><a target="_blank" :href="currentProject.trescLink">adres projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
