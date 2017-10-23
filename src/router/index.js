@@ -16,7 +16,7 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/projekty/:projekt?',
+      path: '/projekty/:kadencja?/:druk?',
       name: 'projects',
       component: Projects,
       props: true

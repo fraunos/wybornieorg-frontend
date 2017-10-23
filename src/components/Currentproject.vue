@@ -99,7 +99,7 @@ export default {
     fetchProject () {
       this.loading = true
 
-      this.$http.get('http://wybornie.org:3000/dev/projekty/' + this.$route.params.projekt).then(response => {
+      this.$http.get('http://localhost:3000/dev/projekty/' + this.$route.params.kadencja + '/' + this.$route.params.druk).then(response => {
         this.currentProject = response.body
         this.loading = false
       }, response => {

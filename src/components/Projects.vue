@@ -1,8 +1,8 @@
 <template>
 <div class="projects">
   <projectslist></projectslist>
-  <p v-show="projekt == null" class="">Wybierz projekt z listy!</p>
-  <currentproject v-if="projekt"></currentproject>
+  <p v-show="druk == null" class="">Wybierz projekt z listy!</p>
+  <currentproject v-if="druk"></currentproject>
 </div>
 </template>
 
@@ -12,7 +12,7 @@ import Projectslist from '@/components/Projectslist'
 
 export default {
   name: 'projects',
-  props: ['projekt'],
+  props: ['druk', 'kadencja'],
   data () {
     return {
       projects: []

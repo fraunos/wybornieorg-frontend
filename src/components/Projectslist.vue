@@ -4,7 +4,7 @@
     <!-- <button v-for="(project, index) in projectsSortedRange" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}<br>Frekwencja: {{Math.floor(project.frekwencja*100)}}%<br>{{project.status}}</button> -->
 <div class="scrollable-container">
   <div class="project-list">
-    <router-link :id="project.drukNr" v-for="(project, index) in projectsSorted" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { projekt: project.drukNr } }"  >
+    <router-link :id="project.drukNr" v-for="(project, index) in projectsSorted" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }"  >
       <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span>
     </router-link>
   </div>
