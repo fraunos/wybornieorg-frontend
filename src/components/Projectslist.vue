@@ -1,25 +1,27 @@
 <template>
 <div :class="['project-menu', {'list-hidden':listHidden}]">
-  <div id="fold-button"  @click="listHidden=!listHidden"></div>
-    <!-- <button v-for="(project, index) in projectsSortedRange" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}<br>Frekwencja: {{Math.floor(project.frekwencja*100)}}%<br>{{project.status}}</button> -->
-<div class="scrollable-container">
-  <div class="project-list">
-    <router-link :id="project.drukNr" v-for="(project, index) in projectsSorted" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }"  >
-      <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span>
-    </router-link>
+  <div id="fold-button" @click="listHidden=!listHidden"></div>
+  <!-- <button v-for="(project, index) in projectsSortedRange" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}<br>Frekwencja: {{Math.floor(project.frekwencja*100)}}%<br>{{project.status}}</button> -->
+  <div class="scrollable-container">
+    <div class="project-list">
+      <router-link :id="project.drukNr" v-for="(project, index) in projectsSorted" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
+        <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span>
+      </router-link>
+    </div>
+    <div class="project-list-filters">
+      <span>{{pagination * itemsPerPage + 1}} - {{(pagination + 1) * itemsPerPage}} / {{projects.length}}</span>
+      <button type="button" name="button" v-show="pagination>0" @click="pagination--"><arrow-left-icon></arrow-left-icon></button>
+      <button type="button" name="button" v-show="((pagination + 1)*itemsPerPage)<this.projects.length" @click="pagination++"><arrow-right-icon></arrow-right-icon></button>
+    </div>
   </div>
-<div class="project-list-filters">
-  <span>{{pagination * itemsPerPage + 1}} - {{(pagination + 1) * itemsPerPage}} / {{projects.length}}</span>
-  <button type="button" name="button" v-show="pagination>0" @click="pagination--"><arrow-left-icon></arrow-left-icon></button>
-  <button type="button" name="button" v-show="((pagination + 1)*itemsPerPage)<this.projects.length" @click="pagination++"><arrow-right-icon></arrow-right-icon></button>
 </div>
-</div>
-</div>
-
 </template>
 
 <script>
-import { ArrowLeftIcon, ArrowRightIcon } from 'vue-feather-icons'
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon
+} from 'vue-feather-icons'
 
 export default {
   name: 'projectslist',
@@ -36,7 +38,8 @@ export default {
     '$route': 'hideList'
   },
   components: {
-    ArrowLeftIcon, ArrowRightIcon
+    ArrowLeftIcon,
+    ArrowRightIcon
   },
   computed: {
     projectsSorted () {
@@ -73,15 +76,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-span{
+span {
   /*font-weight: bold;*/
 }
+
 div {
   /*padding: 10px;*/
   flex-flow: row;
 }
 
-.project-menu{
+.project-menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -93,21 +97,24 @@ div {
 
   /*display: none;*/
 }
-.project-list{
+
+.project-list {
   padding: 5vmin;
   display: flex;
   flex-flow: column;
   height: auto;
 }
-.scrollable-container{
+
+.scrollable-container {
   height: 100vh;
   overflow-y: scroll;
-
 }
-.list-hidden{
+
+.list-hidden {
   left: -100vmin;
 }
-#fold-button{
+
+#fold-button {
   position: absolute;
   width: 15vmin;
   height: 15vmin;
@@ -119,11 +126,12 @@ div {
   transition: 0.5s;
   cursor: pointer;
 }
-#fold-button:hover{
+
+#fold-button:hover {
   opacity: 1;
 }
 
-.project-list-item{
+.project-list-item {
   background: white;
   padding: 1em;
   margin: 1vmin;
@@ -131,17 +139,19 @@ div {
   border-width: 0.1em;
   border-radius: 2em;
   font-size: 70%;
-
 }
-a.router-link-exact-active{
+
+a.router-link-exact-active {
   /*border-width: 2em;*/
   background-color: var(--color-0);
   color: black;
 }
-.tytul{
+
+.tytul {
   font-size: 90%;
 }
-span{
+
+span {
   margin: 0.2em;
 }
 </style>

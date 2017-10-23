@@ -4,17 +4,26 @@
 
   <transition name="fade" mode="out-in">
     <div class="menu" v-show="showMenu" @click="showMenu=!showMenu">
-      <router-link class="circle small" id="proj" to="/projekty"><check-square-icon></check-square-icon> projekty</router-link>
-      <router-link class="circle small" id="staty" to="/statystyki"><box-icon></box-icon> staty</router-link>
-      <router-link class="circle small" id="ostronie" to="/ostronie"><info-icon></info-icon> o stronie</router-link>
-      <router-link class="circle small" id="kontakt" to="/kontakt"><mail-icon></mail-icon> kontakt</router-link>
+      <router-link class="circle small" id="proj" to="/projekty">
+        <check-square-icon></check-square-icon> projekty</router-link>
+      <router-link class="circle small" id="staty" to="/statystyki">
+        <box-icon></box-icon> staty</router-link>
+      <router-link class="circle small" id="ostronie" to="/ostronie">
+        <info-icon></info-icon> o stronie</router-link>
+      <router-link class="circle small" id="kontakt" to="/kontakt">
+        <mail-icon></mail-icon> kontakt</router-link>
     </div>
   </transition>
 </div>
 </template>
 
 <script>
-import { BoxIcon, CheckSquareIcon, InfoIcon, MailIcon } from 'vue-feather-icons'
+import {
+  BoxIcon,
+  CheckSquareIcon,
+  InfoIcon,
+  MailIcon
+} from 'vue-feather-icons'
 
 export default {
   data () {
@@ -28,10 +37,12 @@ export default {
     }, 1000)
   },
   components: {
-    BoxIcon, CheckSquareIcon, InfoIcon, MailIcon
+    BoxIcon,
+    CheckSquareIcon,
+    InfoIcon,
+    MailIcon
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 
@@ -73,7 +84,7 @@ export default {
   /*background-color: #2285;*/
 }
 
-.logo:hover{
+.logo:hover {
   animation: none;
   transform: scale(1.05);
 }
@@ -83,8 +94,8 @@ export default {
   width: 18vmin;
   animation: pulse 10s infinite;
 }
-.menuhidden:hover {
-}
+
+.menuhidden:hover {}
 
 .small {
   width: 20vmin;
@@ -105,19 +116,19 @@ export default {
   transition: 0.5s;
   cursor: pointer;
   color: black;
-
 }
+
 .circle:hover {
   box-shadow: 0 0 15px 6px #fff;
 }
 
 .router-link-exact-active {
-    background: var(--color-3);
+  background: var(--color-3);
 }
+
 @media screen and (max-aspect-ratio: 1/1) {
   .menu {
     flex-direction: column;
-
   }
   .circle {
     width: 35vmin;
@@ -137,5 +148,4 @@ export default {
     transform: rotate(-5deg);
   }
 }
-
 </style>

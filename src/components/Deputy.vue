@@ -1,10 +1,8 @@
 <template>
 <g>
 
-  <title class="tooltip">{{i+1}}. {{singleDeputy.name}}
-{{singleDeputy.vote}}
-{{singleDeputy.group}}
-</title>
+  <title class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}
+  </title>
   <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloryzuj" :id="i">
   </circle>
   <!-- <text :x="cx" :y="cy" font-family="Sans" font-size="10" stroke="none" fill="white">{{i+1}}</text> -->
@@ -38,8 +36,7 @@ export default {
         result = 'wstrzymanie'
       } else if (this.singleDeputy.vote === 'Nieobecny') {
         result = 'nieobecnosc'
-      } else if (this.$store.state.userVotes[this.$route.params.projekt] === undefined) {
-      } else {
+      } else if (this.$store.state.userVotes[this.$route.params.projekt] === undefined) {} else {
         result = this.zgodnosc ? 'zgodny' : 'niezgodny'
       }
       // if (this.singleDeputy.group === 'PiS') {
@@ -67,8 +64,7 @@ export default {
       console.log(this.singleDeputy.name)
     }
   },
-  watch: {
-  }
+  watch: {}
 }
 </script>
 
@@ -77,45 +73,58 @@ export default {
 div {
   width: 100px;
 }
-.pis{
+
+.pis {
   stroke: firebrick;
 }
-.po{
+
+.po {
   stroke: gold;
 }
-.kukiz{
+
+.kukiz {
   stroke: black;
 }
-.nowoczesna{
+
+.nowoczesna {
   stroke: blue;
 }
-.psl{
+
+.psl {
   stroke: green;
 }
+
 .zgodny {
   fill: green;
   transition: 1s;
 }
+
 .niezgodny {
   fill: red;
   transition: 1s;
 }
+
 .nieobecnosc {
   fill: #111;
   transition: 1s;
 }
+
 .wstrzymanie {
   fill: darkorchid;
   transition: 1s;
 }
+
 circle {
   stroke: none;
   stroke-width: 2;
   fill: black;
 }
+
+
 /*circle:hover {
   transform: scale(1.2, 1.2);
 }*/
+
 title {
   font-size: 24px;
 }

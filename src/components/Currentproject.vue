@@ -3,7 +3,7 @@
   <div v-if="loading" class="loading">
     Ładowanie...
   </div>
-   <!-- && !loading -->
+  <!-- && !loading -->
   <div v-if="currentProject" class="">
     <div class="svg-container">
       <!-- <p>Druk {{currentProject.drukNr}}</p> -->
@@ -15,8 +15,12 @@
       </svg>
     </div>
     <div id="buttons">
-      <div @click="userVote('Za')"><thumbs-up-icon></thumbs-up-icon></div>
-      <div @click="userVote('Przeciw')"><thumbs-down-icon></thumbs-down-icon></div>
+      <div @click="userVote('Za')">
+        <thumbs-up-icon></thumbs-up-icon>
+      </div>
+      <div @click="userVote('Przeciw')">
+        <thumbs-down-icon></thumbs-down-icon>
+      </div>
     </div>
     <div id="data">
       <!-- {{userVotes}} -->
@@ -41,7 +45,10 @@
 </template>
 
 <script>
-import { ThumbsUpIcon, ThumbsDownIcon } from 'vue-feather-icons'
+import {
+  ThumbsUpIcon,
+  ThumbsDownIcon
+} from 'vue-feather-icons'
 import Deputy from '@/components/Deputy'
 
 export default {
@@ -54,7 +61,9 @@ export default {
     }
   },
   components: {
-    Deputy, ThumbsUpIcon, ThumbsDownIcon
+    Deputy,
+    ThumbsUpIcon,
+    ThumbsDownIcon
   },
   created () {
     // this.$store.commit('', this.$route.params.projekt)
@@ -76,16 +85,17 @@ export default {
       let result = ''
       try {
         result = 'https://encrypted.google.com/search?q=' + this.currentProject.tytul.replace(/ /g, '+') + '&tbm=nws'
-      } catch (e) {
-      } finally {
-      }
+      } catch (e) {} finally {}
       return result
     }
   },
   methods: {
     userVote (vote) {
       if (this.currentProject.drukNr !== undefined) {
-        this.$store.commit('userVote', {projectNr: this.$route.params.projekt, vote: vote})
+        this.$store.commit('userVote', {
+          projectNr: this.$route.params.druk,
+          vote: vote
+        })
       }
     },
     placeX (x) {
@@ -116,7 +126,8 @@ export default {
   flex-flow: column;
   /*flex-basis: 70%;*/
 }
-#buttons{
+
+#buttons {
   position: relative;
   top: -5vw;
   z-index: 1;
@@ -126,7 +137,8 @@ export default {
   width: 80vw;
   height: 5vh;
 }
-#buttons div{
+
+#buttons div {
   border-radius: 100%;
   width: 15vmin;
   height: 15vmin;
@@ -141,30 +153,37 @@ export default {
   border: 1px solid;
   transition: 0.5s;
 }
-#buttons div:hover{
+
+#buttons div:hover {
   background: var(--color-4);
 }
-#buttons div:active{
+
+#buttons div:active {
   transition: 0s;
   background: var(--color-1);
 }
+
 #buttons svg {
   transform: scale(2);
 }
+
 #deputies {
   flex-wrap: wrap;
   display: flex;
   list-style: none;
 }
-svg.deputies-graph{
+
+svg.deputies-graph {
   width: 100%;
   /*height: 500px;*/
   /*background: ;*/
 }
-.svg-container{
+
+.svg-container {
   /*height: 200px;*/
   transform: scale(1);
 }
+
 .loading {
   padding: 1em;
   position: fixed;
@@ -179,11 +198,13 @@ svg.deputies-graph{
   justify-content: center;
   align-items: center;
 }
-.currentProject{
+
+.currentProject {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);

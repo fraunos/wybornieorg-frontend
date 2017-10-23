@@ -19,7 +19,8 @@ export default {
     }
   },
   components: {
-    Currentproject, Projectslist
+    Currentproject,
+    Projectslist
   },
   computed: {
     userVotes () {
@@ -37,8 +38,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div {
-}
+div {}
+
 .projects {
   display: flex;
   /*align-items: center;*/
