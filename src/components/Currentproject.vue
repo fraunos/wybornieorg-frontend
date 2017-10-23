@@ -22,7 +22,7 @@
       <!-- {{userVotes}} -->
       <p>Druk nr {{currentProject.drukNr}}</p>
       <h3>{{currentProject.tytul}}</h3>
-      <p>{{currentProject.status}} {{new Date(currentProject.votingDate).toLocaleString()}}</p>
+      <p>{{currentProject.status}} {{votingTime.calendar()}}</p>
       <p>{{currentProject.opis}}</p>
       <p>{{currentProject.deputies.length}}</p>
       <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
@@ -65,6 +65,10 @@ export default {
     '$route': 'fetchProject'
   },
   computed: {
+    votingTime () {
+      return this.moment(new Date(this.currentProject.votingDate))
+    },
+
     userVotes () {
       return this.$store.state.userVotes
     },
