@@ -106,7 +106,7 @@ export default {
     fetchProject () {
       this.loading = true
 
-      this.$http.get('http://localhost:3000/dev/projekty/' + this.$route.params.kadencja + '/' + this.$route.params.druk).then(response => {
+      this.$http.get(this.$store.state.domain + ':3000/dev/projekty/' + this.$route.params.kadencja + '/' + this.$route.params.druk).then(response => {
         this.currentProject = response.body
         this.loading = false
       }, response => {

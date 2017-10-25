@@ -5,7 +5,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userVotes: {},
-    deputiesStats: new Map()
+    deputiesStats: new Map(),
+    domain: 'http://wybornie.org'
   },
   mutations: {
     userVote (state, props) {

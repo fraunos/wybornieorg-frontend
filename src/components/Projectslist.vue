@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     fetchProjects () {
-      this.$http.get('http://wybornie.org:3000/dev/projekty/').then(response => {
+      this.$http.get(this.$store.state.domain + ':3000/dev/projekty/').then(response => {
         this.projects = response.body
       }, response => {
         // error callback
