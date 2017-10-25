@@ -96,11 +96,11 @@ export default {
       })
     },
     placeX (x) {
-      let result = this.size / 2 - Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2)
+      let result = window.innerWidth * 0.35 - Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2.1)
       return result
     },
     placeY (y) {
-      let result = 15 + Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2)
+      let result = 30 + Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2.1)
       return result
     },
     fetchProject () {

@@ -16,7 +16,7 @@ export default {
     return {
       r: 15,
       show: false,
-      dotSize: window.innerWidth / 200
+      dotSize: (window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight * 1.5) / 150
     }
   },
   computed: {
