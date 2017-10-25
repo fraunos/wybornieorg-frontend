@@ -1,17 +1,28 @@
 <template>
 <div :class="['project-menu', {'list-hidden':listHidden}]">
   <div id="fold-button" @click="listHidden=!listHidden"></div>
-  <!-- <button v-for="(project, index) in projectsSortedRange" type="button" :key="index" @click="fetchProject(project)" href="#data"><span>{{project.drukNr}}</span><br>{{project.tytul}}<br>Frekwencja: {{Math.floor(project.frekwencja*100)}}%<br>{{project.status}}</button> -->
+
+
   <div class="scrollable-container">
-    <div class="project-list">
-      <router-link :id="project.drukNr" v-for="(project, index) in projectsSorted" :key="index" :class="['project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
-        <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span>
-      </router-link>
+    <div class="sort-filter-menu">
+      <div class="">
+        <select v-model="kadencje">
+         <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">Kadencja {{item}}</option>
+        </select>
+      </div>
+      <div class="">
+        <select v-model="sortowanie">
+          <option value="votingDate">Data malejąco</option>
+          <option value="drukNr">Nr druku malejąco</option>
+          <option value="frekwencja">Frekwencja malejąco</option>
+        </select>
+      </div>
+
     </div>
-    <div class="project-list-filters">
-      <span>{{pagination * itemsPerPage + 1}} - {{(pagination + 1) * itemsPerPage}} / {{projects.length}}</span>
-      <button type="button" name="button" v-show="pagination>0" @click="pagination--"><arrow-left-icon></arrow-left-icon></button>
-      <button type="button" name="button" v-show="((pagination + 1)*itemsPerPage)<this.projects.length" @click="pagination++"><arrow-right-icon></arrow-right-icon></button>
+    <div class="project-list">
+      <router-link :id="project.drukNr" v-for="(project, index) in projectsProcessed" :key="index" :class="[project.status, 'project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
+        <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span><span class="data">{{moment(project.votingDate).calendar()}}</span>
+      </router-link>
     </div>
   </div>
 </div>
@@ -30,7 +41,9 @@ export default {
       projects: [],
       pagination: 0,
       itemsPerPage: 10,
-      listHidden: true
+      listHidden: true,
+      kadencje: 8,
+      sortowanie: 'votingDate'
     }
   },
   watch: {
@@ -42,15 +55,17 @@ export default {
     ArrowRightIcon
   },
   computed: {
-    projectsSorted () {
-      return this.projects.sort((a, b) => {
-        return b.frekwencja - a.frekwencja
+    projectsProcessed () {
+      return this.projects.filter(item => {
+        // return this.kadencje.indexOf(item.kadencja) !== -1
+        return this.kadencje === item.kadencja
+      }).sort((a, b) => {
+        if (this.sortowanie === 'votingDate') {
+          return new Date(b[this.sortowanie]) - new Date(a[this.sortowanie])
+        } else {
+          return b[this.sortowanie] - a[this.sortowanie]
+        }
       })
-    },
-    projectsSortedRange () {
-      return this.projects.sort((a, b) => {
-        return b.frekwencja - a.frekwencja
-      }).slice(this.itemsPerPage * this.pagination, this.itemsPerPage * this.pagination + this.itemsPerPage)
     },
     userVotes () {
       return this.$store.state.userVotes
@@ -107,6 +122,15 @@ div {
   transition: 1s ease-in-out;
   font-size: 70%;
   /*display: none;*/
+}
+select {
+  border-radius: 0.5em;
+  background: var(--color-3);
+  font-size: 100%;
+  padding: 0.5em;
+}
+option{
+  padding-bottom: 2em;
 }
 
 .project-list {
