@@ -91,12 +91,11 @@ export default {
   },
   methods: {
     userVote (vote) {
-      if (this.currentProject.drukNr !== undefined) {
-        this.$store.commit('userVote', {
-          projectNr: this.$route.params.druk,
-          vote: vote
-        })
-      }
+      this.$store.commit('userVote', {
+        drukNr: this.$route.params.druk,
+        kadencja: this.$route.params.kadencja,
+        vote: vote
+      })
     },
     placeX (x) {
       let result = this.size / 2 - Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2)

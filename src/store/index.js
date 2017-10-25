@@ -9,25 +9,25 @@ export default new Vuex.Store({
   },
   mutations: {
     userVote (state, props) {
-      Vue.set(state.userVotes, props.projectNr, props.vote)
+      Vue.set(state.userVotes, JSON.stringify({drukNr: props.drukNr, kadencja: props.kadencja}), props.vote)
     },
-    setDeputyStat (state, {deputy, projectNr, vote}) {
-      let temp = state.deputiesStats.get(deputy.name)
+    setDeputyStat (state, props) {
+      let temp = state.deputiesStats.get(props.deputyName)
       if (temp === undefined) {
         temp = {
           zgodne: new Set(),
           niezgodne: new Set()
         }
       }
-      if (vote) {
-        temp.niezgodne.delete(projectNr)
-        temp.zgodne.add(projectNr)
+      if (props.vote) {
+        temp.niezgodne.delete(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
+        temp.zgodne.add(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
       } else {
-        temp.zgodne.delete(projectNr)
-        temp.niezgodne.add(projectNr)
+        temp.zgodne.delete(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
+        temp.niezgodne.add(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
       }
       temp.zgodnoscProcent = Math.floor(100 * temp.zgodne.size / (temp.zgodne.size + temp.niezgodne.size))
-      state.deputiesStats.set(deputy.name, temp)
+      state.deputiesStats.set(props.deputyName, temp)
     }
   },
   actions: {
