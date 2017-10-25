@@ -97,27 +97,24 @@ div {
 
 .zgodny {
   fill: green;
-  transition: 1s;
 }
 
 .niezgodny {
   fill: red;
-  transition: 1s;
 }
 
 .nieobecnosc {
   fill: #111;
-  transition: 1s;
 }
 
 .wstrzymanie {
   fill: darkorchid;
-  transition: 1s;
 }
 
 circle {
   stroke: none;
   stroke-width: 2;
+  transition: 0.5s;
   fill: black;
 }
 

@@ -40,7 +40,32 @@ export default {
 </script>
 
 <style scoped>
+div{
+  /*display: flex;*/
+  /*flex-direction: column;*/
+}
 li:first-child {
   font-weight: bold;
+}
+li{
+  padding: 0.4em;
+  margin: 0.4em;
+  background: white;
+  border-radius: 0.6em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+ul{
+  list-style-position: inside;
+}
+.zgodnosc{
+  width: 3em;
+  text-align: right;
+}
+span{
+  /*float: right;*/
+  margin-left: 0.5em;
 }
 </style>

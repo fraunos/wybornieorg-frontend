@@ -82,9 +82,20 @@ span {
 
 div {
   /*padding: 10px;*/
-  flex-flow: row;
+  /*flex-flow: row;*/
 }
-
+.uchwalono {
+  border-right: 1.5vmin solid green;
+}
+.odrzucony {
+  border-right: 1.5vmin solid red;
+}
+.sort-filter-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5vmin;
+}
 .project-menu {
   position: fixed;
   top: 0;
@@ -94,7 +105,7 @@ div {
   background: var(--color-1-op);
   z-index: 89;
   transition: 1s ease-in-out;
-
+  font-size: 70%;
   /*display: none;*/
 }
 
@@ -106,8 +117,10 @@ div {
 }
 
 .scrollable-container {
+  position: relative;
   height: 100vh;
   overflow-y: scroll;
+  z-index: 10;
 }
 
 .list-hidden {
@@ -116,15 +129,21 @@ div {
 
 #fold-button {
   position: absolute;
-  width: 15vmin;
-  height: 15vmin;
-  background: var(--color-0);
-  top: calc(50vh - 7.5vmin);
-  left: calc(100vmin - 7.5vmin);
-  border-radius: 100%;
+  width: 0;
+  height: 0;
+  border-top: 5vmin solid transparent;
+  border-bottom: 5vmin solid transparent;
+
+  border-right:5vmin solid var(--color-0);
+  /*background: var(--color-0);*/
+  top: calc(50vh);
+  left: calc(100vmin + 1vmin);
+
+  /*border-radius: 100%;*/
   opacity: 0.7;
-  transition: 0.5s;
+  transition: opacity 0.5s;
   cursor: pointer;
+  z-index: 1;
 }
 
 #fold-button:hover {
@@ -133,25 +152,27 @@ div {
 
 .project-list-item {
   background: white;
-  padding: 1em;
+  padding: 3vmin;
   margin: 1vmin;
-  border: black solid;
-  border-width: 0.1em;
-  border-radius: 2em;
-  font-size: 70%;
+  border-radius: 2vmin;
 }
-
+a {
+  color: black;
+}
+a:hover{
+  color: var(--color-0);
+}
 a.router-link-exact-active {
   /*border-width: 2em;*/
-  background-color: var(--color-0);
-  color: black;
+  background-color: var(--color-4);
+  color: white;
 }
 
 .tytul {
-  font-size: 90%;
+  /*font-size: 1vmin;*/
 }
 
 span {
-  margin: 0.2em;
+  margin: 1vmin;
 }
 </style>

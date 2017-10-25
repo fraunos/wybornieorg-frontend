@@ -1,12 +1,10 @@
 <template>
 <div id="cp" class="currentProject">
-  <div v-if="loading" class="loading">
+  <!-- <div v-if="loading" class="loading">
     Ładowanie...
-  </div>
-  <!-- && !loading -->
+  </div> -->
   <div v-if="currentProject" class="">
     <div class="svg-container">
-      <!-- <p>Druk {{currentProject.drukNr}}</p> -->
 
       <svg class="deputies-graph" :style="{height: size / 2.5 + 'px'}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <g>
@@ -22,13 +20,14 @@
         <thumbs-down-icon></thumbs-down-icon>
       </div>
     </div>
+
     <div id="data">
       <!-- {{userVotes}} -->
       <p>Druk nr {{currentProject.drukNr}}</p>
       <h3>{{currentProject.tytul}}</h3>
       <p>{{currentProject.status}} {{votingTime.calendar()}}</p>
       <p>{{currentProject.opis}}</p>
-      <p>{{currentProject.deputies.length}}</p>
+      <!-- <p>{{currentProject.deputies.length}}</p> -->
       <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
 
       <p><a target="_blank" :href="currentProject.trescLink">adres projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
@@ -36,7 +35,6 @@
       <p><a target="_blank" :href="currentProject.przebiegLink">przebieg projektu</a></p>
       <p><a target="_blank" :href="currentProject.votingLink">decydujące głosowanie</a></p>
       <p><a target="_blank" :href="mediaLink">media o projekcie</a></p>
-
     </div>
 
   </div>
@@ -55,9 +53,9 @@ export default {
   data () {
     return {
       s1: 10, // ilość osób w kolumnie
-      loading: false,
+      loading: true,
       currentProject: null,
-      size: window.innerWidth * 0.8
+      size: window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight * 1.5
     }
   },
   components: {
@@ -133,7 +131,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 80vw;
+  /*width: 80vw;*/
   height: 5vh;
 }
 
@@ -149,7 +147,7 @@ export default {
   margin: 0 10vw;
   user-select: none;
   cursor: pointer;
-  border: 1px solid;
+  /*border: 1px solid;*/
   transition: 0.5s;
 }
 
@@ -158,12 +156,11 @@ export default {
 }
 
 #buttons div:active {
-  transition: 0s;
   background: var(--color-1);
 }
 
 #buttons svg {
-  transform: scale(2);
+  /*transform: scale(2);*/
 }
 
 #deputies {
@@ -173,29 +170,20 @@ export default {
 }
 
 svg.deputies-graph {
-  width: 100%;
+  width: 70vw;
   /*height: 500px;*/
-  /*background: ;*/
+  /*background: black;*/
 }
 
 .svg-container {
-  /*height: 200px;*/
-  transform: scale(1);
+  /*animation: rotate ease-out 3s alternate;*/
+  /*transform-origin: 50% 0%;*/
+  /*transform: rotate(360deg);*/
+  /*transition: 1s;*/
 }
 
-.loading {
-  padding: 1em;
-  position: fixed;
-  width: 10em;
-  top: calc(50vh);
-  left: calc(50vw - 10em / 2);
-  background: var(--color-0);
-  color: white;
-  z-index: 99;
-  /*animation: rotate 2s infinite;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.loading-project {
+  /*transform: rotate(180deg);*/
 }
 
 .currentProject {
@@ -205,10 +193,13 @@ svg.deputies-graph {
 }
 
 @keyframes rotate {
-  0% {
+  0%{
     transform: rotate(0deg);
   }
-  50% {
+  20%{
+    transform: rotate(180deg);
+  }
+  100%{
     transform: rotate(360deg);
   }
 }

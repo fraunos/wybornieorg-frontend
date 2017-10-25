@@ -41,7 +41,7 @@ export default {
 div {}
 
 .projects {
-  display: flex;
+  /*display: flex;*/
   /*align-items: center;*/
 }
 </style>

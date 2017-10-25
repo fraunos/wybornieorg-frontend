@@ -35,15 +35,19 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Lato');
+h1, h2, h3{
+  padding-bottom: 0.5em;
+  border-bottom: 0.05em solid black;
+}
 
 body {
-  font-family: 'Lato', sans-serif;
-  font-size: 3.5vmin;
+  font-family: sans-serif;
+  font-size: 3vmin;
   text-align: justify;
   background: var(--color-2);
-  margin: 0 12.5vw 5vmin;
+  margin: 0 15vw 5vmin;
   color: black;
+  overflow-x: hidden;
 }
 
 #app {
@@ -70,6 +74,7 @@ body {
 a {
   text-decoration: none;
   color: var(--color-0);
+  cursor: pointer;
 }
 
 a:hover {
@@ -79,15 +84,27 @@ a:hover {
 a:active {
   color: inherit;
 }
-
 :root {
   --color-0: #d4213d;
-  /* Main Primary color-0 */
   --color-1: #D56454;
-  --color-2: #F1CD67;
+  --color-2: #f1cd8c;
   --color-3: #A1D573;
-  --color-4: #5E6782;
+  --color-4: #4d619e;
 
-  --color-1-op: #D56454dd;
+  --color-1-op: rgba(213, 100, 84, 0.7);
+}
+
+*::-webkit-scrollbar {
+  width: 1.5vmin;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,1);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-4);
+  border-radius: 2vmin;
+  outline: 10px solid white;
 }
 </style>
