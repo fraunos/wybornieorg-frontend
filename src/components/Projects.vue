@@ -1,8 +1,12 @@
 <template>
 <div class="projects">
   <projectslist></projectslist>
-  <p v-show="druk == null" class="">Wybierz projekt z listy!</p>
+  <div v-show="druk == null" class="">
+    <p>Wybierz projekt z listy!<br></p>
+    <p>Użyj czerwonej kropki, by wyświetlić listę!</p>
+  </div>
   <currentproject v-if="druk"></currentproject>
+
 </div>
 </template>
 

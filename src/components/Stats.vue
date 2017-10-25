@@ -1,5 +1,6 @@
 <template>
 <div class="stats">
+  <h1>Statystyki</h1>
   <p v-if='userVoted'>Brak statystyk! Zagłosuj najpierw</p>
   <div v-else>
     <ol>
