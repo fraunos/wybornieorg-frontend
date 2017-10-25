@@ -1,11 +1,11 @@
 <template>
 <g>
-
   <title class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}
   </title>
+
   <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloryzuj" :id="i">
   </circle>
-  <!-- <text :x="cx" :y="cy" font-family="Sans" font-size="10" stroke="none" fill="white">{{i+1}}</text> -->
+  <text :x="cx - dotSize * 0.45" :y="cy + dotSize * 0.5" font-family="mono" font-weight="bold" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
 </g>
 </template>
 
