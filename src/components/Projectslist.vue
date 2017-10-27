@@ -17,6 +17,12 @@
           <option value="frekwencja">Frekwencja malejąco</option>
         </select>
       </div>
+      <div class="">
+        <input type="checkbox" name="uchwalono" value="uchwalono" v-model="filtrowanieStatus">
+        <label for="uchwalono">Uchwalone</label>
+        <input type="checkbox" name="" value="odrzucony" v-model="filtrowanieStatus">
+        <label for="odrzucony">Odrzucone</label>
+      </div>
 
     </div>
     <div class="project-list">
@@ -43,7 +49,8 @@ export default {
       itemsPerPage: 10,
       listHidden: true,
       kadencje: 8,
-      sortowanie: 'votingDate'
+      sortowanie: 'votingDate',
+      filtrowanieStatus: ['odrzucony', 'uchwalono']
     }
   },
   watch: {
@@ -58,7 +65,7 @@ export default {
     projectsProcessed () {
       return this.projects.filter(item => {
         // return this.kadencje.indexOf(item.kadencja) !== -1
-        return this.kadencje === item.kadencja
+        return this.kadencje === item.kadencja && this.filtrowanieStatus.indexOf(item.status) !== -1
       }).sort((a, b) => {
         if (this.sortowanie === 'votingDate') {
           return new Date(b[this.sortowanie]) - new Date(a[this.sortowanie])
