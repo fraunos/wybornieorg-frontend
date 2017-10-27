@@ -107,11 +107,28 @@ export default {
       this.loading = true
 
       this.$http.get(this.$store.state.domain + ':3000/dev/projekty/' + this.$route.params.kadencja + '/' + this.$route.params.druk).then(response => {
-        this.currentProject = response.body
+        this.currentProject = this.adjustVotes(response.body)
         this.loading = false
       }, response => {
         // error callback
       })
+    },
+    adjustVotes (project) {
+      if ((project.votingIntention === 'odrzucenie' && project.status === 'uchwalono') || (project.votingIntention === 'przyjęcie' && project.status === 'odrzucony')) {
+        for (let deputy of project.deputies) {
+          deputy.vote = this.switchVote(deputy.vote)
+        }
+      }
+      return project
+    },
+    switchVote (vote) {
+      if (vote === 'Za') {
+        return 'Przeciw'
+      } else if (vote === 'Przeciw') {
+        return 'Za'
+      } else {
+        return vote
+      }
     }
   }
 }
