@@ -82,7 +82,7 @@ export default {
     mediaLink () {
       let result = ''
       try {
-        result = 'https://encrypted.google.com/search?q=' + this.currentProject.tytul.replace(/ /g, '+') + '&tbm=nws'
+        result = 'https://encrypted.google.com/search?q=' + this.currentProject.tytul.replace(/ /g, '+').replace(/"/g, '') + '&tbm=nws'
       } catch (e) {} finally {}
       return result
     }

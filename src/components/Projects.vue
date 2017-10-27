@@ -3,7 +3,7 @@
   <projectslist></projectslist>
   <div v-show="druk == null" class="">
     <p>Wybierz projekt z listy!<br></p>
-    <p>Użyj czerwonej kropki, by wyświetlić listę!</p>
+    <p>Aby wyświetlić listę, użyj przycisku z lewej strony!</p>
   </div>
   <currentproject v-if="druk"></currentproject>
 

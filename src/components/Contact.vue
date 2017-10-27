@@ -1,7 +1,7 @@
 <template>
 <div class="contact">
   <h1>Kontakt</h1>
-  <p>Jeśli masz pomysł jak poprawić tę stronę napisz do mnie!</p>
+  <p>Jeśli masz pomysł jak poprawić tę stronę, napisz do mnie!</p>
   <p>
     <a target="_blank" href="mailto:michal.marian.woloszyn@gmail.com">
       <mail-icon></mail-icon>

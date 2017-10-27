@@ -12,9 +12,9 @@
       </div>
       <div class="">
         <select v-model="sortowanie">
-          <option value="votingDate">Data malejąco</option>
-          <option value="drukNr">Nr druku malejąco</option>
-          <option value="frekwencja">Frekwencja malejąco</option>
+          <option value="votingDate">Najnowsze</option>
+          <option value="drukNr">Wg nr druku</option>
+          <option value="frekwencja">Z największą frekwencją</option>
         </select>
       </div>
       <div class="">
@@ -25,9 +25,11 @@
       </div>
 
     </div>
-    <div class="project-list">
+    <div class="project-list" @click="hideList()">
+      {{projectsProcessed.length}}
+
       <router-link :id="project.drukNr" v-for="(project, index) in projectsProcessed" :key="index" :class="[project.status, 'project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
-        <span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span><span class="data">{{moment(project.votingDate).calendar()}}</span>
+        <span class="kadencja">{{project.kadencja}}</span><span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span><span class="data">{{moment(project.votingDate).calendar()}}</span>
       </router-link>
     </div>
   </div>
@@ -166,6 +168,7 @@ option{
   border-bottom: 5vmin solid transparent;
 
   border-right:5vmin solid var(--color-0);
+  /*border-left:5vmin solid var(--color-0);*/
   /*background: var(--color-0);*/
   top: calc(50vh);
   left: calc(100vmin + 1vmin);

@@ -5,7 +5,8 @@
   <div v-else>
     <ol>
       <li v-for="(value, key, index) of deputiesStatsSortedZgodne" :style="{ color: 'rgb(' + (100 - value[1].zgodnoscProcent) + ',' + value[1].zgodnoscProcent + ', 0)' }">
-        {{value[0]}} : Zgodność: {{value[1].zgodne.size}}/{{value[1].zgodne.size + value[1].niezgodne.size}}, {{value[1].zgodnoscProcent}}%
+        {{value[0]}} :
+        <span>{{value[1].zgodne.size}}/{{value[1].zgodne.size + value[1].niezgodne.size}}, <span class="zgodnosc">{{value[1].zgodnoscProcent}}%</span></span>
       </li>
     </ol>
   </div>
