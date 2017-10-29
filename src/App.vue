@@ -41,9 +41,10 @@ export default {
 </script>
 
 <style>
-h1, h2, h3{
+h1, h2, h3 {
   padding-bottom: 0.5em;
   border-bottom: 0.05em solid black;
+  text-align: left;
 }
 
 body {
@@ -51,7 +52,7 @@ body {
   font-size: 3vmin;
   text-align: justify;
   background: var(--color-2);
-  margin: 0 15vw 5vmin;
+  margin: 5vmin;
   color: black;
   overflow-x: hidden;
 }
@@ -63,6 +64,10 @@ body {
 }
 
 .router {
+  background-color: white;
+  padding: 10vmin;
+  width: 60vw;
+
   /*vertical-align: middle;*/
 }
 
@@ -98,9 +103,8 @@ a:active {
   --color-4: #4d619e;
 
   --color-1-op: rgba(213, 100, 84, 0.7);
+  --color-2-op: rgba(150, 100, 84, 0.7);
 }
-
-*::-webkit-scrollbar {
 #loading-thing{
   position: fixed;
   top: 10vh;
@@ -117,6 +121,7 @@ a:active {
 @keyframes rotate360 {
   to { transform: rotate(360deg); }
 }
+/**::-webkit-scrollbar {
   width: 1.5vmin;
 }
 
@@ -128,5 +133,19 @@ a:active {
   background-color: var(--color-4);
   border-radius: 2vmin;
   outline: 10px solid white;
+}*/
+
+@media screen and (max-aspect-ratio: 1/1) {
+  .menu {
+    flex-direction: column;
+  }
+  .circle {
+    width: 35vmin;
+    height: 10vmin;
+    top: 20px;
+  }
+  input{
+    transform: scale(2);
+  }
 }
 </style>

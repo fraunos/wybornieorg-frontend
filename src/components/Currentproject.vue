@@ -1,26 +1,16 @@
 <template>
 <div id="cp" class="currentProject">
-  <!-- <div v-if="loading" class="loading">
-    Ładowanie...
-  </div> -->
   <div v-if="currentProject" class="">
-    <div class="svg-container">
 
-      <svg class="deputies-graph" :style="{height: size / 2.5 + 'px'}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <div id="svg-container">
+      <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -15 1 130">
+        <text text-anchor="middle" dominant-baseline="hanging" x="0" y="0" font-family="mono" font-weight="bold" font-size="10" stroke="none" fill="black">{{currentProject.drukNr}}</text>
+
         <g>
           <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
         </g>
       </svg>
     </div>
-    <div id="buttons">
-      <div @click="userVote('Za')">
-        <thumbs-up-icon></thumbs-up-icon>
-      </div>
-      <div @click="userVote('Przeciw')">
-        <thumbs-down-icon></thumbs-down-icon>
-      </div>
-    </div>
-
     <div id="data">
       <!-- {{userVotes}} -->
       <p>Druk nr {{currentProject.drukNr}}</p>
@@ -37,6 +27,14 @@
       <p><a target="_blank" :href="mediaLink">media o projekcie</a></p>
     </div>
 
+    <div id="button-container">
+      <div class="vote-button" @click="userVote('Za')">
+        <thumbs-up-icon></thumbs-up-icon>
+      </div>
+      <div class="vote-button" @click="userVote('Przeciw')">
+        <thumbs-down-icon></thumbs-down-icon>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -53,8 +51,7 @@ export default {
   data () {
     return {
       s1: 10, // ilość osób w kolumnie
-      currentProject: null,
-      size: window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight * 1.5
+      currentProject: null
     }
   },
   components: {
@@ -95,11 +92,11 @@ export default {
       })
     },
     placeX (x) {
-      let result = window.innerWidth * 0.35 - Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2.1)
+      let result = -Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * 150
       return result
     },
     placeY (y) {
-      let result = 30 + Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * (this.size / 2.1)
+      let result = Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * 150
       return result
     },
     fetchProject () {
@@ -139,19 +136,22 @@ export default {
   /*flex-basis: 70%;*/
 }
 
-#buttons {
-  position: relative;
-  top: -5vw;
+#button-container {
   z-index: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  justify-content: space-around;
   /*width: 80vw;*/
-  height: 5vh;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
 }
 
-#buttons div {
-  border-radius: 100%;
+.vote-button {
+  border-radius: 1vmin;
   width: 15vmin;
   height: 15vmin;
   background: var(--color-3);
@@ -159,23 +159,24 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 0 10vw;
+  /*margin: 0 10vw;*/
   user-select: none;
   cursor: pointer;
   /*border: 1px solid;*/
-  transition: 0.5s;
+  /*transition: 0.5s;*/
 }
 
-#buttons div:hover {
+/*.vote-button:hover {
   background: var(--color-4);
-}
+  color: white;
+}*/
 
-#buttons div:active {
+.vote-button:active {
   background: var(--color-1);
 }
 
-#buttons svg {
-  /*transform: scale(2);*/
+.vote-button svg {
+  transform: scale(2);
 }
 
 #deputies {
@@ -184,10 +185,15 @@ export default {
   list-style: none;
 }
 
-svg.deputies-graph {
-  width: 70vw;
-  /*height: 500px;*/
+svg#deputies-graph {
+  width: 100%;
+  height: 35vw;
   /*background: black;*/
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
 }
 
 .svg-container {

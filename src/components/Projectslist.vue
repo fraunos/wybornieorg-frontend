@@ -1,29 +1,28 @@
 <template>
 <div :class="['project-menu', {'list-hidden':listHidden}]">
   <div id="fold-button" @click="listHidden=!listHidden"></div>
-
-
-  <div class="scrollable-container">
-    <div class="sort-filter-menu">
+  <div class="sort-filter-menu">
+    <div class="">
+      <select v-model="kadencje">
+       <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">Kadencja {{item}}</option>
+      </select>
+    </div>
+    <div class="">
+      <select v-model="sortowanie">
+        <option value="votingDate">Najnowsze</option>
+        <option value="drukNr">Wg nr druku</option>
+        <option value="frekwencja">Z największą frekwencją</option>
+      </select>
+    </div>
+    <div class="filtrowanie-status">
       <div class="">
-        <select v-model="kadencje">
-         <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">Kadencja {{item}}</option>
-        </select>
+        <input id="uchwalonoCB" type="checkbox" name="uchwalono" value="uchwalono" v-model="filtrowanieStatus">
+        <label for="uchwalonoCB">Uchwalone</label>
       </div>
       <div class="">
-        <select v-model="sortowanie">
-          <option value="votingDate">Najnowsze</option>
-          <option value="drukNr">Wg nr druku</option>
-          <option value="frekwencja">Z największą frekwencją</option>
-        </select>
+        <input id="odrzuconyCB" type="checkbox" name="" value="odrzucony" v-model="filtrowanieStatus">
+        <label for="odrzuconyCB">Odrzucone</label>
       </div>
-      <div class="">
-        <input type="checkbox" name="uchwalono" value="uchwalono" v-model="filtrowanieStatus">
-        <label for="uchwalono">Uchwalone</label>
-        <input type="checkbox" name="" value="odrzucony" v-model="filtrowanieStatus">
-        <label for="odrzucony">Odrzucone</label>
-      </div>
-
     </div>
     {{projectsProcessed.length}}
   </div>
@@ -118,14 +117,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-span {
-  /*font-weight: bold;*/
-}
-
-div {
-  /*padding: 10px;*/
-  /*flex-flow: row;*/
-}
 .uchwalono {
   border-right: 1.5vmin solid green;
 }
@@ -135,8 +126,11 @@ div {
 .sort-filter-menu {
   display: flex;
   flex-direction: row;
+  margin: 3vmin;
+  padding: 2vmin;
   justify-content: space-around;
-  margin-top: 5vmin;
+  background: var(--color-2-op);
+  border-radius: 2vmin;
 }
 .project-menu {
   position: fixed;
@@ -151,25 +145,22 @@ div {
   /*display: none;*/
 }
 select {
-  border-radius: 0.5em;
+  border-radius: 0.5vmin;
   background: var(--color-3);
   font-size: 100%;
-  padding: 0.5em;
-}
-option{
-  padding-bottom: 2em;
+  padding: 1vmin;
 }
 
 .project-list {
-  padding: 5vmin;
+  padding: 2vmin;
   display: flex;
   flex-flow: column;
-  height: auto;
+  height: calc(100vh - 20vmin);
 }
 
-.scrollable-container {
+#scrollable-container {
   position: relative;
-  height: 100vh;
+  max-height: 90vh;
   overflow-y: scroll;
   z-index: 10;
 }

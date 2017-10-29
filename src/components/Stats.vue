@@ -52,7 +52,7 @@ li:first-child {
 li{
   padding: 0.4em;
   margin: 0.4em;
-  background: white;
+  background: lightgray;
   border-radius: 0.6em;
   display: flex;
   flex-direction: row;

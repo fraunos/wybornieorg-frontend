@@ -144,17 +144,6 @@ export default {
   background: var(--color-4);
 }
 
-@media screen and (max-aspect-ratio: 1/1) {
-  .menu {
-    flex-direction: column;
-  }
-  .circle {
-    width: 35vmin;
-    height: 10vmin;
-    top: 20px;
-  }
-}
-
 @keyframes pulse {
   80% {
     transform: rotate(0deg);
