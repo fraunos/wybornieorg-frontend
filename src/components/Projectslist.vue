@@ -25,10 +25,14 @@
       </div>
 
     </div>
-    <div class="project-list" @click="hideList()">
-      {{projectsProcessed.length}}
+    {{projectsProcessed.length}}
+  </div>
 
-      <router-link :id="project.drukNr" v-for="(project, index) in projectsProcessed" :key="index" :class="[project.status, 'project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
+  <div id="scrollable-container">
+
+    <div class="project-list" @click="hideList()">
+
+      <router-link :id="project.drukNr" v-for="(project, index) in projectsDisplayed" :key="index" :class="[project.status, 'project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
         <span class="kadencja">{{project.kadencja}}</span><span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span><span class="data">{{moment(project.votingDate).calendar()}}</span>
       </router-link>
     </div>
@@ -57,7 +61,11 @@ export default {
   },
   watch: {
     // call again the method if the route changes
-    '$route': 'hideList'
+    '$route': 'hideList',
+    'projectsProcessed': function () {
+      this.pagination = 0
+      document.getElementById('scrollable-container').scrollTop = 0
+    }
   },
   components: {
     ArrowLeftIcon,
@@ -76,12 +84,20 @@ export default {
         }
       })
     },
+    projectsDisplayed () {
+      return this.projectsProcessed.slice(0, 10 + 10 * this.pagination)
+    },
     userVotes () {
       return this.$store.state.userVotes
     }
   },
   mounted () {
     this.fetchProjects()
+    document.getElementById('scrollable-container').addEventListener('scroll', (el) => {
+      if (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight) > 0.9) {
+        this.pagination++
+      }
+    })
   },
   methods: {
     fetchProjects () {
