@@ -80,12 +80,14 @@ export default {
       return this.$store.state.userVotes
     }
   },
-  created () {
+  mounted () {
     this.fetchProjects()
   },
   methods: {
     fetchProjects () {
+      this.$store.commit('loadingUp')
       this.$http.get(this.$store.state.domain + ':3000/dev/projekty/').then(response => {
+        this.$store.commit('loadingDown')
         this.projects = response.body
       }, response => {
         // error callback

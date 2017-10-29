@@ -53,7 +53,6 @@ export default {
   data () {
     return {
       s1: 10, // ilość osób w kolumnie
-      loading: true,
       currentProject: null,
       size: window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight * 1.5
     }
@@ -63,7 +62,7 @@ export default {
     ThumbsUpIcon,
     ThumbsDownIcon
   },
-  created () {
+  mounted () {
     // this.$store.commit('', this.$route.params.projekt)
     this.fetchProject()
   },
@@ -104,11 +103,10 @@ export default {
       return result
     },
     fetchProject () {
-      this.loading = true
-
+      this.$store.commit('loadingUp')
       this.$http.get(this.$store.state.domain + ':3000/dev/projekty/' + this.$route.params.kadencja + '/' + this.$route.params.druk).then(response => {
         this.currentProject = this.adjustVotes(response.body)
-        this.loading = false
+        this.$store.commit('loadingDown')
       }, response => {
         // error callback
       })
@@ -197,10 +195,6 @@ svg.deputies-graph {
   /*transform-origin: 50% 0%;*/
   /*transform: rotate(360deg);*/
   /*transition: 1s;*/
-}
-
-.loading-project {
-  /*transform: rotate(180deg);*/
 }
 
 .currentProject {

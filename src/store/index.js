@@ -7,10 +7,17 @@ export default new Vuex.Store({
     userVotes: {},
     deputiesStats: new Map(),
     domain: 'http://wybornie.org'
+    loading: 0
   },
   mutations: {
     userVote (state, props) {
       Vue.set(state.userVotes, JSON.stringify({drukNr: props.drukNr, kadencja: props.kadencja}), props.vote)
+    },
+    loadingUp (state) {
+      state.loading++
+    },
+    loadingDown (state) {
+      state.loading--
     },
     setDeputyStat (state, props) {
       let temp = state.deputiesStats.get(props.deputyName)

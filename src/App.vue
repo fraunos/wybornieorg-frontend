@@ -1,6 +1,7 @@
 <template>
 <div id="app">
   <appnav></appnav>
+  <div v-show="this.loading" id="loading-thing"></div>
   <div class="router">
     <transition name="fade" mode="out-in">
       <router-view></router-view>
@@ -29,6 +30,11 @@ export default {
   data () {
     return {
       popup: true
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.state.loading
     }
   }
 }
@@ -95,6 +101,22 @@ a:active {
 }
 
 *::-webkit-scrollbar {
+#loading-thing{
+  position: fixed;
+  top: 10vh;
+  left: calc(50vw - 3.5vmin);
+  z-index: 99;
+  height: 5vmin;
+  width: 5vmin;
+  border: 2vmin solid crimson;
+  border-left: 2vmin solid red;
+  border-bottom: 2vmin solid red;
+  border-radius: 100%;
+  animation: 2s rotate360 infinite ease-in-out;
+}
+@keyframes rotate360 {
+  to { transform: rotate(360deg); }
+}
   width: 1.5vmin;
 }
 
