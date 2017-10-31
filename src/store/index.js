@@ -6,7 +6,7 @@ export default new Vuex.Store({
   state: {
     userVotes: {},
     deputiesStats: new Map(),
-    domain: 'http://wybornie.org'
+    domain: 'http://wybornie.org',
     loading: 0,
     isMobile: (window.innerHeight / window.innerWidth) > 1
   },
