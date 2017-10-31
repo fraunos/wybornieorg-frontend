@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <appnav></appnav>
+  <app-nav></app-nav>
   <div v-show="this.loading" id="loading-thing"></div>
   <div class="router">
     <transition name="fade" mode="out-in">
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Appfooter from '@/components/Appfooter'
-import Appnav from '@/components/Appnav'
+import AppFooter from '@/components/AppFooter'
+import AppNav from '@/components/AppNav'
 import {
   AlertTriangleIcon,
   XIcon
@@ -22,8 +22,8 @@ import {
 export default {
   name: 'app',
   components: {
-    Appnav,
-    Appfooter,
+    AppNav,
+    AppFooter,
     AlertTriangleIcon,
     XIcon
   },

@@ -26,6 +26,7 @@ import {
 } from 'vue-feather-icons'
 
 export default {
+  name: 'app-nav',
   data () {
     return {
       showMenu: false
@@ -53,7 +54,6 @@ export default {
 }
 .menu {
   position: fixed;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,14 +114,20 @@ export default {
 }
 
 .circle {
-
-  background: var(--color-4);
-
+  border-radius: 1vmin;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  border-bottom: solid 0.2em black;
-
+  align-items: center;
+  /*margin: 0 10vw;*/
+  user-select: none;
+  cursor: pointer;
+  /*border: 1px solid;*/
+  transition: 0.5s;
+  color: white;
+  border: 0.3vmin solid black;
+  border-bottom: 1vmin solid black;
+  background: var(--color-4);
   /*border-radius: 1em;*/
   transition: 0.5s;
   cursor: pointer;
@@ -141,6 +147,7 @@ export default {
 .router-link-active {
   border-color: var(--color-3);
   /*color: black;*/
+  /*border-bottom: 0.2vmin solid black;*/
   background: var(--color-4);
 }
 

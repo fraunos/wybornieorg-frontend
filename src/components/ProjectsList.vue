@@ -24,16 +24,28 @@
         <label for="odrzuconyCB">Odrzucone</label>
       </div>
     </div>
-    {{projectsProcessed.length}}
+    <div class="filtrowanie-nazwa">
+      <label for="filtrowanieNazwa"><search-icon></search-icon></label>
+      <input type="text" name="filtrowanieNazwa" value="" v-model="filtrowanieNazwa" placeholder="Filtruj tytuły, np. 'podatk'">
+    </div>
+    <!-- <div class="filtrowanie-glos">
+      <div class="">
+        <input id="za" type="checkbox" name="za" value="za" v-model="filtrowanieGlos">
+        <label for="za">Za</label>
+      </div>
+      <div class="">
+        <input id="przeciw" type="checkbox" name="przeciw" value="przeciw" v-model="filtrowanieGlos">
+        <label for="przeciw">Przeciw</label>
+      </div>
+    </div> -->
+    <div class="">
+      Liczba projektów: {{projectsProcessed.length}}
+    </div>
   </div>
 
   <div id="scrollable-container">
-
     <div class="project-list" @click="hideList()">
-
-      <router-link :id="project.drukNr" v-for="(project, index) in projectsDisplayed" :key="index" :class="[project.status, 'project-list-item']" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
-        <span class="kadencja">{{project.kadencja}}</span><span class="drukNr">{{project.drukNr}}</span><span class="tytul">{{project.tytul}}</span> <br><span class="frekwencja">f: {{Math.floor(project.frekwencja * 100)}}%</span><span class="status">{{project.status}}</span><span class="data">{{moment(project.votingDate).calendar()}}</span>
-      </router-link>
+      <projects-list-item  :id="index" v-for="(project, index) in projectsDisplayed" :key="index" :project='project'></projects-list-item>
     </div>
   </div>
 </div>
@@ -41,12 +53,12 @@
 
 <script>
 import {
-  ArrowLeftIcon,
-  ArrowRightIcon
+  SearchIcon
 } from 'vue-feather-icons'
+import ProjectsListItem from '@/components/ProjectsListItem'
 
 export default {
-  name: 'projectslist',
+  name: 'projects-list',
   data () {
     return {
       projects: [],
@@ -55,7 +67,9 @@ export default {
       listHidden: true,
       kadencje: 8,
       sortowanie: 'votingDate',
-      filtrowanieStatus: ['odrzucony', 'uchwalono']
+      filtrowanieStatus: ['odrzucony', 'uchwalono'],
+      filtrowanieGlos: ['za', 'przeciw'],
+      filtrowanieNazwa: ''
     }
   },
   watch: {
@@ -67,14 +81,14 @@ export default {
     }
   },
   components: {
-    ArrowLeftIcon,
-    ArrowRightIcon
+    ProjectsListItem,
+    SearchIcon
   },
   computed: {
     projectsProcessed () {
       return this.projects.filter(item => {
         // return this.kadencje.indexOf(item.kadencja) !== -1
-        return this.kadencje === item.kadencja && this.filtrowanieStatus.indexOf(item.status) !== -1
+        return this.kadencje === item.kadencja && this.filtrowanieStatus.indexOf(item.status) !== -1 && item.tytul.indexOf(this.filtrowanieNazwa) !== -1
       }).sort((a, b) => {
         if (this.sortowanie === 'votingDate') {
           return new Date(b[this.sortowanie]) - new Date(a[this.sortowanie])
@@ -117,20 +131,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.uchwalono {
-  border-right: 1.5vmin solid green;
-}
-.odrzucony {
-  border-right: 1.5vmin solid red;
-}
 .sort-filter-menu {
   display: flex;
   flex-direction: row;
-  margin: 3vmin;
+  flex-flow: wrap;
+  justify-content: space-between;
   padding: 2vmin;
-  justify-content: space-around;
   background: var(--color-2-op);
-  border-radius: 2vmin;
+}
+.sort-filter-menu > * {
+  margin: 1vmin;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.filtrowanie-nazwa{
+  padding: 1vmin;
+
+  background: white;
+}
+.filtrowanie-nazwa input{
+  padding: 1vmin;
+  background-color: white;
+  /*width: 90px;*/
+  font-size: 2vmin;
+  border: none;
+}
+.filtrowanie-status{
+  flex-direction: column;
+  align-items: flex-start;
 }
 .project-menu {
   position: fixed;
@@ -141,14 +171,14 @@ export default {
   background: var(--color-1-op);
   z-index: 89;
   transition: 1s ease-in-out;
-  font-size: 70%;
+  /*font-size: 70%;*/
   /*display: none;*/
 }
 select {
   border-radius: 0.5vmin;
   background: var(--color-3);
-  font-size: 100%;
-  padding: 1vmin;
+  font-size: inherit;
+  padding: 0.5vmin;
 }
 
 .project-list {
@@ -173,13 +203,13 @@ select {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 5vmin solid transparent;
-  border-bottom: 5vmin solid transparent;
+  border-top: 7vmin solid transparent;
+  border-bottom: 7vmin solid transparent;
 
-  border-right:5vmin solid var(--color-0);
+  border-right:7vmin solid var(--color-0);
   /*border-left:5vmin solid var(--color-0);*/
   /*background: var(--color-0);*/
-  top: calc(50vh);
+  top: calc(50vh - 3.5vmin);
   left: calc(100vmin + 1vmin);
 
   /*border-radius: 100%;*/
@@ -191,31 +221,5 @@ select {
 
 #fold-button:hover {
   opacity: 1;
-}
-
-.project-list-item {
-  background: white;
-  padding: 3vmin;
-  margin: 1vmin;
-  border-radius: 2vmin;
-}
-a {
-  color: black;
-}
-a:hover{
-  color: var(--color-0);
-}
-a.router-link-exact-active {
-  /*border-width: 2em;*/
-  background-color: var(--color-4);
-  color: white;
-}
-
-.tytul {
-  /*font-size: 1vmin;*/
-}
-
-span {
-  margin: 1vmin;
 }
 </style>

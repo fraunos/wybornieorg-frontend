@@ -1,41 +1,42 @@
 <template>
-<div id="cp" class="currentProject">
-  <div v-if="currentProject" class="">
+<div v-if="currentProject" id="cp" class="currentProject">
+
+
+    <div id="data">
+      <p>Druk nr {{currentProject.drukNr}}</p>
+      <h3>{{currentProject.tytul}}</h3>
+      <p>{{currentProject.status}} {{votingTime.calendar().toLowerCase()}}</p>
+      <p>{{currentProject.opis}}</p>
+      <!-- <p>{{currentProject.deputies.length}}</p> -->
+      <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
+
+      <p><a target="_blank" :href="currentProject.przebiegLink">przebieg projektu</a></p>
+      <p><a target="_blank" :href="currentProject.trescLink">treść projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
+      <p><a target="_blank" :href="currentProject.isapLink">ISAP tekst ustawy</a></p>
+      <p><a target="_blank" :href="currentProject.votingLink">decydujące głosowanie</a></p>
+      <p><a target="_blank" :href="mediaLink">media o projekcie</a></p>
+    </div>
+
+    <div id="ocena">
+      <h3 style="text-align: center">Jak oceniasz ten projekt?</h3>
+    </div>
+    <div id="button-container">
+      <div :class="['vote-button', 'green', {'button-voted': currentProjectVote === 'Za'}]" @click="userVote('Za')">
+        <thumbs-up-icon></thumbs-up-icon>
+      </div>
+      <div :class="['vote-button', 'red', {'button-voted': currentProjectVote === 'Przeciw'}]" @click="userVote('Przeciw')">
+        <thumbs-down-icon></thumbs-down-icon>
+      </div>
+    </div>
 
     <div id="svg-container">
-      <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -15 1 130">
+      <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -5 1 140">
         <text text-anchor="middle" dominant-baseline="hanging" x="0" y="0" font-family="mono" font-weight="bold" font-size="10" stroke="none" fill="black">{{currentProject.drukNr}}</text>
-
         <g>
           <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
         </g>
       </svg>
     </div>
-    <div id="data">
-      <!-- {{userVotes}} -->
-      <p>Druk nr {{currentProject.drukNr}}</p>
-      <h3>{{currentProject.tytul}}</h3>
-      <p>{{currentProject.status}} {{votingTime.calendar()}}</p>
-      <p>{{currentProject.opis}}</p>
-      <!-- <p>{{currentProject.deputies.length}}</p> -->
-      <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
-
-      <p><a target="_blank" :href="currentProject.trescLink">adres projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
-      <p><a target="_blank" :href="currentProject.isapLink">ISAP tekst ustawy</a></p>
-      <p><a target="_blank" :href="currentProject.przebiegLink">przebieg projektu</a></p>
-      <p><a target="_blank" :href="currentProject.votingLink">decydujące głosowanie</a></p>
-      <p><a target="_blank" :href="mediaLink">media o projekcie</a></p>
-    </div>
-
-    <div id="button-container">
-      <div class="vote-button" @click="userVote('Za')">
-        <thumbs-up-icon></thumbs-up-icon>
-      </div>
-      <div class="vote-button" @click="userVote('Przeciw')">
-        <thumbs-down-icon></thumbs-down-icon>
-      </div>
-    </div>
-  </div>
 
 </div>
 </template>
@@ -48,6 +49,7 @@ import {
 import Deputy from '@/components/Deputy'
 
 export default {
+  name: 'current-project',
   data () {
     return {
       s1: 10, // ilość osób w kolumnie
@@ -71,9 +73,8 @@ export default {
     votingTime () {
       return this.moment(new Date(this.currentProject.votingDate))
     },
-
-    userVotes () {
-      return this.$store.state.userVotes
+    currentProjectVote () {
+      return this.$store.state.userVotes[JSON.stringify({drukNr: this.$route.params.druk, kadencja: this.$route.params.kadencja})]
     },
     mediaLink () {
       let result = ''
@@ -90,6 +91,9 @@ export default {
         kadencja: this.$route.params.kadencja,
         vote: vote
       })
+      setTimeout(() => {
+        window.scrollTo({top: document.querySelector('#ocena').offsetTop, behavior: 'smooth'})
+      }, 1000)
     },
     placeX (x) {
       let result = -Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * 150
@@ -109,7 +113,7 @@ export default {
       })
     },
     adjustVotes (project) {
-      if ((project.votingIntention === 'odrzucenie' && project.status === 'uchwalono') || (project.votingIntention === 'przyjęcie' && project.status === 'odrzucony')) {
+      if ((project.votingIntention === 'odrzucenie')) {
         for (let deputy of project.deputies) {
           deputy.vote = this.switchVote(deputy.vote)
         }
@@ -132,16 +136,22 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #cp {
-  flex-flow: column;
+  /*flex-flow: column;*/
+  display: flex;
   /*flex-basis: 70%;*/
 }
-
+#data {
+  width: 100%;
+}
 #button-container {
+  margin: 5vh 0;
   z-index: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
   justify-content: space-around;
+  align-items: flex-end;
+  height: 16vmin;
   /*width: 80vw;*/
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -154,7 +164,6 @@ export default {
   border-radius: 1vmin;
   width: 15vmin;
   height: 15vmin;
-  background: var(--color-3);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -162,17 +171,33 @@ export default {
   /*margin: 0 10vw;*/
   user-select: none;
   cursor: pointer;
-  /*border: 1px solid;*/
-  /*transition: 0.5s;*/
+  transition: 0.1s;
+  opacity: 0.8;
+  color: white;
+  border: 0.3vmin solid black;
+  border-bottom: 1vmin solid black;
+}
+.button-voted {
+  opacity: 1;
+  border-bottom: 0.3vmin solid black;
+  /*transform: scale(1.1);*/
 }
 
+.red {
+  background-color: red;
+}
+
+.green{
+  background-color: green;
+}
 /*.vote-button:hover {
   background: var(--color-4);
   color: white;
 }*/
 
 .vote-button:active {
-  background: var(--color-1);
+  /*background: var(--color-1);*/
+  opacity: 0.7;
 }
 
 .vote-button svg {
@@ -206,7 +231,7 @@ svg#deputies-graph {
 .currentProject {
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
 @keyframes rotate {

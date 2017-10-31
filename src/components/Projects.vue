@@ -1,18 +1,18 @@
 <template>
 <div class="projects">
-  <projectslist></projectslist>
+  <projects-list></projects-list>
   <div v-show="druk == null" class="">
     <p>Wybierz projekt z listy!<br></p>
     <p>Aby wyświetlić listę, użyj przycisku z lewej strony!</p>
   </div>
-  <currentproject v-if="druk"></currentproject>
+  <current-project v-if="druk"></current-project>
 
 </div>
 </template>
 
 <script>
-import Currentproject from '@/components/Currentproject'
-import Projectslist from '@/components/Projectslist'
+import CurrentProject from '@/components/CurrentProject'
+import ProjectsList from '@/components/ProjectsList'
 
 export default {
   name: 'projects',
@@ -23,8 +23,8 @@ export default {
     }
   },
   components: {
-    Currentproject,
-    Projectslist
+    CurrentProject,
+    ProjectsList
   },
   computed: {
     userVotes () {
