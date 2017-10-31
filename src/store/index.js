@@ -8,6 +8,7 @@ export default new Vuex.Store({
     deputiesStats: new Map(),
     domain: 'http://wybornie.org'
     loading: 0
+    isMobile: (window.innerHeight / window.innerWidth) > 1
   },
   mutations: {
     userVote (state, props) {

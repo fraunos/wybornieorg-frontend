@@ -1,11 +1,10 @@
 <template>
 <g>
-  <title class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}
-  </title>
+  <title v-if="!isMobile" class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}</title>
 
   <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloryzuj" :id="i">
   </circle>
-  <text :x="cx - dotSize * 0.44" :y="cy + dotSize * 0.5" font-family="mono" font-weight="bold" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
+  <text v-if="!isMobile" :x="cx - dotSize * 0.44" :y="cy + dotSize * 0.5" font-family="mono" font-weight="bold" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
 </g>
 </template>
 
@@ -20,6 +19,9 @@ export default {
     }
   },
   computed: {
+    isMobile () {
+      return this.$store.state.isMobile
+    },
     zgodnosc () {
       // console.log(`${this.$store.state.userVotes[this.$store.state.currentProject.drukNr]} ${this.singleDeputy.vote}`)
       let result = this.$store.state.userVotes[JSON.stringify({drukNr: this.$route.params.druk, kadencja: this.$route.params.kadencja})] === this.singleDeputy.vote
