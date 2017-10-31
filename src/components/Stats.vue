@@ -24,7 +24,6 @@ export default {
       return [...this.$store.state.deputiesStats.entries()]
     },
     userVoted () {
-      console.log(this.$store.state.userVotes)
       return JSON.stringify(this.$store.state.userVotes) === '{}'
     },
     deputiesStatsSortedZgodnoscProcent () {

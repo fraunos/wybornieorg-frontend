@@ -2,7 +2,7 @@
 <g>
   <title v-if="!isMobile" class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}</title>
 
-  <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloryzuj" :id="i">
+  <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloruj" :id="i">
   </circle>
   <text v-if="!isMobile" :x="cx - dotSize * 0.44" :y="cy + dotSize * 0.5" font-family="mono" font-weight="bold" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
 </g>
@@ -33,7 +33,7 @@ export default {
       })
       return result
     },
-    koloryzuj () {
+    koloruj () {
       let result = ''
       if (this.singleDeputy.vote === 'Wstrzymał się' || this.singleDeputy.vote === 'Nie oddał głosu') {
         result = 'wstrzymanie'

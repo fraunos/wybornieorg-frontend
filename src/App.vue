@@ -27,6 +27,11 @@ export default {
     AlertTriangleIcon,
     XIcon
   },
+  watch: {
+    '$route': function () {
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+    }
+  },
   data () {
     return {
       popup: true
@@ -49,8 +54,9 @@ h1, h2, h3 {
 
 body {
   font-family: sans-serif;
-  font-size: 3vmin;
-  text-align: justify;
+  font-size: 2vmin;
+  /*text-align: justify;*/
+  text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.2);
   background: var(--color-2);
   margin: 5vmin;
   color: black;
@@ -65,8 +71,8 @@ body {
 
 .router {
   background-color: white;
-  padding: 10vmin;
-  width: 60vw;
+  padding: 5vw;
+  width: 60%;
 
   /*vertical-align: middle;*/
 }
@@ -107,8 +113,8 @@ a:active {
 }
 #loading-thing{
   position: fixed;
-  top: 10vh;
-  left: calc(50vw - 3.5vmin);
+  top: 10vmin;
+  left: calc(50vw - 5.5vmin);
   z-index: 99;
   height: 5vmin;
   width: 5vmin;
@@ -121,31 +127,19 @@ a:active {
 @keyframes rotate360 {
   to { transform: rotate(360deg); }
 }
-/**::-webkit-scrollbar {
-  width: 1.5vmin;
-}
 
-*::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,1);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--color-4);
-  border-radius: 2vmin;
-  outline: 10px solid white;
-}*/
-
-@media screen and (max-aspect-ratio: 1/1) {
+@media screen and (max-device-aspect-ratio: 1/1) {
   .menu {
     flex-direction: column;
   }
-  .circle {
-    width: 35vmin;
-    height: 10vmin;
-    top: 20px;
+  body{
+    font-size: 3vmin;
+  }
+  .router {
+    width: 80%;
   }
   input{
-    transform: scale(2);
+    /*transform: scale(2);*/
   }
 }
 </style>
