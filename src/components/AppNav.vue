@@ -5,13 +5,13 @@
   <transition name="fade" mode="out-in">
     <div class="menu" v-show="showMenu" @click="showMenu=!showMenu">
       <router-link class="circle small" id="proj" to="/projekty">
-        <check-square-icon></check-square-icon> projekty</router-link>
+        <check-square-icon></check-square-icon>projekty</router-link>
       <router-link class="circle small" id="staty" to="/statystyki">
-        <box-icon></box-icon> staty</router-link>
+        <box-icon></box-icon>staty</router-link>
       <router-link class="circle small" id="ostronie" to="/ostronie">
-        <info-icon></info-icon> o stronie</router-link>
+        <info-icon></info-icon>o stronie</router-link>
       <router-link class="circle small" id="kontakt" to="/kontakt">
-        <mail-icon></mail-icon> kontakt</router-link>
+        <mail-icon></mail-icon>kontakt</router-link>
     </div>
   </transition>
 </div>

@@ -10,11 +10,12 @@
       <!-- <p>{{currentProject.deputies.length}}</p> -->
       <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
 
-      <p><a target="_blank" :href="currentProject.przebiegLink">przebieg projektu</a></p>
-      <p><a target="_blank" :href="currentProject.trescLink">treść projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
-      <p><a target="_blank" :href="currentProject.isapLink">ISAP tekst ustawy</a></p>
-      <p><a target="_blank" :href="currentProject.votingLink">decydujące głosowanie</a></p>
-      <p><a target="_blank" :href="mediaLink">media o projekcie</a></p>
+      <p><a target="_blank" :href="currentProject.przebiegLink"><activity-icon></activity-icon>przebieg projektu</a></p>
+      <p><a target="_blank" :href="currentProject.trescLink"><file-text-icon></file-text-icon>treść projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
+      <p><a target="_blank" :href="currentProject.isapLink"><folder-icon></folder-icon>ISAP tekst ustawy</a></p>
+      <p><a target="_blank" :href="currentProject.votingLink"><check-square-icon></check-square-icon>decydujące głosowanie</a></p>
+      <p><a target="_blank" :href="currentProject.komisje"><users-icon></users-icon>Komisje i podkomisje</a></p>
+      <p><a target="_blank" :href="mediaLink"><tv-icon></tv-icon>media o projekcie</a></p>
     </div>
 
     <div id="ocena">
@@ -44,7 +45,13 @@
 <script>
 import {
   ThumbsUpIcon,
-  ThumbsDownIcon
+  ThumbsDownIcon,
+  ActivityIcon,
+  FileTextIcon,
+  FolderIcon,
+  CheckSquareIcon,
+  UsersIcon,
+  TvIcon
 } from 'vue-feather-icons'
 import Deputy from '@/components/Deputy'
 
@@ -59,7 +66,13 @@ export default {
   components: {
     Deputy,
     ThumbsUpIcon,
-    ThumbsDownIcon
+    ThumbsDownIcon,
+    ActivityIcon,
+    FileTextIcon,
+    FolderIcon,
+    CheckSquareIcon,
+    UsersIcon,
+    TvIcon
   },
   mounted () {
     // this.$store.commit('', this.$route.params.projekt)

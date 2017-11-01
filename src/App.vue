@@ -87,7 +87,11 @@ body {
   opacity: 0;
   z-index: 10;
 }
-
+svg {
+  margin-right: 0.5em;
+  height: 1em;
+  width: 1em;
+}
 a {
   text-decoration: none;
   color: var(--color-0);

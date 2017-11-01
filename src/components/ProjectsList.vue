@@ -3,11 +3,13 @@
   <div id="fold-button" @click="listHidden=!listHidden"></div>
   <div class="sort-filter-menu">
     <div class="">
+      <layers-icon></layers-icon>
       <select v-model="kadencje">
        <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">Kadencja {{item}}</option>
       </select>
     </div>
     <div class="">
+      <bar-chart-icon></bar-chart-icon>
       <select v-model="sortowanie">
         <option value="votingDate">Najnowsze</option>
         <option value="drukNr">Wg nr druku</option>
@@ -15,6 +17,7 @@
       </select>
     </div>
     <div class="filtrowanie-status">
+      <filter-icon></filter-icon>
       <div class="">
         <input id="uchwalonoCB" type="checkbox" name="uchwalono" value="uchwalono" v-model="filtrowanieStatus">
         <label for="uchwalonoCB">Uchwalone</label>
@@ -25,7 +28,8 @@
       </div>
     </div>
     <div class="filtrowanie-nazwa">
-      <label for="filtrowanieNazwa"><search-icon></search-icon></label>
+      <search-icon></search-icon>
+      <label for="filtrowanieNazwa"></label>
       <input type="text" name="filtrowanieNazwa" value="" v-model="filtrowanieNazwa" placeholder="Filtruj tytuły, np. 'podatk'">
     </div>
     <!-- <div class="filtrowanie-glos">
@@ -53,6 +57,9 @@
 
 <script>
 import {
+  LayersIcon,
+  BarChartIcon,
+  FilterIcon,
   SearchIcon
 } from 'vue-feather-icons'
 import ProjectsListItem from '@/components/ProjectsListItem'
@@ -81,7 +88,10 @@ export default {
     }
   },
   components: {
+    LayersIcon,
     ProjectsListItem,
+    BarChartIcon,
+    FilterIcon,
     SearchIcon
   },
   computed: {
@@ -147,9 +157,6 @@ export default {
   align-items: center;
 }
 .filtrowanie-nazwa{
-  padding: 1vmin;
-
-  background: white;
 }
 .filtrowanie-nazwa input{
   padding: 1vmin;
