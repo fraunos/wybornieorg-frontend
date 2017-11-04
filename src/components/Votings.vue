@@ -1,30 +1,30 @@
 <template>
-<div class="projects">
-  <projects-list></projects-list>
-  <div v-show="druk == null" class="">
+<div class="votings">
+  <votings-list></votings-list>
+  <div v-show="glosowanie == null" class="">
     <p>Wybierz projekt z listy!<br></p>
     <p>Aby wyświetlić listę, użyj przycisku z lewej strony!</p>
   </div>
-  <current-project v-if="druk"></current-project>
+  <current-voting v-if="glosowanie"></current-voting>
 
 </div>
 </template>
 
 <script>
-import CurrentProject from '@/components/CurrentProject'
-import ProjectsList from '@/components/ProjectsList'
+import CurrentVoting from '@/components/CurrentVoting'
+import VotingsList from '@/components/VotingsList'
 
 export default {
-  name: 'projects',
-  props: ['druk', 'kadencja'],
+  name: 'votings',
+  props: ['kadencja', 'posiedzenie', 'glosowanie'],
   data () {
     return {
-      projects: []
+      votings: []
     }
   },
   components: {
-    CurrentProject,
-    ProjectsList
+    CurrentVoting,
+    VotingsList
   },
   computed: {
     userVotes () {

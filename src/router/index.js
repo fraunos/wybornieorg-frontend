@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Projects from '@/components/Projects'
+import Votings from '@/components/Votings'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import Stats from '@/components/Stats'
@@ -16,9 +16,9 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/projekty/:kadencja?/:druk?',
-      name: 'projects',
-      component: Projects,
+      path: '/glosowania/:kadencja?/:posiedzenie?/:glosowanie?',
+      name: 'votings',
+      component: Votings,
       props: true
     },
     {

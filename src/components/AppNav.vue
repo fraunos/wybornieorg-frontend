@@ -4,8 +4,8 @@
 
   <transition name="fade" mode="out-in">
     <div class="menu" v-show="showMenu" @click="showMenu=!showMenu">
-      <router-link class="circle small" id="proj" to="/projekty">
-        <check-square-icon></check-square-icon>projekty</router-link>
+      <router-link class="circle small" id="votings" to="/glosowania">
+        <check-square-icon></check-square-icon>głosuj</router-link>
       <router-link class="circle small" id="staty" to="/statystyki">
         <box-icon></box-icon>staty</router-link>
       <router-link class="circle small" id="ostronie" to="/ostronie">

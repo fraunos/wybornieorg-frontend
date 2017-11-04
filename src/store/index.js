@@ -12,7 +12,7 @@ export default new Vuex.Store({
   },
   mutations: {
     userVote (state, props) {
-      Vue.set(state.userVotes, JSON.stringify({drukNr: props.drukNr, kadencja: props.kadencja}), props.vote)
+      Vue.set(state.userVotes, JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}), props.vote)
     },
     loadingUp (state) {
       state.loading++
@@ -29,11 +29,11 @@ export default new Vuex.Store({
         }
       }
       if (props.vote) {
-        temp.niezgodne.delete(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
-        temp.zgodne.add(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
+        temp.niezgodne.delete(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
+        temp.zgodne.add(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
       } else {
-        temp.zgodne.delete(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
-        temp.niezgodne.add(JSON.stringify({drukNr: props.druk, kadencja: props.kadencja}))
+        temp.zgodne.delete(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
+        temp.niezgodne.add(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
       }
       temp.zgodnoscProcent = Math.floor(100 * temp.zgodne.size / (temp.zgodne.size + temp.niezgodne.size))
       state.deputiesStats.set(props.deputyName, temp)

@@ -24,11 +24,12 @@ export default {
     },
     zgodnosc () {
       // console.log(`${this.$store.state.userVotes[this.$store.state.currentProject.drukNr]} ${this.singleDeputy.vote}`)
-      let result = this.$store.state.userVotes[JSON.stringify({drukNr: this.$route.params.druk, kadencja: this.$route.params.kadencja})] === this.singleDeputy.vote
+      let result = this.$store.state.userVotes[JSON.stringify({kadencja: this.$route.params.kadencja, posiedzenie: this.$route.params.posiedzenie, glosowanie: this.$route.params.glosowanie})] === this.singleDeputy.vote
       this.$store.commit('setDeputyStat', {
         deputyName: this.singleDeputy.name,
-        druk: this.$route.params.druk,
         kadencja: this.$route.params.kadencja,
+        posiedzenie: this.$route.params.posiedzenie,
+        glosowanie: this.$route.params.glosowanie,
         vote: result
       })
       return result
@@ -39,7 +40,7 @@ export default {
         result = 'wstrzymanie'
       } else if (this.singleDeputy.vote === 'Nieobecny') {
         result = 'nieobecnosc'
-      } else if (this.$store.state.userVotes[JSON.stringify({drukNr: this.$route.params.druk, kadencja: this.$route.params.kadencja})] === undefined) {} else {
+      } else if (this.$store.state.userVotes[JSON.stringify({kadencja: this.$route.params.kadencja, posiedzenie: this.$route.params.posiedzenie, glosowanie: this.$route.params.glosowanie})] === undefined) {} else {
         result = this.zgodnosc ? 'zgodny' : 'niezgodny'
       }
       // if (this.singleDeputy.group === 'PiS') {

@@ -1,40 +1,43 @@
 <template>
-<div v-if="currentProject" id="cp" class="currentProject">
+<div v-if="currentVoting" id="cp" class="currentVoting">
+  <h2>Przegłosowane projekty</h2>
+    <div id="project-data" v-for="project in currentVoting.projects">
+      <h3># {{project.drukNr}}</h3>
+      <h4>{{project.tytul}}</h4>
+      <p>{{project.opis}}</p>
+      <!-- <p>{{project.deputies.length}}</p> -->
 
+      <p><a target="_blank" :href="project.przebiegLink"><activity-icon></activity-icon>przebieg projektu</a></p>
+      <p><a target="_blank" :href="project.trescLink"><file-text-icon></file-text-icon>treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
+      <p><a target="_blank" :href="project.isapLink"><folder-icon></folder-icon>ISAP tekst ustawy</a></p>
+      <p><a target="_blank" :href="project.komisje"><users-icon></users-icon>Komisje i podkomisje</a></p>
+      <p><a target="_blank" :href="mediaLink(project.tytul)"><tv-icon></tv-icon>media o projekcie</a></p>
+    </div>
 
-    <div id="data">
-      <p>Druk nr {{currentProject.drukNr}}</p>
-      <h3>{{currentProject.tytul}}</h3>
-      <p>{{currentProject.status}} {{votingTime.calendar().toLowerCase()}}</p>
-      <p>{{currentProject.opis}}</p>
-      <!-- <p>{{currentProject.deputies.length}}</p> -->
-      <p>Frekwencja {{Math.floor(currentProject.frekwencja*100)}}%</p>
-
-      <p><a target="_blank" :href="currentProject.przebiegLink"><activity-icon></activity-icon>przebieg projektu</a></p>
-      <p><a target="_blank" :href="currentProject.trescLink"><file-text-icon></file-text-icon>treść projektu</a> <a target="_blank" :href="currentProject.drukPdfLink + '#search=UZASADNIENIE'">(uzasadnienie)</a></p>
-      <p><a target="_blank" :href="currentProject.isapLink"><folder-icon></folder-icon>ISAP tekst ustawy</a></p>
-      <p><a target="_blank" :href="currentProject.votingLink"><check-square-icon></check-square-icon>decydujące głosowanie</a></p>
-      <p><a target="_blank" :href="currentProject.komisje"><users-icon></users-icon>Komisje i podkomisje</a></p>
-      <p><a target="_blank" :href="mediaLink"><tv-icon></tv-icon>media o projekcie</a></p>
+    <div id="voting-data">
+      <h2>Dane głosowania</h2>
+      <p>{{currentVoting.status}} {{votingTime.calendar().toLowerCase()}}</p>
+      <p>Frekwencja {{Math.floor(currentVoting.frekwencja*100)}}%</p>
+      <p><a target="_blank" :href="currentVoting.votingLink"><check-square-icon></check-square-icon>decydujące głosowanie</a></p>
     </div>
 
     <div id="ocena">
       <h3 style="text-align: center">Jak oceniasz ten projekt?</h3>
     </div>
     <div id="button-container">
-      <div :class="['vote-button', 'green', {'button-voted': currentProjectVote === 'Za'}]" @click="userVote('Za')">
+      <div :class="['vote-button', 'green', {'button-voted': currentVotingVote === 'Za'}]" @click="userVote('Za')">
         <thumbs-up-icon></thumbs-up-icon>
       </div>
-      <div :class="['vote-button', 'red', {'button-voted': currentProjectVote === 'Przeciw'}]" @click="userVote('Przeciw')">
+      <div :class="['vote-button', 'red', {'button-voted': currentVotingVote === 'Przeciw'}]" @click="userVote('Przeciw')">
         <thumbs-down-icon></thumbs-down-icon>
       </div>
     </div>
 
     <div id="svg-container">
       <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -5 1 140">
-        <text text-anchor="middle" dominant-baseline="hanging" x="0" y="0" font-family="mono" font-weight="bold" font-size="10" stroke="none" fill="black">{{currentProject.drukNr}}</text>
+        <text text-anchor="middle" dominant-baseline="hanging" x="0" y="0" font-family="mono" font-weight="bold" font-size="10" stroke="none" fill="black">{{currentVoting.drukNr}}</text>
         <g>
-          <deputy v-for="(deputy, index) in currentProject.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
+          <deputy v-for="(deputy, index) in currentVoting.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
         </g>
       </svg>
     </div>
@@ -60,7 +63,7 @@ export default {
   data () {
     return {
       s1: 10, // ilość osób w kolumnie
-      currentProject: null
+      currentVoting: null
     }
   },
   components: {
@@ -76,32 +79,26 @@ export default {
   },
   mounted () {
     // this.$store.commit('', this.$route.params.projekt)
-    this.fetchProject()
+    this.fetchVoting()
   },
   watch: {
     // call again the method if the route changes
-    '$route': 'fetchProject'
+    '$route': 'fetchVoting'
   },
   computed: {
     votingTime () {
-      return this.moment(new Date(this.currentProject.votingDate))
+      return this.moment(new Date(this.currentVoting.votingDate))
     },
-    currentProjectVote () {
-      return this.$store.state.userVotes[JSON.stringify({drukNr: this.$route.params.druk, kadencja: this.$route.params.kadencja})]
-    },
-    mediaLink () {
-      let result = ''
-      try {
-        result = 'https://encrypted.google.com/search?q=' + this.currentProject.tytul.replace(/ /g, '+').replace(/"/g, '') + '&tbm=nws'
-      } catch (e) {} finally {}
-      return result
+    currentVotingVote () {
+      return this.$store.state.userVotes[JSON.stringify({kadencja: this.$route.params.kadencja, posiedzenie: this.$route.params.posiedzenie, glosowanie: this.$route.params.glosowanie})]
     }
   },
   methods: {
     userVote (vote) {
       this.$store.commit('userVote', {
-        drukNr: this.$route.params.druk,
         kadencja: this.$route.params.kadencja,
+        posiedzenie: this.$route.params.posiedzenie,
+        glosowanie: this.$route.params.glosowanie,
         vote: vote
       })
       setTimeout(() => {
@@ -116,10 +113,10 @@ export default {
       let result = Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * 150
       return result
     },
-    fetchProject () {
+    fetchVoting () {
       this.$store.commit('loadingUp')
-      this.$http.get(this.$store.state.domain + ':3000/dev/projekty/' + this.$route.params.kadencja + '/' + this.$route.params.druk).then(response => {
-        this.currentProject = this.adjustVotes(response.body)
+      this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + this.$route.params.kadencja + '/' + this.$route.params.posiedzenie + '/' + this.$route.params.glosowanie).then(response => {
+        this.currentVoting = this.adjustVotes(response.body)
         this.$store.commit('loadingDown')
       }, response => {
         // error callback
@@ -141,6 +138,13 @@ export default {
       } else {
         return vote
       }
+    },
+    mediaLink (tytul) {
+      let result = ''
+      try {
+        result = 'https://encrypted.google.com/search?q=' + tytul.replace(/ /g, '+').replace(/"/g, '') + '&tbm=nws'
+      } catch (e) {} finally {}
+      return result
     }
   }
 }
@@ -153,7 +157,7 @@ export default {
   display: flex;
   /*flex-basis: 70%;*/
 }
-#data {
+#project-data {
   width: 100%;
 }
 #button-container {
@@ -181,7 +185,6 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /*margin: 0 10vw;*/
   user-select: none;
   cursor: pointer;
   transition: 0.1s;
@@ -189,6 +192,9 @@ export default {
   color: white;
   border: 0.3vmin solid black;
   border-bottom: 1vmin solid black;
+}
+.vote-button svg {
+  margin: 0;
 }
 .button-voted {
   opacity: 1;
@@ -241,7 +247,7 @@ svg#deputies-graph {
   /*transition: 1s;*/
 }
 
-.currentProject {
+.currentVoting {
   display: flex;
   justify-content: center;
   flex-direction: column;

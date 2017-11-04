@@ -1,12 +1,17 @@
 <template>
-<router-link :class="['project-list-item', project.status, currentProjectVote]" :to="{ name: 'projects', params: { druk: project.drukNr, kadencja: project.kadencja } }">
-  <div class="numery">
-    <div class="kadencja">{{project.kadencja}}</div><div class="drukNr">{{project.drukNr}}</div>
+<router-link :class="['voting-list-item', voting.status, currentVotingVote]" :to="{ name: 'votings', params: { kadencja: voting.numbers.kadencja, posiedzenie: voting.numbers.posiedzenie, glosowanie: voting.numbers.glosowanie } }">
+  <div v-if="voting.projects.length > 1" class="">
+    Rozpatrywano wspólnie
   </div>
-  <div class="tytul">{{project.tytul}}</div>
+  <div class="projekty" v-for="project in voting.projects">
+    <div class="numery" >
+      <div class="kadencja">{{project.kadencja}}</div><div class="drukNr">{{project.drukNr}}</div>
+    </div>
+    <div class="tytul">{{project.tytul}}</div>
+  </div>
   <div class="info">
-    <div class="frekwencja" :style="{backgroundColor: 'teal'}">f: {{Math.floor(project.frekwencja * 100)}}%</div>
-    <div class="status">{{project.status}} {{moment(project.votingDate).calendar().toLowerCase()}}</div>
+    <div class="frekwencja" :style="{backgroundColor: 'teal'}">f: {{Math.floor(voting.frekwencja * 100)}}%</div>
+    <div class="status">{{voting.status}} {{moment(voting.votingDate).calendar().toLowerCase()}}</div>
   </div>
 </router-link>
 </template>
@@ -17,8 +22,8 @@ import {
 } from 'vue-feather-icons'
 
 export default {
-  name: 'projects-list-item',
-  props: ['project'],
+  name: 'votings-list-item',
+  props: ['voting'],
   data () {
     return {}
   },
@@ -26,9 +31,9 @@ export default {
     CheckIcon
   },
   computed: {
-    currentProjectVote () {
-      let temp = this.$store.state.userVotes[JSON.stringify({drukNr: this.project.drukNr, kadencja: this.project.kadencja})]
-      this.project.userVote = temp
+    currentVotingVote () {
+      let temp = this.$store.state.userVotes[JSON.stringify(this.voting.numbers)]
+      // this.voting.userVote = temp
       if (temp !== undefined) {
         return temp.toLowerCase()
       } else {
@@ -51,6 +56,7 @@ export default {
   color: black;
   border-radius: 1vmin;
   overflow: hidden;
+  margin-right: 0.5em;
 }
 .tytul{
   /*font-size: 80%;*/
@@ -80,14 +86,14 @@ export default {
   border-radius: 0.5em;
   color: white;
 }
-.project-list-item {
+.voting-list-item {
   background: white;
   padding: 2vmin;
   margin: 1vmin;
   border-radius: 2vmin;
   /*border: 0.2vmin black solid;*/
 }
-.project-list-item > * {
+.voting-list-item > * {
   margin-right: 1em;
 }
 .info{

@@ -1,5 +1,5 @@
 <template>
-<div :class="['project-menu', {'list-hidden':listHidden}]">
+<div :class="['voting-menu', {'list-hidden':listHidden}]">
   <div id="fold-button" @click="listHidden=!listHidden"></div>
   <div class="sort-filter-menu">
     <div class="">
@@ -12,7 +12,6 @@
       <bar-chart-icon></bar-chart-icon>
       <select v-model="sortowanie">
         <option value="votingDate">Najnowsze</option>
-        <option value="drukNr">Wg nr druku</option>
         <option value="frekwencja">Z największą frekwencją</option>
       </select>
     </div>
@@ -43,13 +42,13 @@
       </div>
     </div> -->
     <div class="">
-      Liczba projektów: {{projectsProcessed.length}}
+      Liczba projektów: {{votingsProcessed.length}}
     </div>
   </div>
 
   <div id="scrollable-container">
-    <div class="project-list" @click="hideList()">
-      <projects-list-item  :id="index" v-for="(project, index) in projectsDisplayed" :key="index" :project='project'></projects-list-item>
+    <div class="voting-list" @click="hideList()">
+      <votings-list-item  :id="index" v-for="(voting, index) in votingsDisplayed" :key="index" :voting='voting'></votings-list-item>
     </div>
   </div>
 </div>
@@ -62,43 +61,45 @@ import {
   FilterIcon,
   SearchIcon
 } from 'vue-feather-icons'
-import ProjectsListItem from '@/components/ProjectsListItem'
+import VotingsListItem from '@/components/VotingsListItem'
 
 export default {
-  name: 'projects-list',
+  name: 'votings-list',
   data () {
     return {
-      projects: [],
+      votings: [],
       pagination: 0,
       itemsPerPage: 10,
       listHidden: true,
       kadencje: 8,
       sortowanie: 'votingDate',
       filtrowanieStatus: ['odrzucony', 'uchwalono'],
-      filtrowanieGlos: ['za', 'przeciw'],
+      // filtrowanieGlos: ['za', 'przeciw'],
       filtrowanieNazwa: ''
     }
   },
   watch: {
     // call again the method if the route changes
     '$route': 'hideList',
-    'projectsProcessed': function () {
+    'votingsProcessed': function () {
       this.pagination = 0
       document.getElementById('scrollable-container').scrollTop = 0
     }
   },
   components: {
     LayersIcon,
-    ProjectsListItem,
+    VotingsListItem,
     BarChartIcon,
     FilterIcon,
     SearchIcon
   },
   computed: {
-    projectsProcessed () {
-      return this.projects.filter(item => {
+    votingsProcessed () {
+      return this.votings.filter(item => {
         // return this.kadencje.indexOf(item.kadencja) !== -1
-        return this.kadencje === item.kadencja && this.filtrowanieStatus.indexOf(item.status) !== -1 && item.tytul.indexOf(this.filtrowanieNazwa) !== -1
+        return this.kadencje === item.numbers.kadencja && this.filtrowanieStatus.indexOf(item.status) !== -1 && item.projects.every((a) => {
+          return a.tytul.indexOf(this.filtrowanieNazwa) !== -1
+        })
       }).sort((a, b) => {
         if (this.sortowanie === 'votingDate') {
           return new Date(b[this.sortowanie]) - new Date(a[this.sortowanie])
@@ -107,15 +108,15 @@ export default {
         }
       })
     },
-    projectsDisplayed () {
-      return this.projectsProcessed.slice(0, 10 + 10 * this.pagination)
+    votingsDisplayed () {
+      return this.votingsProcessed.slice(0, 10 + 10 * this.pagination)
     },
     userVotes () {
       return this.$store.state.userVotes
     }
   },
   mounted () {
-    this.fetchProjects()
+    this.fetchVotings()
     document.getElementById('scrollable-container').addEventListener('scroll', (el) => {
       if (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight) > 0.9) {
         this.pagination++
@@ -123,11 +124,11 @@ export default {
     })
   },
   methods: {
-    fetchProjects () {
+    fetchVotings () {
       this.$store.commit('loadingUp')
-      this.$http.get(this.$store.state.domain + ':3000/dev/projekty/').then(response => {
+      this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/').then(response => {
         this.$store.commit('loadingDown')
-        this.projects = response.body
+        this.votings = response.body
       }, response => {
         // error callback
       })
@@ -169,7 +170,7 @@ export default {
   flex-direction: column;
   align-items: flex-start;
 }
-.project-menu {
+.voting-menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -188,11 +189,11 @@ select {
   padding: 0.5vmin;
 }
 
-.project-list {
+.voting-list {
   padding: 2vmin;
   display: flex;
   flex-flow: column;
-  height: calc(100vh - 20vmin);
+  height: calc(100vh - 25vmin);
 }
 
 #scrollable-container {
