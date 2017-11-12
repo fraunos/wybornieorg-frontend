@@ -1,24 +1,24 @@
 <template>
-<div class="stats">
+<div>
   <h1>Statystyki</h1>
+  <h5>Kolejność na liście jest liczona w następujący sposób:<br>Zgodne - Niezgodne = Zgodność</h5>
   <p v-if='userVoted'>Brak statystyk! Zagłosuj najpierw</p>
-  <div v-else>
-    <ol>
-      <li v-for="(value, key, index) of deputiesStatsSortedZgodne" :style="{ color: 'rgb(' + (100 - value[1].zgodnoscProcent) + ',' + value[1].zgodnoscProcent + ', 0)' }">
-        {{value[0]}} :
-        <span>{{value[1].zgodne.size}}/{{value[1].zgodne.size + value[1].niezgodne.size}}, <span class="zgodnosc">{{value[1].zgodnoscProcent}}%</span></span>
-      </li>
-    </ol>
+  <div class="stats" v-else>
+    <stats-deputy v-for="(value, key, index) of deputiesStatsSortedZgodne" :deputy="value"></stats-deputy>
   </div>
 </div>
 </template>
 
 <script>
+import StatsDeputy from '@/components/StatsDeputy'
+
 export default {
   data () {
     return {}
   },
-  components: {},
+  components: {
+    StatsDeputy
+  },
   computed: {
     deputiesStats () {
       return [...this.$store.state.deputiesStats.entries()]
@@ -41,32 +41,12 @@ export default {
 </script>
 
 <style scoped>
-div{
-  /*display: flex;*/
-  /*flex-direction: column;*/
-}
-li:first-child {
-  font-weight: bold;
-}
-li{
-  padding: 0.4em;
-  margin: 0.4em;
-  background: lightgray;
-  border-radius: 0.6em;
+.stats {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-}
-ul{
-  list-style-position: inside;
-}
-.zgodnosc{
-  width: 3em;
-  text-align: right;
-}
-span{
-  /*float: right;*/
-  margin-left: 0.5em;
-}
 </style>
