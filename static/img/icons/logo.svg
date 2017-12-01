@@ -12,14 +12,14 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg2"
-   width="750"
-   height="200"
-   viewBox="0 0 750 200"
-   sodipodi:docname="logo old.svg"
+   width="2560"
+   height="512"
+   viewBox="0 0 2560 512"
+   sodipodi:docname="logo.svg"
    inkscape:version="0.92.2 5c3e80d, 2017-08-06"
    inkscape:export-filename="/home/michalw/programowanie/aplikacje/wybornieorg-frontend/src/assets/wybornie-org-logo.png"
-   inkscape:export-xdpi="384"
-   inkscape:export-ydpi="384">
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <metadata
      id="metadata8">
     <rdf:RDF>
@@ -28,7 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -130,16 +130,16 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1600"
-     inkscape:window-height="874"
+     inkscape:window-height="850"
      id="namedview4"
      showgrid="true"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="191.84056"
-     inkscape:cy="85.053443"
+     inkscape:zoom="0.17902093"
+     inkscape:cx="1901.8064"
+     inkscape:cy="-166.17982"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="0"
-     inkscape:current-layer="g1400"
+     inkscape:current-layer="layer3"
      showborder="true"
      inkscape:measure-start="158.214,66.3901"
      inkscape:measure-end="165.49,62.1894">
@@ -158,28 +158,30 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="past"
-     style="display:inline" />
+     style="display:inline"
+     transform="translate(0,312)" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="present"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(0,312)">
     <g
-       transform="matrix(0.70767321,0,0,0.80583109,37.925646,23.834253)"
+       transform="matrix(0.70767321,0,0,0.80583109,70.083441,23.834253)"
        style="stroke:url(#linearGradient949)"
        id="g945" />
     <g
-       transform="matrix(0.70767321,0,0,0.80583109,40.918086,26.8626)"
+       transform="matrix(0.70767321,0,0,0.80583109,73.075881,26.8626)"
        style="stroke:url(#linearGradient974)"
        id="g1112" />
     <g
        id="g5103"
-       transform="translate(-2.5e-6,-6.499997e-6)">
+       transform="matrix(3.5707886,0,0,3.5707886,-101.07829,-413.08055)">
       <path
          inkscape:connector-curvature="0"
          id="path856"
          d="M 99.998868,32.780746 41.785978,66.390121 V 133.60887 L 99.998868,167.2202 158.2137,133.60887 V 66.390121 Z"
-         style="fill:#333333;fill-opacity:1;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#333333;fill-opacity:1;stroke:#ffffff;stroke-width:8.94637775;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 99.998868,32.780746 41.785978,66.390121 V 133.60887 L 99.998868,167.2202 158.2137,133.60887 V 66.390121 Z"
@@ -226,9 +228,10 @@
            id="path1382" />
         <path
            style="fill:#d4213d;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="M 158.21484 66.390625 L 150.9375 70.59375 L 150.9375 121.00781 L 107.27539 95.798828 L 100 100 L 158.21484 133.60938 L 158.21289 125.20898 L 158.21484 66.390625 z "
+           d="m 158.21484,66.390625 -7.27734,4.203125 v 50.41406 L 107.27539,95.798828 100,100 l 58.21484,33.60938 -0.002,-8.4004 z"
            transform="translate(8.225e-4,-5.035e-4)"
-           id="path1333" />
+           id="path1333"
+           inkscape:connector-curvature="0" />
         <path
            style="fill:#d4213d;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            d="m 56.338666,125.20691 -7.275391,4.20117 50.937495,29.41016 v -8.4043 z"
@@ -254,16 +257,17 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="text"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(0,312)">
     <text
        id="text6231"
-       y="135.85202"
-       x="179.68872"
-       style="font-style:normal;font-weight:normal;font-size:94.37317657px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1.8396467;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       y="63.642994"
+       x="546.14203"
+       style="font-style:normal;font-weight:normal;font-size:356.83108521px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:11.27560997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke:#ffffff;stroke-width:1.8396467;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="135.85202"
-         x="179.68872"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke:#ffffff;stroke-width:11.27560997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="63.642994"
+         x="546.14203"
          id="tspan6229"
          sodipodi:role="line">ybornie.org</tspan></text>
   </g>

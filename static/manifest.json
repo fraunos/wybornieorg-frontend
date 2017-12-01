@@ -1,0 +1,27 @@
+{
+  "name": "wybornie.org - Aplikacja",
+  "short_name": "wybornie.org",
+  "author": "Michał Wołoszyn",
+  "developer": {
+    "name": "Michał Wołoszyn",
+    "url": "https://fraunos.github.io"
+  },
+  "description": "Sprawdza głosy posłów na Sejm z głosami użytkownika.",
+  "icons": [{
+      "src": "/static/img/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/img/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#D4213D",
+  "theme_color": "#D4213D",
+
+}

@@ -2,16 +2,69 @@
 <html>
 
 <head>
-  <link rel="icon" href="static/logo.png" type="image/png">
   <meta charset="utf-8">
   <title>wybornie.org</title>
   <meta name="description" content="Zbliżają się wybory, a Ty nie wiesz na kogo głosować? Wciel się w posła, zagłosuj na kluczowe projekty minionych kadencji i przekonaj się kto może Cię godnie reprezentować!">
   <meta name="keywords" content="wybory, parlamentarne, quiz, głosowania, posłowie">
-  <!-- <meta name='viewport' content='user-scalable=0'> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+  <meta name="HandheldFriendly" content="true" />
   <meta name="author" content="Michał Wołoszyn">
+  <link rel="manifest" href="static/manifest.json">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
+  <!-- [if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif] -->
+  <!-- Add to home screen for Android and modern mobile browsers -->
+  <meta name="theme-color" content="#D4213D">
+
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="test">
+  <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
+  <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/safari-pinned-tab.svg" color="#D4213D">
+  <!-- Add to home screen for Windows -->
+  <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  <% for (var chunk of webpack.chunks) {
+      for (var file of chunk.files) {
+        if (file.match(/\.(js|css)$/)) { %>
+  <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
 </head>
 <body>
   <div id="app"></div>
+
+  <noscript>
+    <div class="noscript">
+      <h1>Witaj!</h1>
+      <p>Znalazłeś się na stronie projektu Wybornie.org! To aplikacja internetowa, która umożliwia głosować na rozpatrzone przez Sejm ustawy. Następnie aplikacja sprawdza czy głos użytkownika jest zgodny z głosem każdego z posłów i wyświetla wynik w formie listy posłów, z którymi użytkownik najbardziej się zgadza.</p>
+      <p>Główne cele projektu to:
+        <ul>
+          <li>zwiększenie odpowiedzialności posłów za swoje głosy</li>
+          <li>ułatwienie polskim obywatelom podejmowania decyzji przed wyborami</li>
+          <li>zmniejszenie zjawiska głosowania zgodnie z subiektywną sympatią na rzecz obiektywnych przesłanek opartych o działania, które mają rzeczywisty wpływ na życie obywateli</li>
+        </ul>
+      </p>
+      <h5>Niestety ta aplikacja potrzebuje Javascript do działania! Twoja przeglądarka nieobsługuje lub ma wyłączone uruchamianie skryptów Javascript. Spróbuj zaktualizować przeglądarkę lub wyłączyć blokadę skryptów Javascript. Bez obaw, ta aplikacja nie pobiera żadnych danych od użytkownika!</h5>
+      <br>
+      <br>
+      <img src="/static/img/logo-name.png" alt="">
+    </div>
+  </noscript>
 </body>
+<style media="screen">
+  noscript {
+    font-family: sans-serif;
+  }
+  .noscript {
+    width: 90vmin;
+    margin: auto;
+  }
+  .noscript img {
+    margin: auto;
+    width: 100%;
+  }
+</style>
 </html>
