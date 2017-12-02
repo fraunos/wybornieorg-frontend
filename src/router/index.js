@@ -5,6 +5,7 @@ import Votings from '@/components/Votings'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import Stats from '@/components/Stats'
+import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
 
@@ -36,6 +37,12 @@ export default new Router({
       path: '/kontakt',
       name: 'contact',
       component: Contact
+    },
+    {
+      path: '*',
+      // redirect: '/',
+      name: '404',
+      component: NotFound
     }
   ]
 })
