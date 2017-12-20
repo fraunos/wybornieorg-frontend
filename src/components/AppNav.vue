@@ -1,19 +1,12 @@
 <template>
 <div class="app-nav">
-  <div :class="['logo', { menuhidden: !showMenu }]" id="logo" @click="showMenu=!showMenu"></div>
-
-  <transition name="fade" mode="out-in">
-    <div class="menu" v-show="showMenu" @click="showMenu=!showMenu">
-      <router-link class="circle small" id="votings" to="/glosowania">
-        <check-square-icon></check-square-icon>głosuj</router-link>
-      <router-link class="circle small" id="staty" to="/statystyki">
-        <box-icon></box-icon>staty</router-link>
-      <router-link class="circle small" id="ostronie" to="/ostronie">
-        <info-icon></info-icon>o stronie</router-link>
-      <router-link class="circle small" id="kontakt" to="/kontakt">
-        <mail-icon></mail-icon>kontakt</router-link>
-    </div>
-  </transition>
+    <div :class="['logo']" id="logo"></div>
+    <check-square-icon @click="$emit('staty')"></check-square-icon>
+    <list-icon id="listBtn" @click="$emit('votingList')"></list-icon>
+    <arrow-left-icon @click="switchVoting(-1)"></arrow-left-icon>
+    <arrow-right-icon @click="switchVoting(1)"></arrow-right-icon>
+    <a target="_blank" href="http://facebook.com/wybornieorg"><facebook-icon></facebook-icon></a>
+    <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon></github-icon></a>
 </div>
 </template>
 
@@ -21,145 +14,82 @@
 import {
   BoxIcon,
   CheckSquareIcon,
-  InfoIcon,
-  MailIcon
+  FacebookIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ListIcon,
+  GithubIcon
 } from 'vue-feather-icons'
 
 export default {
-  name: 'app-nav',
+  name: 'nav',
   data () {
     return {
       showMenu: false
     }
   },
   created () {
-    setTimeout(() => {
-      this.enter = true
-    }, 1000)
   },
   components: {
     BoxIcon,
     CheckSquareIcon,
-    InfoIcon,
-    MailIcon
+    FacebookIcon,
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    ListIcon,
+    GithubIcon
   },
-  methods: {}
+  methods: {
+    switchVoting (direction) {
+      document.dispatchEvent(new CustomEvent('voteSwitch', { detail: direction }))
+    }
+  }
 }
 </script>
 
 <style scoped>
-.appnav{
-  position: fixed;
-
-}
-.menu {
-  position: fixed;
+.app-nav{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.7);
-  height: 100%;
-  width: 100%;
-  z-index: 98;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -o-user-select: none;
-  font-variant: small-caps;
-
-  font-weight: bold;
-}
-.menu a {
-  position: relative;
-  top: -10vmin;
+  flex-direction: column;
+  justify-content: space-around;
+  background: gray;
 }
 .logo {
-  position: fixed;
-  bottom: 5vmin;
-  right: 5vmin;
-  height: 20vmin;
-  width: 80vmin;
-  background-image: url("./../assets/logo old.svg");
+  background-image: url("/static/img/icons/logo.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 99;
-  cursor: pointer;
-  transition: 0.5s;
-
-
-  /*background-color: #2285;*/
 }
-
-.logo:hover {
-  animation: none;
-  transform: scale(1.05);
-}
-
-
-.menuhidden {
-  width: 18vmin;
-  animation: pulse 10s infinite;
-}
-
-.menuhidden:hover {}
-
-.small {
-  width: 20vmin;
-  height: 15vmin;
-  padding: 0.5em;
-  margin: 0.5em;
-}
-
-.circle {
-  border-radius: 1vmin;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  /*margin: 0 10vw;*/
+.app-nav * {
+  height: 10vmin;
+  width: 10vmin;
   user-select: none;
-  cursor: pointer;
-  /*border: 1px solid;*/
-  transition: 0.5s;
   color: white;
-  border: 0.3vmin solid black;
-  border-bottom: 1vmin solid black;
-  background: var(--color-4);
-  /*border-radius: 1em;*/
-  transition: 0.5s;
   cursor: pointer;
-  color: white;
+  transform: scale(0.9);
 }
-.circle svg{
-  padding-right: 0.3em;
+.app-nav *:hover {
+  color: inherit;
 }
-
-.circle:hover {
-  /*box-shadow: 0 0 15px 6px #fff;*/
-  background: var(--color-2);
-  color: black;
-
+#listBtn{
+  display: none;
 }
-
-.router-link-active {
-  border-color: var(--color-3);
-  /*color: black;*/
-  /*border-bottom: 0.2vmin solid black;*/
-  background: var(--color-4);
-}
-
-@keyframes pulse {
-  80% {
-    transform: rotate(0deg);
+@media screen and (max-device-aspect-ratio: 1/1) {
+  .app-nav {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    flex-direction: row;
   }
-  85% {
-    transform: rotate(5deg);
+  #listBtn{
+    display: block;
   }
-  90% {
-    transform: rotate(-5deg);
+}
+@media screen and (min-device-aspect-ratio: 1/1) {
+  .app-nav {
+    height: 100vh;
+  }
+  #listBtn{
+    display: none;
   }
 }
 </style>

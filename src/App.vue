@@ -1,31 +1,51 @@
 <template>
 <div id="app">
-  <app-nav></app-nav>
-  <div v-show="this.loading" id="loading-thing"></div>
-  <div class="router">
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
-  </div>
-  <!-- <appfooter></appfooter> -->
+  <app-nav @staty="showStats = true" @votingList="showList = !showList"></app-nav>
+
+  <popup v-if="showHello" @close="showHello = false">
+    <h1>Witaj!</h1>
+    <div>
+      <p>Znajdujesz się na stronie <a href="/">wybornie.org</a>! Jest to aplikacja poświęcona wyborom. Jeśli tu jesteś to za pewne zastanawiasz się na kogo zagłosować? Kto jest godny Twojego zaufania? Właśnie w tym postaram się Ci pomóc!</p>
+      <p>Dzięki tej aplikacji możesz głosować zupełnie jak posłowie. Wystarczy znaleźć interesujące Cię projekty ustaw i wybrać głos 'Za' lub 'Przeciw'. Następnie, po przejściu w zakładkę Statystyk program wyświetli wyniki - w kolejności - z którym z posłów
+        zgadzasz się najbardziej!</p>
+      <p>Powodzenia i rozsądnych wyborów!</p>
+      <h3>Wybornie!</h3>
+    </div>
+    </popup>
+
+    <popup v-if="showStats" @close="showStats = false">
+      <stats></stats></popup>
+
+  <transition name="fade">
+    <div v-show="this.loading" id="loading-thing"></div>
+  </transition>
+  <transition name="fade">
+    <votings-list @hideList="showList = !showList" v-show="!this.$store.state.isMobile || showList"></votings-list>
+  </transition>
+  <transition name="blink">
+    <router-view></router-view>
+  </transition>
+
 </div>
 </template>
 
 <script>
+import Popup from '@/components/generic/Popup'
 import AppFooter from '@/components/AppFooter'
+import Stats from '@/components/Stats'
+import Voting from '@/components/Voting'
+import VotingsList from '@/components/VotingsList'
 import AppNav from '@/components/AppNav'
-import {
-  AlertTriangleIcon,
-  XIcon
-} from 'vue-feather-icons'
 
 export default {
   name: 'app',
   components: {
+    Popup,
     AppNav,
+    Stats,
     AppFooter,
-    AlertTriangleIcon,
-    XIcon
+    Voting,
+    VotingsList
   },
   watch: {
     '$route': function () {
@@ -34,7 +54,9 @@ export default {
   },
   data () {
     return {
-      popup: true
+      showHello: true,
+      showStats: false,
+      showList: !this.$store.state.isMobile
     }
   },
   computed: {
@@ -46,104 +68,87 @@ export default {
 </script>
 
 <style>
-h1, h2, h3 {
-  padding-bottom: 0.5em;
-  border-bottom: 0.05em solid black;
-  text-align: left;
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+#votings-list {
+
 }
 
 body {
-  font-family: sans-serif;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
   font-size: 2vmin;
-  /*text-align: justify;*/
-  text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.2);
-  background: var(--color-2);
-  margin: 5vmin;
-  color: black;
-  overflow-x: hidden;
+  background: #444;
 }
 
 #app {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  /*height: 100vh;*/
+  /*width: 100vw;*/
 }
 
-.router {
-  background-color: white;
-  padding: 5vw;
-  width: 60%;
-
-  /*vertical-align: middle;*/
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-  z-index: 10;
-}
-svg {
-  margin-right: 0.5em;
-  height: 1em;
-  width: 1em;
-}
-a {
+a, svg {
   text-decoration: none;
   color: var(--color-0);
-  cursor: pointer;
 }
 
-a:hover {
+a:hover, svg:hover {
   color: inherit;
 }
 
-a:active {
+a:active, svg:active {
   color: inherit;
 }
 :root {
-  --color-0: #d4213d;
-  --color-1: #D56454;
-  --color-2: #f1cd8c;
-  --color-3: #A1D573;
-  --color-4: #4d619e;
-
-  --color-1-op: rgba(213, 100, 84, 0.7);
-  --color-2-op: rgba(150, 100, 84, 0.7);
+  --color-0: brown;
+  --color-1: black;
+  --color-2: black;
+  --color-3: black;
+  --color-4: black;
 }
+
 #loading-thing{
   position: fixed;
-  top: 10vmin;
+  top: 15vmin;
   left: calc(50vw - 5.5vmin);
   z-index: 99;
-  height: 5vmin;
-  width: 5vmin;
+  height: 10vmin;
+  width: 10vmin;
   border: 2vmin solid crimson;
-  border-left: 2vmin solid red;
-  border-bottom: 2vmin solid red;
+  border-left: 2vmin solid gray;
+  border-bottom: 2vmin solid gray;
   border-radius: 100%;
-  animation: 2s rotate360 infinite ease-in-out;
+  animation: 1s rotate360 infinite ease-in-out;
+  box-shadow: white 0 0 5vmin 0vmin inset, white 0 0 5vmin 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.blink-enter-active, .blink-leave-active {
+  transition: opacity 2s;
+}
+.blink-enter *, .blink-leave-to {
+  opacity: 0;
 }
 @keyframes rotate360 {
   to { transform: rotate(360deg); }
 }
 
 @media screen and (max-device-aspect-ratio: 1/1) {
-  .menu {
+  body{
+    font-size: 3.5vmin;
+  }
+  #app{
     flex-direction: column;
   }
-  body{
-    font-size: 3vmin;
-  }
-  .router {
-    width: 80%;
-  }
-  input{
-    /*transform: scale(2);*/
+  .list-hidden {
+    visibility: hidden;
   }
 }
+
+
 </style>

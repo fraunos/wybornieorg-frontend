@@ -4,9 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
+    userData: {
+      displayHello: true
+    },
     userVotes: {},
     deputiesStats: new Map(),
-    domain: 'http://wybornie.org',
+    domain: 'http://192.168.0.22',
     loading: 0,
     isMobile: (window.innerHeight / window.innerWidth) > 1
   },
@@ -19,6 +22,9 @@ export default new Vuex.Store({
     },
     loadingDown (state) {
       state.loading--
+    },
+    hideHello (state) {
+      state.userData.displayHello = false
     },
     setDeputyStat (state, props) {
       let temp = state.deputiesStats.get(props.deputyName)

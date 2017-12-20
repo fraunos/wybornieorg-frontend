@@ -12,10 +12,10 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg2"
-   width="512"
+   width="2560"
    height="512"
-   viewBox="0 0 512 512"
-   sodipodi:docname="logo.svg"
+   viewBox="0 0 2560 512"
+   sodipodi:docname="logo + tekst.svg"
    inkscape:version="0.92.2 5c3e80d, 2017-08-06"
    inkscape:export-filename="/home/michalw/programowanie/aplikacje/wybornieorg-frontend/src/assets/wybornie-org-logo.png"
    inkscape:export-xdpi="96"
@@ -258,5 +258,17 @@
      id="layer3"
      inkscape:label="text"
      style="display:inline"
-     transform="translate(0,312)" />
+     transform="translate(0,312)">
+    <text
+       id="text6231"
+       y="63.642994"
+       x="546.14203"
+       style="font-style:normal;font-weight:normal;font-size:356.83108521px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:11.27560997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke:#ffffff;stroke-width:11.27560997;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="63.642994"
+         x="546.14203"
+         id="tspan6229"
+         sodipodi:role="line">ybornie.org</tspan></text>
+  </g>
 </svg>

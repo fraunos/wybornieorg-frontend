@@ -1,23 +1,15 @@
 <template>
 <div class="footer">
+  <h1>Kontakt</h1>
+  <p>Jeśli masz pomysł jak poprawić tę stronę, napisz do mnie!</p>
   <div class="links">
-    <h4>Linki</h4>
     <a target="_blank" href="https://www.facebook.com/wybornieorg/">
-      <facebook-icon></facebook-icon> fb.com/wybornieorg</a>
+      <facebook-icon></facebook-icon></a>
     <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend">
-      <github-icon></github-icon> github.com/fraunos/wybornieorg-frontend</a>
-    <a target="_blank" href="https://github.com/fraunos/wybornieorg-backend">
-      <github-icon></github-icon> github.com/fraunos/wybornieorg-backend</a>
-  </div>
-  <div class="links">
-    <h4>Kontakt</h4>
+      <github-icon></github-icon></a>
+    <!-- <p>Jeśli masz pomysł jak poprawić tę stronę, napisz do mnie!</p> -->
     <a target="_blank" href="mailto:michal.marian.woloszyn@gmail.com">
-      <mail-icon></mail-icon> michal.marian.woloszyn@gmail.com</a>
-  </div>
-  <div class="links">
-    <h4>Polecane</h4>
-    <a target="_blank" href="https://sejmlog.pl/">
-      <globe-icon></globe-icon> sejmlog.pl</a>
+      <mail-icon></mail-icon></a>
   </div>
 </div>
 </template>
@@ -44,5 +36,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .footer{
+    background-color: dimgray;
+    color: white;
+    width: 100%;
+  }
+  .links a{
+    color: white;
+  }
 </style>

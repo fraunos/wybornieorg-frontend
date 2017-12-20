@@ -2,8 +2,7 @@
 <g>
   <title v-if="!isMobile" class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}</title>
 
-  <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloruj" :id="i">
-  </circle>
+  <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloruj" :id="i"></circle>
   <text v-if="!isMobile" :x="cx - dotSize * 0.44" :y="cy + dotSize * 0.5" font-family="mono" font-weight="bold" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
 </g>
 </template>
@@ -62,7 +61,7 @@ export default {
   },
   methods: {
     fetchIMG () {
-      return
+      return null
     },
     log () {
       console.log(this.singleDeputy.name)
@@ -117,7 +116,7 @@ div {
 circle {
   stroke: none;
   stroke-width: 2;
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   fill: black;
 }
 

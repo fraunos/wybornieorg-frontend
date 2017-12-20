@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Votings from '@/components/Votings'
-import About from '@/components/About'
-import Contact from '@/components/Contact'
-import Stats from '@/components/Stats'
+import Voting from '@/components/Voting'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -14,33 +10,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      redirect: '/glosowania/'
     },
     {
-      path: '/glosowania/:kadencja?/:posiedzenie?/:glosowanie?',
-      name: 'votings',
-      component: Votings,
+      path: '/glosowania/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?',
+      name: 'voting',
+      component: Voting,
       props: true
     },
     {
-      path: '/ostronie',
-      name: 'ostronie',
-      component: About
-    },
-    {
-      path: '/statystyki',
-      name: 'stats',
-      component: Stats
-    },
-    {
-      path: '/kontakt',
-      name: 'contact',
-      component: Contact
-    },
-    {
       path: '*',
-      // redirect: '/',
+      redirect: '/',
       name: '404',
       component: NotFound
     }

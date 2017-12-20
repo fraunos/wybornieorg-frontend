@@ -1,0 +1,70 @@
+<template>
+<div class="popup">
+  <div class="popup-window">
+    <x-icon @click="$emit('close')"></x-icon>
+    <div class="content">
+      <slot></slot>
+    </div>
+  </div>
+</div>
+</template>
+
+<script>
+import {
+  XIcon
+} from 'vue-feather-icons'
+
+export default {
+  data () {
+    return {
+      show: true
+    }
+  },
+  components: {
+    XIcon
+  },
+  methods: {
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.popup{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  z-index: 99;
+
+}
+.popup-window {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;7
+  max-height: calc(100vh - 20vmin);
+  background-color: white;
+  z-index: 99;
+  padding: 5vmin;
+  border-radius: 1vmin;
+  box-shadow: black 0 0 10vmin 0;
+}
+.content {
+  max-width: 80vmin;
+  max-height: calc(100vh - 20vmin);
+  overflow-y: auto;
+}
+
+svg {
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  float: right;
+  cursor: pointer;
+}
+</style>

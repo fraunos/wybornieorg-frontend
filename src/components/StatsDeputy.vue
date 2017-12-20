@@ -32,7 +32,7 @@ export default {
     /*border-top: solid 0.5em;*/
     margin: 0.2em;
     padding: 0.5em;
-    width: 6em;
+    width: 20vmin;
     height: auto;
     color: white;
     word-wrap: break-word;
@@ -43,7 +43,7 @@ export default {
   .bar{
     height: 0.5em;
     width: 100%;
-    margin: 0;
+    margin: 0.2em 0;
     padding: 0;
   }
   .zgodne{

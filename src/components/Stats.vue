@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Statystyki</h1>
-  <h5>Kolejność na liście jest liczona w następujący sposób:<br>Zgodne - Niezgodne = Zgodność</h5>
+  <h5>Wagi głosów:<br>zgodny = 1, niezgodny = -1, nieobecność/wstrzymanie się = 0</h5>
   <p v-if='userVoted'>Brak statystyk! Zagłosuj najpierw</p>
   <div class="stats" v-else>
     <stats-deputy v-for="(value, key, index) of deputiesStatsSortedZgodne" :deputy="value"></stats-deputy>
@@ -11,13 +11,15 @@
 
 <script>
 import StatsDeputy from '@/components/StatsDeputy'
+import AppNav from '@/components/AppNav'
 
 export default {
   data () {
     return {}
   },
   components: {
-    StatsDeputy
+    StatsDeputy,
+    AppNav
   },
   computed: {
     deputiesStats () {
