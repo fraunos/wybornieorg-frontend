@@ -9,7 +9,7 @@ export default new Vuex.Store({
     },
     userVotes: {},
     deputiesStats: new Map(),
-    domain: 'http://192.168.0.22',
+    domain: 'http://wybornie.org',
     loading: 0,
     isMobile: (window.innerHeight / window.innerWidth) > 1
   },
