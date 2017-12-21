@@ -13,18 +13,18 @@
           <p>{{project.opis}}</p>
           <!-- <p>{{project.deputies.length}}</p> -->
 
-          <div><a target="_blank" :href="project.przebiegLink"><activity-icon></activity-icon>przebieg projektu</a></div>
-          <div><a target="_blank" :href="project.trescLink"><file-text-icon></file-text-icon>treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'" title="Działa wyłącznie na Mozilla Firefox">(uzasadnienie*)</a></div>
-          <div><a target="_blank" :href="project.isapLink"><folder-icon></folder-icon>ISAP tekst ustawy</a></div>
-          <div><a target="_blank" :href="project.komisje"><users-icon></users-icon>Komisje i podkomisje</a></div>
-          <div><a target="_blank" :href="mediaLink(project.tytul)"><tv-icon></tv-icon>media o projekcie</a></div>
+          <div><a target="_blank" :href="project.przebiegLink"><activity-icon />przebieg projektu</a></div>
+          <div><a target="_blank" :href="project.trescLink"><file-text-icon />treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'" title="Działa wyłącznie na Mozilla Firefox">(uzasadnienie*)</a></div>
+          <div><a target="_blank" :href="project.isapLink"><folder-icon />ISAP tekst ustawy</a></div>
+          <div><a target="_blank" :href="project.komisje"><users-icon />Komisje i podkomisje</a></div>
+          <div><a target="_blank" :href="mediaLink(project.tytul)"><tv-icon />media o projekcie</a></div>
         </div>
 
         <div id="voting-data">
           <h2>Dane głosowania</h2>
           <p>{{currentVoting.status}} {{votingTime.calendar().toLowerCase()}}</p>
           <p>Frekwencja {{Math.floor(currentVoting.frekwencja*100)}}%</p>
-          <p><a target="_blank" :href="currentVoting.votingLink"><check-square-icon></check-square-icon>decydujące głosowanie</a></p>
+          <p><a target="_blank" :href="currentVoting.votingLink"><check-square-icon />decydujące głosowanie</a></p>
         </div>
 
         <div id="ocena">
@@ -32,10 +32,10 @@
         </div>
         <div id="button-container">
           <div :class="['vote-button', 'green', {'button-voted': currentVotingVote === 'Za'}]" @click="userVote('Za')">
-            <thumbs-up-icon></thumbs-up-icon>
+            <thumbs-up-icon />
           </div>
           <div :class="['vote-button', 'red', {'button-voted': currentVotingVote === 'Przeciw'}]" @click="userVote('Przeciw')">
-            <thumbs-down-icon></thumbs-down-icon>
+            <thumbs-down-icon />
           </div>
         </div>
 

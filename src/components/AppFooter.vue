@@ -4,12 +4,12 @@
   <p>Jeśli masz pomysł jak poprawić tę stronę, napisz do mnie!</p>
   <div class="links">
     <a target="_blank" href="https://www.facebook.com/wybornieorg/">
-      <facebook-icon></facebook-icon></a>
+      <facebook-icon /></a>
     <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend">
-      <github-icon></github-icon></a>
+      <github-icon /></a>
     <!-- <p>Jeśli masz pomysł jak poprawić tę stronę, napisz do mnie!</p> -->
     <a target="_blank" href="mailto:michal.marian.woloszyn@gmail.com">
-      <mail-icon></mail-icon></a>
+      <mail-icon /></a>
   </div>
 </div>
 </template>

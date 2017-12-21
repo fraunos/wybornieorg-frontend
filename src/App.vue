@@ -56,7 +56,7 @@ export default {
     return {
       showHello: true,
       showStats: false,
-      showList: !this.$store.state.isMobile
+      showList: () => !this.$store.state.isMobile
     }
   },
   computed: {
@@ -68,14 +68,14 @@ export default {
 </script>
 
 <style>
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 #votings-list {
 
 }
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 2vmin;
   background: #444;
 }

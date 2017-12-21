@@ -1,12 +1,12 @@
 <template>
 <div class="app-nav">
     <div :class="['logo']" id="logo"></div>
-    <check-square-icon @click="$emit('staty')"></check-square-icon>
-    <list-icon id="listBtn" @click="$emit('votingList')"></list-icon>
-    <arrow-left-icon @click="switchVoting(-1)"></arrow-left-icon>
-    <arrow-right-icon @click="switchVoting(1)"></arrow-right-icon>
-    <a target="_blank" href="http://facebook.com/wybornieorg"><facebook-icon></facebook-icon></a>
-    <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon></github-icon></a>
+    <check-square-icon @click="$emit('staty')" />
+    <list-icon id="listBtn" @click="$emit('votingList')" />
+    <arrow-left-icon @click="switchVoting(-1)" />
+    <arrow-right-icon @click="switchVoting(1)" />
+    <a target="_blank" href="http://facebook.com/wybornieorg"><facebook-icon /></a>
+    <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon /></a>
 </div>
 </template>
 
