@@ -2,7 +2,7 @@
   <div class="deputy" :style="{ borderColor: 'rgb(' + (255 - deputy[1].zgodnoscProcent * 2.5) + ',' + deputy[1].zgodnoscProcent*1.2 + ', 0)' }">
 
   <div class="name">
-    {{deputy[0]}}
+    <a target="_blank" :href="'https://encrypted.google.com/search?q=' + deputy[0].replace(' ', '+')">{{deputy[0]}}</a>
   </div>
   <div class="bar">
     <div class="zgodne" :title="deputy[1].zgodne" :style="{ width: deputy[1].zgodnoscProcent + '%'}"></div>
