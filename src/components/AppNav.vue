@@ -5,7 +5,7 @@
     <list-icon id="listBtn" @click="$emit('votingList')" />
     <arrow-left-icon @click="switchVoting(-1)" />
     <arrow-right-icon @click="switchVoting(1)" />
-    <a target="_blank" href="http://facebook.com/wybornieorg"><facebook-icon /></a>
+    <a target="_blank" href="https://www.facebook.com/wybornieorg"><facebook-icon /></a>
     <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon /></a>
 </div>
 </template>
@@ -71,11 +71,13 @@ export default {
   height: 10vmin;
   width: 10vmin;
   user-select: none;
-  color: white;
   cursor: pointer;
   transform: scale(0.9);
 }
-.app-nav *:hover {
+.app-nav > * {
+  color: white;
+}
+.app-nav > *:hover {
   color: inherit;
 }
 #listBtn{

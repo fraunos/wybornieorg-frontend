@@ -90,19 +90,19 @@ body {
   /*width: 100vw;*/
 }
 
-a, svg {
+a {
   text-decoration: none;
   font-weight: bold;
   color: var(--color-0);
 }
 
-a:hover, svg:hover {
+a:hover {
   color: inherit;
 }
 
-a:active, svg:active {
+/* a:active, svg:active {
   color: inherit;
-}
+} */
 :root {
   --color-0: #D4213D;
   --color-1: black;
