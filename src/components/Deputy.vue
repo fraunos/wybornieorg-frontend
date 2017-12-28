@@ -1,7 +1,6 @@
 <template>
 <g>
   <title v-if="!isMobile" class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}</title>
-
   <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloruj" :id="i"></circle>
   <text v-if="!isMobile" :x="cx - dotSize * 0.44" :y="cy + dotSize * 0.5" font-family="mono" font-weight="bold" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
 </g>
@@ -19,7 +18,7 @@ export default {
   },
   computed: {
     isMobile () {
-      return this.$store.state.isMobile
+      return this.$store.getters.isMobile
     },
     zgodnosc () {
       // console.log(`${this.$store.state.userVotes[this.$store.state.currentProject.drukNr]} ${this.singleDeputy.vote}`)

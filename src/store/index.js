@@ -10,12 +10,11 @@ export default new Vuex.Store({
     userVotes: {},
     deputiesStats: new Map(),
     domain: 'http://wybornie.org',
-    loading: 0,
-    isMobile: (window.innerHeight / window.innerWidth) > 1
+    loading: 0
   },
   mutations: {
-    userVote (state, props) {
-      Vue.set(state.userVotes, JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}), props.vote)
+    userVote: (state, props) => {
+      Vue.set(state.userVotes, currentVoting(props), props.vote)
     },
     loadingUp (state) {
       state.loading++
@@ -26,7 +25,7 @@ export default new Vuex.Store({
     hideHello (state) {
       state.userData.displayHello = false
     },
-    setDeputyStat (state, props) {
+    setDeputyStat: (state, props) => {
       let temp = state.deputiesStats.get(props.deputyName)
       if (temp === undefined) {
         temp = {
@@ -35,16 +34,26 @@ export default new Vuex.Store({
         }
       }
       if (props.vote) {
-        temp.niezgodne.delete(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
-        temp.zgodne.add(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
+        temp.niezgodne.delete(currentVoting(props))
+        temp.zgodne.add(currentVoting(props))
       } else {
-        temp.zgodne.delete(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
-        temp.niezgodne.add(JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie}))
+        temp.zgodne.delete(currentVoting(props))
+        temp.niezgodne.add(currentVoting(props))
       }
       temp.zgodnoscProcent = Math.floor(100 * temp.zgodne.size / (temp.zgodne.size + temp.niezgodne.size))
       state.deputiesStats.set(props.deputyName, temp)
     }
   },
   actions: {
+
+  },
+  getters: {
+    isMobile: () => {
+      return (window.innerHeight / window.innerWidth) > 1
+    }
   }
 })
+
+function currentVoting (props) {
+  return JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie})
+}

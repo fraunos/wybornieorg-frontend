@@ -56,7 +56,7 @@ export default {
     return {
       showHello: true,
       showStats: false,
-      showList: () => !this.$store.state.isMobile
+      showList: () => !this.$store.getters.isMobile
     }
   },
   computed: {
