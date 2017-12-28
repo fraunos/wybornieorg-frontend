@@ -130,9 +130,7 @@ export default {
         glosowanie: this.$route.params.glosowanie,
         vote: vote
       })
-      setTimeout(() => {
-        window.scrollTo({top: document.querySelector('#ocena').offsetTop, behavior: 'smooth'})
-      }, 1000)
+      document.querySelector('.voting').scrollTo({top: document.querySelector('#ocena').offsetTop, behavior: 'smooth'})
     },
     placeX (x) {
       let result = -Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * 150
@@ -147,6 +145,9 @@ export default {
       this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + this.$route.params.kadencja + '/' + this.$route.params.posiedzenie + '/' + this.$route.params.glosowanie).then(response => {
         this.currentVoting = this.adjustVotes(response.body)
         this.$store.commit('loadingDown')
+        console.log(document.querySelector('.router-link-exact-active'))
+
+        document.querySelector('#scrollable-container').scrollTo({top: document.querySelector('.router-link-exact-active').offsetTop - document.querySelector('.router-link-exact-active').clientHeight, behavior: 'smooth'})
       }, response => {
         // error callback
       })

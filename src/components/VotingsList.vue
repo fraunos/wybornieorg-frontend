@@ -93,7 +93,7 @@ export default {
     },
     'votingsProcessed': function () {
       this.pagination = 0
-      document.getElementById('scrollable-container').scrollTop = 0
+      document.querySelector('#scrollable-container').scrollTop = 0
     }
   },
   components: {
@@ -136,7 +136,7 @@ export default {
       this.fetchVotings(this.kadencje)
     }
 
-    document.getElementById('scrollable-container').addEventListener('scroll', (el) => {
+    document.querySelector('#scrollable-container').addEventListener('scroll', (el) => {
       if (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight) > 0.9) {
         this.pagination++
       }

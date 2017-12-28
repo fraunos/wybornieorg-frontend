@@ -49,7 +49,7 @@ export default {
   },
   watch: {
     '$route': function () {
-      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+      document.querySelector('.voting').scrollTo({top: 0, behavior: 'smooth'})
     }
   },
   data () {
