@@ -28,7 +28,15 @@ export default {
       showMenu: false
     }
   },
-  created () {
+  mounted () {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        this.switchVoting(-1)
+      }
+      if (event.key === 'ArrowRight') {
+        this.switchVoting(1)
+      }
+    })
   },
   components: {
     BoxIcon,

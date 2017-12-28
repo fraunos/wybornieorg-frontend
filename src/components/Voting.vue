@@ -96,6 +96,16 @@ export default {
   mounted () {
     // this.$store.commit('', this.$route.params.projekt)
     this.fetchVoting()
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowUp') {
+        event.preventDefault()
+        this.userVote('Za')
+      }
+      if (event.key === 'ArrowDown') {
+        event.preventDefault()
+        this.userVote('Przeciw')
+      }
+    })
   },
   watch: {
     // call again the method if the route changes
