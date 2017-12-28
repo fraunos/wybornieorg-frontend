@@ -20,7 +20,7 @@
     <div v-show="this.loading" id="loading-thing"></div>
   </transition>
   <transition name="fade">
-    <votings-list @hideList="showList = !showList" v-show="!this.$store.state.isMobile || showList"></votings-list>
+    <votings-list @hideList="showList = !showList" v-show="!this.isMobile || showList"></votings-list>
   </transition>
   <transition name="blink">
     <router-view></router-view>
@@ -56,12 +56,15 @@ export default {
     return {
       showHello: true,
       showStats: false,
-      showList: () => !this.$store.getters.isMobile
+      showList: this.isMobile
     }
   },
   computed: {
     loading () {
       return this.$store.state.loading
+    },
+    isMobile () {
+      return this.$store.getters.isMobile
     }
   }
 }
@@ -89,6 +92,7 @@ body {
 
 a, svg {
   text-decoration: none;
+  font-weight: bold;
   color: var(--color-0);
 }
 
@@ -100,7 +104,7 @@ a:active, svg:active {
   color: inherit;
 }
 :root {
-  --color-0: brown;
+  --color-0: #D4213D;
   --color-1: black;
   --color-2: black;
   --color-3: black;
