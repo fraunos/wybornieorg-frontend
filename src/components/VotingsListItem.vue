@@ -1,11 +1,14 @@
 <template>
 <router-link :class="['voting-list-item', voting.status, currentVotingVote]" :to="{ name: 'voting', params: { kadencja: voting.numbers.kadencja, posiedzenie: voting.numbers.posiedzenie, glosowanie: voting.numbers.glosowanie } }">
+  <div class="numery">
+    <div class="kadencja">{{voting.numbers.kadencja}}</div><div class="posiedzenie">{{voting.numbers.posiedzenie}}</div><div class="glosowanie">{{voting.numbers.glosowanie}}</div>
+  </div><br>
   <div v-if="voting.projects.length > 1" class="">
     Rozpatrywano wspólnie
   </div>
   <div class="projekty" v-for="project in voting.projects">
     <div class="numery" >
-      <div class="kadencja">{{project.kadencja}}</div><div class="drukNr">{{project.drukNr}}</div>
+      <div class="drukNr">#{{project.drukNr}}</div>
     </div>
     <div v-if="project.prawoUE" class="ue">
       EU
@@ -72,14 +75,21 @@ export default {
   background-color: blue;
 }
 .tytul{
+  font-weight: 100;
   /*font-size: 80%;*/
 }
 .kadencja {
   /*border-top-left-radius: 5vmin;*/
   background-color: yellow;
 }
+.posiedzenie {
+  background-color: orange;
+}
+.glosowanie {
+  background-color: red;
+}
 .drukNr {
-  background-color: pink;
+  background-color: lightskyblue;
 }
 .uchwalono {
   border-right: 1.75vmin solid forestgreen;
