@@ -1,5 +1,7 @@
 <template>
 <div class="popup">
+<div @click="$emit('close')" class="popup">
+</div>
   <div class="popup-window">
     <x-icon @click="$emit('close')"></x-icon>
     <div class="content">
@@ -22,6 +24,13 @@ export default {
   },
   components: {
     XIcon
+  },
+  mounted () {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        this.$emit('close')
+      }
+    })
   },
   methods: {
   }
