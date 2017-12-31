@@ -1,7 +1,7 @@
 <template>
 <router-link :class="['voting-list-item', voting.status, currentVotingVote]" :to="{ name: 'voting', params: { kadencja: voting.numbers.kadencja, posiedzenie: voting.numbers.posiedzenie, glosowanie: voting.numbers.glosowanie } }">
   <div class="numery">
-    <div class="kadencja">{{voting.numbers.kadencja}}</div><div class="posiedzenie">{{voting.numbers.posiedzenie}}</div><div class="glosowanie">{{voting.numbers.glosowanie}}</div>
+    <div class="kadencja">k{{voting.numbers.kadencja}}</div><div class="posiedzenie">p{{voting.numbers.posiedzenie}}</div><div class="glosowanie">g{{voting.numbers.glosowanie}}</div>
   </div><br>
   <div v-if="voting.projects.length > 1" class="">
     Rozpatrywano wspólnie
