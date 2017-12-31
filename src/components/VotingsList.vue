@@ -190,7 +190,6 @@ export default {
 .voting-menu {
   display: flex;
   flex-direction: column;
-  background: maroon;
   width: 100vw;
   height: 100vh;
   background: var(--color-1-op);
@@ -200,14 +199,15 @@ export default {
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
-  justify-content: space-between;
-  background: maroon;
+  justify-content: space-around;
+  background: #333;
+  color: white;
   height: 10vmin;
 }
 .sort-filter-menu > * {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 .filtrowanie-nazwa{
@@ -225,7 +225,6 @@ export default {
 
 select {
   border-radius: 0.5vmin;
-  background: var(--color-3);
   font-size: inherit;
 }
 
@@ -249,8 +248,6 @@ select {
   transition: 1s;
 }
 #scrollable-container {
-  /*position: relative;*/
-  /*max-height: 90vh;*/
   overflow-y: scroll;
 }
 

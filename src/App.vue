@@ -93,6 +93,7 @@ body {
 a {
   text-decoration: none;
   font-weight: bold;
+  outline: none;
   color: var(--color-0);
 }
 
@@ -100,9 +101,10 @@ a:hover {
   color: inherit;
 }
 
-/* a:active, svg:active {
-  color: inherit;
-} */
+a:active, svg:active{
+  /* color: inherit; */
+  outline: 2px solid black;
+}
 :root {
   --color-0: #D4213D;
   --color-1: black;
@@ -119,8 +121,8 @@ a:hover {
   height: 10vmin;
   width: 10vmin;
   border: 2vmin solid crimson;
-  border-left: 2vmin solid gray;
-  border-bottom: 2vmin solid gray;
+  border-left: 2vmin solid white;
+  border-bottom: 2vmin solid white;
   border-radius: 100%;
   animation: 1s rotate360 infinite ease-in-out;
   box-shadow: white 0 0 5vmin 0vmin inset, white 0 0 5vmin 0;

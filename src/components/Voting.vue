@@ -182,14 +182,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.voting{
-  display: flex;
-  /*background: #444;*/
-  color: #ddd;
-  width: 100%;
-  padding: 5vmin;
-}
-oject-data {
+  .voting{
+    display: flex;
+    background: #444;
+    color: #ddd;
+    width: 100%;
+    padding: 5vmin;
+  }
+  .novoting{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  svg{
+    margin-right: 0.5em;
+  }
+  a{
+    text-transform: uppercase;
+  }
+  h1, h2, h3 {
+    /* text-decoration: underline; */
+    /* line-height: 1.5em; */
+    padding-bottom: 0.5em;
+    border-bottom: 0.1em solid #ddd;
+    text-align: left;
   }
   #button-container {
     margin: 5vh 0;
@@ -201,7 +217,6 @@ oject-data {
     height: 16vmin;
     user-select: none;
   }
-
   .vote-button {
     border-radius: 1vmin;
     width: 15vmin;
@@ -252,9 +267,10 @@ oject-data {
   }
 
   .currentVoting {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column; */
+    width: 100%;
   }
 
   @media screen and (max-device-aspect-ratio: 1/1) {

@@ -58,6 +58,7 @@ export default {
 }
 .numery {
   font-weight: bold;
+  font-variant: small-caps;
   float: left;
   color: black;
   border-radius: 1vmin;
@@ -105,14 +106,15 @@ export default {
   background-color: crimson;
 }
 .status, .frekwencja{
+  font-variant: small-caps;
   padding: 0 0.5em;
   border-radius: 1vmin;
   color: white;
 }
 .voting-list-item {
-  background: white;
+  background: #eee;
   padding: 2vmin;
-  margin: 1vmin;
+  margin-bottom: 1vmin;
   border-radius: 1vmin;
   /*border: 0.2vmin black solid;*/
 }
@@ -139,17 +141,15 @@ a:hover {
   /*color: var(--color-0);*/
   /*background-color: orange;*/
 }
-
-a.router-link-exact-active {
-  background-color: brown;
-  color: white;
-}
-
 .za {
-  background-color: orange;
+  background-color: lightgreen;
 }
 
 .przeciw {
-  background-color: orange;
+  background-color: lightpink;
+}
+a.router-link-exact-active {
+  box-shadow: 0 0 0 1vmin var(--color-0) inset;
+  /* transform: matrix3d(1.1, 1.1, 1.1, 1.1); */
 }
 </style>

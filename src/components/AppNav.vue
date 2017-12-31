@@ -60,7 +60,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: gray;
+  background: #222;
 }
 .logo {
   background-image: url("/static/img/icons/logo.svg");
@@ -75,10 +75,10 @@ export default {
   transform: scale(0.9);
 }
 .app-nav > * {
-  color: white;
+  color: var(--color-0);
 }
 .app-nav > *:hover {
-  color: inherit;
+  color: white;
 }
 #listBtn{
   display: none;
