@@ -86,6 +86,7 @@ export default {
       sortowanie: 'votingDate',
       filtrowanieStatus: ['odrzucony', 'uchwalono'],
       filtrowanieUE: true,
+      filtrowanieNazwane: false,
       // filtrowanieGlos: ['za', 'przeciw'],
       filtrowanieNazwa: ''
     }
@@ -115,9 +116,10 @@ export default {
     votingsProcessed () {
       return this.votings.filter(item => {
         // return this.kadencje.indexOf(item.kadencja) !== -1
-        return this.filtrowanieStatus.indexOf(item.status) !== -1 && item.projects.every((a) => {
+        let result = this.filtrowanieStatus.indexOf(item.status) !== -1 && item.projects.every((a) => {
           return a.tytul.toLowerCase().indexOf(this.filtrowanieNazwa.toLowerCase()) !== -1
-        })
+        }) && (!this.filtrowanieNazwane || item.nazwaZwyczajowa !== undefined)
+        return result
       }).sort((a, b) => {
         if (this.sortowanie === 'votingDate') {
           return new Date(b[this.sortowanie]) - new Date(a[this.sortowanie])
@@ -155,6 +157,7 @@ export default {
       this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + kadencja).then(response => {
         this.$store.commit('loadingDown')
         this.votings = response.body
+        this.getCommonProjectNames(kadencja)
       }, response => {
         // error callback
       })
@@ -180,6 +183,21 @@ export default {
         })
       } catch (e) {
       }
+    },
+    getCommonProjectNames (kadencja) {
+      this.$http.get('https://api.trello.com/1/boards/X1Jp1EXO/lists').then(response => {
+        let list = response.body.find(item => {
+          return item.name === 'kadencja ' + kadencja
+        })
+        this.$http.get(`https://api.trello.com/1/lists/${list.id}/cards`).then(response => {
+          response.body.forEach(item => {
+            let temp = this.votings.find(voting => {
+              return `${voting.numbers.kadencja}/${voting.numbers.posiedzenie}/${voting.numbers.glosowanie}` === item.desc.match(/[0-9]+\/[0-9]+\/[0-9]+/)[0]
+            })
+            temp.nazwaZwyczajowa = item.name
+          })
+        })
+      })
     }
   }
 }
