@@ -179,10 +179,6 @@ export default {
           }
         })
       } catch (e) {
-        document.querySelector('.strzalka').classList.add('error')
-        setTimeout(() => {
-          document.querySelector('.strzalka').classList.remove('error')
-        }, 200)
       }
     }
   }

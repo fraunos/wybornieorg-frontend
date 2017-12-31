@@ -142,7 +142,6 @@ export default {
       this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + this.$route.params.kadencja + '/' + this.$route.params.posiedzenie + '/' + this.$route.params.glosowanie).then(response => {
         this.currentVoting = this.adjustVotes(response.body)
         this.$store.commit('loadingDown')
-        console.log(document.querySelector('.router-link-exact-active'))
 
         document.querySelector('#scrollable-container').scrollTo({top: document.querySelector('.router-link-exact-active').offsetTop - document.querySelector('.router-link-exact-active').clientHeight, behavior: 'smooth'})
       }, response => {
