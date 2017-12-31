@@ -44,10 +44,10 @@
               <deputy v-for="(deputy, index) in currentVoting.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
             </g>
             <g>
-              <text  x='-105' y='120' font-size="8" fill="darkorchid">Wstrzymał się</text>
-              <text  x='-37' y='120' font-size="8" fill="#111">Nieobecny</text>
-              <text  x='20' y='120' font-size="8" fill="green">Zgodny</text>
-              <text  x='65' y='120' font-size="8" fill="red">Niezgodny</text>
+              <text  x='-105' y='120' font-size="8" fill="darkorchid" font-weight="bold">Wstrzymał się</text>
+              <text  x='-37' y='120' font-size="8" fill="black" font-weight="bold">Nieobecny</text>
+              <text  x='20' y='120' font-size="8" fill="green" font-weight="bold">Zgodny</text>
+              <text  x='65' y='120' font-size="8" fill="red" font-weight="bold">Niezgodny</text>
             </g>
           </svg>
         </div>
