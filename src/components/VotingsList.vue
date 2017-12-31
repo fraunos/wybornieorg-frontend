@@ -1,50 +1,54 @@
 <template>
   <div class="voting-menu">
     <div class="sort-filter-menu">
-      <div class="">
-        <layers-icon />
+      <div>
+        <!-- <layers-icon /> -->
         <select v-model="kadencje">
          <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">{{item}}</option>
         </select>
       </div>
-      <div class="">
-        <bar-chart-icon />
+      <div>
+        <!-- <bar-chart-icon /> -->
         <select v-model="sortowanie">
           <option value="votingDate">Najnowsze</option>
-          <option value="frekwencja">Z najw. frekwencją</option>
+          <option value="frekwencja">Frekwencja</option>
         </select>
       </div>
       <div class="filtrowanie-status">
-        <filter-icon />
-        <div class="">
-          <input id="uchwalonoCB" type="checkbox" name="uchwalono" value="uchwalono" v-model="filtrowanieStatus">
+        <!-- <filter-icon /> -->
+        <div>
+          <input id="uchwalonoCB" type="checkbox" value="uchwalono" v-model="filtrowanieStatus">
           <label for="uchwalonoCB">Uchwalone</label>
         </div>
-        <div class="">
-          <input id="odrzuconyCB" type="checkbox" name="" value="odrzucony" v-model="filtrowanieStatus">
+        <div>
+          <input id="odrzuconyCB" type="checkbox" value="odrzucony" v-model="filtrowanieStatus">
           <label for="odrzuconyCB">Odrzucone</label>
         </div>
-        <!-- <div class="">
-          <input id="prawoUE" type="checkbox" name="" v-model="filtrowanieUE">
+        <div>
+          <input id="nazwane" type="checkbox" value="nazwane" v-model="filtrowanieNazwane">
+          <label for="nazwane">Nazwane</label>
+        </div>
+        <!-- <div>
+          <input id="prawoUE" type="checkbox" v-model="filtrowanieUE">
           <label for="prawoUE">Wprowadza prawo UE</label>
         </div> -->
       </div>
       <div class="filtrowanie-nazwa">
-        <search-icon />
+        <!-- <search-icon /> -->
         <label for="filtrowanieNazwa"></label>
         <input type="text" name="filtrowanieNazwa" v-model="filtrowanieNazwa" placeholder="Filtruj tytuły, np. 'podatk'">
       </div>
       <!-- <div class="filtrowanie-glos">
-        <div class="">
+        <div>
           <input id="za" type="checkbox" name="za" value="za" v-model="filtrowanieGlos">
           <label for="za">Za</label>
         </div>
-        <div class="">
+        <div>
           <input id="przeciw" type="checkbox" name="przeciw" value="przeciw" v-model="filtrowanieGlos">
           <label for="przeciw">Przeciw</label>
         </div>
       </div> -->
-      <!-- <div class="">
+      <!-- <div>
         Liczba projektów: {{votingsProcessed.length}}
       </div> -->
     </div>
