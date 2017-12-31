@@ -1,11 +1,9 @@
 <template>
 <div class="voting">
-  <div v-if="glosowanie == null" class="">
-    <p>Wybierz projekt z listy!<br></p>
-    <p>Aby wyświetlić listę, użyj przycisku z lewej strony!</p>
+  <div v-if="glosowanie == null || currentVoting == null" class="novoting">
+    Wybierz projekt z listy!
   </div>
-  <div v-else>
-    <div v-if="currentVoting" id="cp" class="currentVoting">
+    <div v-else id="cp" class="currentVoting">
       <h2>Przegłosowane projekty</h2>
         <div id="project-data" v-for="project in currentVoting.projects">
           <h3># {{project.drukNr}}</h3>
@@ -54,7 +52,6 @@
           </svg>
         </div>
 
-    </div>
   </div>
 
 </div>
