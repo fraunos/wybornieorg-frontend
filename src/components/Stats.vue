@@ -1,10 +1,14 @@
 <template>
 <div>
-  <h1>Statystyki</h1>
   <h5>Wagi głosów:<br>zgodny = 1, niezgodny = -1, nieobecność/wstrzymanie się = 0</h5>
-  <p v-if='userVoted'>Brak statystyk! Zagłosuj najpierw</p>
-  <div class="stats" v-else>
-    <stats-deputy v-for="(value, key, index) of deputiesStatsSortedZgodne" :deputy="value"></stats-deputy>
+  <p v-if='!Object.keys(this.userVotes).length'>Brak statystyk! Zagłosuj najpierw</p>
+  <div v-else>
+    <div class="export">
+      <a :href="'/wczytaj/' + this.userVotesEncoded">Zapisz swoje głosowania zachowując ten adres</a>
+    </div>
+    <div class="stats">
+    <stats-deputy v-if="doneLoading" v-for="(value, key, index) of deputiesStats" :deputy="value"></stats-deputy>
+  </div>
   </div>
 </div>
 </template>
@@ -15,28 +19,90 @@ import AppNav from '@/components/AppNav'
 
 export default {
   data () {
-    return {}
+    return {
+      deputiesStats: new Map(),
+      doneLoading: false
+    }
   },
   components: {
     StatsDeputy,
     AppNav
   },
+  created () {
+    this.checkCache()
+  },
   computed: {
-    deputiesStats () {
-      return [...this.$store.state.deputiesStats.entries()]
+    userVotes () {
+      return this.$store.state.userVotes
     },
-    userVoted () {
-      return JSON.stringify(this.$store.state.userVotes) === '{}'
+    userVotesEncoded () {
+      return window.btoa(JSON.stringify(this.userVotes))
     },
-    deputiesStatsSortedZgodnoscProcent () {
-      return this.deputiesStats.sort((a, b) => {
-        return b[1].zgodnoscProcent - a[1].zgodnoscProcent
+    deputiesStatsArray () {
+      return [...this.deputiesStats.entries()]
+    }
+    // deputiesStatsSortedZgodnoscProcent () {
+    //   return this.deputiesStats.sort((a, b) => {
+    //     return b[1].zgodnoscProcent - a[1].zgodnoscProcent
+    //   })
+    // },
+    // deputiesStatsSortedZgodne () {
+    //   return this.deputiesStats.sort((a, b) => {
+    //     return (b[1].zgodne.size - b[1].niezgodne.size) - (a[1].zgodne.size - a[1].niezgodne.size)
+    //   })
+    // }
+  },
+  methods: {
+    checkCache () {
+      this.$store.commit('loadingUp')
+      console.log('checkCache')
+      let promise = []
+
+      for (let numbers in this.userVotes) {
+        console.log(`${numbers} ${this.userVotes[numbers]}`)
+        let voting = this.$store.getters.currentVoting(numbers)
+        if (voting === undefined) {
+          promise.push(this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + numbers))
+        }
+      }
+
+      return Promise.all(promise).then(resolve => {
+        for (var response of resolve) {
+          this.$store.commit('cacheVoting', { numbers: `${response.body.numbers.kadencja}/${response.body.numbers.posiedzenie}/${response.body.numbers.glosowanie}`, data: response.body })
+        }
+        // this.currentVoting = this.adjustVotes(response.body)
+        this.getDeputiesStats()
       })
     },
-    deputiesStatsSortedZgodne () {
-      return this.deputiesStats.sort((a, b) => {
+    getDeputiesStats () {
+      console.log('deputiesStats')
+      for (let numbers in this.userVotes) {
+        let voting = this.$store.getters.currentVoting(numbers)
+
+        for (var deputy of voting.deputies) {
+          let temp = this.deputiesStats.get(deputy.name)
+          if (temp === undefined) {
+            temp = {
+              zgodne: new Set(),
+              niezgodne: new Set()
+            }
+          }
+          if (this.userVotes[numbers] === deputy.vote) {
+            temp.niezgodne.delete(numbers)
+            temp.zgodne.add(numbers)
+          } else {
+            temp.zgodne.delete(numbers)
+            temp.niezgodne.add(numbers)
+          }
+          temp.zgodnoscProcent = Math.floor(100 * temp.zgodne.size / (temp.zgodne.size + temp.niezgodne.size))
+          this.deputiesStats.set(deputy.name, temp)
+        }
+      }
+      this.deputiesStats = [...this.deputiesStats.entries()].sort((a, b) => {
         return (b[1].zgodne.size - b[1].niezgodne.size) - (a[1].zgodne.size - a[1].niezgodne.size)
       })
+      this.doneLoading = true
+      this.$store.commit('loadingDown')
     }
   }
 }
@@ -49,6 +115,12 @@ export default {
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
+}
+.export {
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
 }
 
 </style>

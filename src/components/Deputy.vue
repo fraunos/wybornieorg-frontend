@@ -21,16 +21,7 @@ export default {
       return this.$store.getters.isMobile
     },
     zgodnosc () {
-      // console.log(`${this.$store.state.userVotes[this.$store.state.currentProject.drukNr]} ${this.singleDeputy.vote}`)
-      let result = this.$store.state.userVotes[JSON.stringify({kadencja: this.$route.params.kadencja, posiedzenie: this.$route.params.posiedzenie, glosowanie: this.$route.params.glosowanie})] === this.singleDeputy.vote
-      this.$store.commit('setDeputyStat', {
-        deputyName: this.singleDeputy.name,
-        kadencja: this.$route.params.kadencja,
-        posiedzenie: this.$route.params.posiedzenie,
-        glosowanie: this.$route.params.glosowanie,
-        vote: result
-      })
-      return result
+      return this.$store.state.userVotes[`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`] === this.singleDeputy.vote
     },
     koloruj () {
       let result = ''
@@ -38,7 +29,7 @@ export default {
         result = 'wstrzymanie'
       } else if (this.singleDeputy.vote === 'Nieobecny') {
         result = 'nieobecnosc'
-      } else if (this.$store.state.userVotes[JSON.stringify({kadencja: this.$route.params.kadencja, posiedzenie: this.$route.params.posiedzenie, glosowanie: this.$route.params.glosowanie})] === undefined) {} else {
+      } else if (this.$store.state.userVotes[`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`] === undefined) {} else {
         result = this.zgodnosc ? 'zgodny' : 'niezgodny'
       }
       // if (this.singleDeputy.group === 'PiS') {
@@ -118,7 +109,6 @@ circle {
   /*transition: 0.5s;*/
   fill: black;
 }
-
 
 /*circle:hover {
   transform: scale(1.2, 1.2);

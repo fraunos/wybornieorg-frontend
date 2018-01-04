@@ -75,8 +75,8 @@ export default {
   props: ['kadencja', 'posiedzenie', 'glosowanie'],
   data () {
     return {
-      s1: 10, // ilość osób w kolumnie
-      currentVoting: null
+      s1: 10 // ilość osób w kolumnie
+      // currentVoting: null
     }
   },
   components: {
@@ -92,7 +92,10 @@ export default {
   },
   mounted () {
     // this.$store.commit('', this.$route.params.projekt)
-    this.fetchVoting()
+    console.log(this.currentVoting)
+    if (this.currentVoting === undefined) {
+      this.fetchVoting()
+    }
     document.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowUp') {
         event.preventDefault()
@@ -105,26 +108,31 @@ export default {
     })
   },
   watch: {
-    // call again the method if the route changes
-    '$route': 'fetchVoting'
+    '$route': function () {
+      if (this.currentVoting === undefined) {
+        this.fetchVoting()
+      }
+      // document.querySelector('#scrollable-container').scrollTo({top: document.querySelector('.router-link-exact-active').offsetTop - document.querySelector('.router-link-exact-active').clientHeight, behavior: 'smooth'})
+    }
   },
   computed: {
     votingTime () {
       return this.moment(new Date(this.currentVoting.votingDate))
     },
     currentVotingVote () {
-      return this.$store.state.userVotes[JSON.stringify({kadencja: this.$route.params.kadencja, posiedzenie: this.$route.params.posiedzenie, glosowanie: this.$route.params.glosowanie})]
+      return this.$store.state.userVotes[`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`]
     },
     userVotes () {
       return this.$store.state.userVotes
+    },
+    currentVoting () {
+      return this.$store.getters.currentVoting(`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`)
     }
   },
   methods: {
     userVote (vote) {
       this.$store.commit('userVote', {
-        kadencja: this.$route.params.kadencja,
-        posiedzenie: this.$route.params.posiedzenie,
-        glosowanie: this.$route.params.glosowanie,
+        numbers: `${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`,
         vote: vote
       })
       document.querySelector('.voting').scrollTo({top: document.querySelector('#ocena').offsetTop, behavior: 'smooth'})
@@ -139,11 +147,10 @@ export default {
     },
     fetchVoting () {
       this.$store.commit('loadingUp')
-      this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + this.$route.params.kadencja + '/' + this.$route.params.posiedzenie + '/' + this.$route.params.glosowanie).then(response => {
-        this.currentVoting = this.adjustVotes(response.body)
+      this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + `${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`).then(response => {
+        // this.currentVoting = this.adjustVotes(response.body)
+        this.$store.commit('cacheVoting', { numbers: `${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`, data: response.body })
         this.$store.commit('loadingDown')
-
-        document.querySelector('#scrollable-container').scrollTo({top: document.querySelector('.router-link-exact-active').offsetTop - document.querySelector('.router-link-exact-active').clientHeight, behavior: 'smooth'})
       }, response => {
         // error callback
       })

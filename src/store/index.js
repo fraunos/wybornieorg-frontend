@@ -8,13 +8,13 @@ export default new Vuex.Store({
       displayHello: true
     },
     userVotes: {},
-    deputiesStats: new Map(),
     domain: 'http://wybornie.org',
+    votingsCache: {},
     loading: 0
   },
   mutations: {
     userVote: (state, props) => {
-      Vue.set(state.userVotes, currentVoting(props), props.vote)
+      Vue.set(state.userVotes, props.numbers, props.vote)
     },
     loadingUp (state) {
       state.loading++
@@ -25,35 +25,22 @@ export default new Vuex.Store({
     hideHello (state) {
       state.userData.displayHello = false
     },
-    setDeputyStat: (state, props) => {
-      let temp = state.deputiesStats.get(props.deputyName)
-      if (temp === undefined) {
-        temp = {
-          zgodne: new Set(),
-          niezgodne: new Set()
-        }
-      }
-      if (props.vote) {
-        temp.niezgodne.delete(currentVoting(props))
-        temp.zgodne.add(currentVoting(props))
-      } else {
-        temp.zgodne.delete(currentVoting(props))
-        temp.niezgodne.add(currentVoting(props))
-      }
-      temp.zgodnoscProcent = Math.floor(100 * temp.zgodne.size / (temp.zgodne.size + temp.niezgodne.size))
-      state.deputiesStats.set(props.deputyName, temp)
+    loadSavedData: (state, props) => {
+      state.userVotes = props
+    },
+    cacheVoting: (state, props) => {
+      console.log('caching ' + props.numbers)
+      Vue.set(state.votingsCache, props.numbers, props.data)
     }
   },
   actions: {
-
   },
   getters: {
     isMobile: () => {
       return (window.innerHeight / window.innerWidth) > 1
+    },
+    currentVoting: (state) => (prop) => {
+      return state.votingsCache[prop]
     }
   }
 })
-
-function currentVoting (props) {
-  return JSON.stringify({kadencja: props.kadencja, posiedzenie: props.posiedzenie, glosowanie: props.glosowanie})
-}

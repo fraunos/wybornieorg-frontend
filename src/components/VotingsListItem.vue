@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     currentVotingVote () {
-      let temp = this.$store.state.userVotes[JSON.stringify(this.voting.numbers)]
+      let temp = this.$store.state.userVotes[`${this.voting.numbers.kadencja}/${this.voting.numbers.posiedzenie}/${this.voting.numbers.glosowanie}`]
       // this.voting.userVote = temp
       if (temp !== undefined) {
         return temp.toLowerCase()
