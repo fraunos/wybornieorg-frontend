@@ -3,9 +3,12 @@
 <div @click="$emit('close')" class="popup">
 </div>
   <div class="popup-window">
-    <x-icon @click="$emit('close')"></x-icon>
+    <div class="header">
+      <slot name="header"></slot>
+      <x-icon @click="$emit('close')"></x-icon>
+    </div>
     <div class="content">
-      <slot></slot>
+      <slot name="content"></slot>
     </div>
   </div>
 </div>
@@ -19,7 +22,6 @@ import {
 export default {
   data () {
     return {
-      show: true
     }
   },
   components: {
@@ -55,7 +57,6 @@ export default {
 .popup-window {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;7
   max-height: calc(100vh - 20vmin);
   background-color: white;
   z-index: 99;
@@ -68,12 +69,13 @@ export default {
   max-height: calc(100vh - 20vmin);
   overflow-y: auto;
 }
-
+.header {
+  display: flex;
+  justify-content: space-between;
+}
 svg {
-  position: absolute;
   width: 7vh;
   height: 7vh;
-  float: right;
   cursor: pointer;
 }
 </style>

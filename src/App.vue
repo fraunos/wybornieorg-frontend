@@ -3,8 +3,8 @@
   <app-nav @staty="showStats = true" @votingList="showList = !showList"></app-nav>
 
   <popup v-if="showHello" @close="showHello = false">
-    <h1>Witaj!</h1>
-    <div>
+    <h1 slot="header">Witaj!</h1>
+    <div slot="content">
       <p>Znajdujesz się na stronie <a href="/">wybornie.org</a>! Jest to aplikacja poświęcona wyborom. Jeśli tu jesteś to za pewne zastanawiasz się na kogo zagłosować? Kto jest godny Twojego zaufania? Właśnie w tym postaram się Ci pomóc!</p>
       <p>Dzięki tej aplikacji możesz głosować zupełnie jak posłowie. Wystarczy znaleźć interesujące Cię projekty ustaw i wybrać głos 'Za' lub 'Przeciw'. Następnie, po przejściu w zakładkę Statystyk program wyświetli wyniki - w kolejności - z którym z posłów
         zgadzasz się najbardziej!</p>
@@ -14,7 +14,9 @@
     </popup>
 
     <popup v-if="showStats" @close="showStats = false">
-      <stats></stats></popup>
+      <h1 slot="header">Statystyki</h1>
+      <stats slot="content"></stats>
+    </popup>
 
   <transition name="fade">
     <div v-show="this.loading" id="loading-thing"></div>
