@@ -185,16 +185,19 @@ export default {
       }
     },
     getCommonProjectNames (kadencja) {
+      this.$store.commit('loadingUp')
+
       this.$http.get('https://api.trello.com/1/boards/X1Jp1EXO/lists').then(response => {
         let list = response.body.find(item => {
           return item.name === 'kadencja ' + kadencja
         })
         this.$http.get(`https://api.trello.com/1/lists/${list.id}/cards`).then(response => {
+          this.$store.commit('loadingDown')
           response.body.forEach(item => {
             let temp = this.votings.find(voting => {
               return `${voting.numbers.kadencja}/${voting.numbers.posiedzenie}/${voting.numbers.glosowanie}` === item.desc.match(/[0-9]+\/[0-9]+\/[0-9]+/)[0]
             })
-            temp.nazwaZwyczajowa = item.name
+            this.$set(temp, 'nazwaZwyczajowa', item.name)
           })
         })
       })
