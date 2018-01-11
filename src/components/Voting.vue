@@ -108,12 +108,14 @@ export default {
       }
     })
   },
+  updated () {
+    document.querySelector('#scrollable-container').scrollTo({top: document.querySelector('.router-link-exact-active').offsetTop - document.querySelector('.router-link-exact-active').clientHeight, behavior: 'smooth'})
+  },
   watch: {
     '$route': function () {
       if (this.currentVoting === undefined) {
         this.fetchVoting()
       }
-      // document.querySelector('#scrollable-container').scrollTo({top: document.querySelector('.router-link-exact-active').offsetTop - document.querySelector('.router-link-exact-active').clientHeight, behavior: 'smooth'})
     }
   },
   computed: {
