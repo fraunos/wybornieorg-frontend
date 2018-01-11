@@ -38,16 +38,17 @@
         </div>
 
         <div id="svg-container">
-          <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -5 1 140">
+          <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 0 220 130">
             <text text-anchor="middle" dominant-baseline="hanging" x="0" y="0" font-family="mono" font-weight="bold" font-size="10" stroke="none" fill="black">{{currentVoting.drukNr}}</text>
             <g>
               <deputy v-for="(deputy, index) in currentVoting.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
             </g>
             <g>
-              <text  x='-105' y='120' font-size="8" fill="darkorchid" font-weight="bold">Wstrzymał się</text>
-              <text  x='-37' y='120' font-size="8" fill="black" font-weight="bold">Nieobecny</text>
-              <text  x='20' y='120' font-size="8" fill="green" font-weight="bold">Zgodny</text>
-              <text  x='65' y='120' font-size="8" fill="red" font-weight="bold">Niezgodny</text>
+              <text  x='5' y='125' font-size="8" fill="darkorchid" font-weight="bold">Wstrzymał się</text>
+              <text  x='73' y='125' font-size="8" fill="black" font-weight="bold">Nieobecny</text>
+              <text  x='130' y='125' font-size="8" fill="green" font-weight="bold">Zgodny</text>
+              <text  x='174' y='125' font-size="8" fill="red" font-weight="bold">Niezgodny</text>
             </g>
           </svg>
         </div>
@@ -138,11 +139,11 @@ export default {
       document.querySelector('.voting').scrollTo({top: document.querySelector('#ocena').offsetTop, behavior: 'smooth'})
     },
     placeX (x) {
-      let result = -Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * 150
+      let result = 110 + -Math.cos((Math.floor(x / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((x % this.s1) + 18) * (Math.PI / 70)) * 150
       return result
     },
     placeY (y) {
-      let result = Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * 150
+      let result = 5 + Math.sin((Math.floor(y / this.s1) * this.s1) * (Math.PI / 450)) * Math.cos(((y % this.s1) + 18) * (Math.PI / 70)) * 150
       return result
     },
     fetchVoting () {
@@ -197,7 +198,7 @@ export default {
     display: flex;
     justify-content: center;
   }
-  svg{
+  #project-data svg {
     margin-right: 0.5em;
   }
   a{
@@ -265,7 +266,6 @@ export default {
 
   svg#deputies-graph {
     width: 100%;
-    height: 55vmin;
     user-select: none;
   }
 
