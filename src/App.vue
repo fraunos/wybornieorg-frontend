@@ -96,7 +96,7 @@ a {
   text-decoration: none;
   font-weight: bold;
   outline: none;
-  color: var(--color-0);
+  color: var(--color-base);
 }
 
 a:hover {
@@ -108,11 +108,13 @@ a:active, svg:active{
   outline: 2px solid black;
 }
 :root {
-  --color-0: #D4213D;
-  --color-1: black;
-  --color-2: black;
-  --color-3: black;
-  --color-4: black;
+  --color-base: #D4213D;
+  --color-green1: #21D444;
+  --color-green2: #00871A;
+  --color-red1: #FF415F;
+  --color-red2: #870B1E;
+  --color-purple: #D018E1;
+  --color-blue: #0E6387;
 }
 
 #loading-thing{

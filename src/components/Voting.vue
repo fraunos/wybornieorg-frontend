@@ -203,6 +203,7 @@ export default {
   }
   a{
     text-transform: uppercase;
+    filter: brightness(2);
   }
   h1, h2, h3 {
     /* text-decoration: underline; */
@@ -232,16 +233,16 @@ export default {
     user-select: none;
     cursor: pointer;
     transition: 0.1s;
-    opacity: 0.8;
     color: white;
     border: 0.3vmin solid black;
     border-bottom: 1vmin solid black;
+    filter: brightness(0.9);
   }
   .vote-button svg {
     margin: 0;
   }
   .button-voted {
-    opacity: 1;
+    filter: none;
     border-bottom: 0.3vmin solid black;
   }
   .red {
@@ -251,7 +252,6 @@ export default {
     background-color: green;
   }
   .vote-button:active {
-    opacity: 0.7;
   }
 
   .vote-button svg {

@@ -139,7 +139,7 @@ a {
 }
 
 a:hover {
-  /*color: var(--color-0);*/
+  /*color: var(--color-base);*/
   /*background-color: orange;*/
 }
 .za {
@@ -150,7 +150,7 @@ a:hover {
   background-color: lightpink;
 }
 a.router-link-exact-active {
-  box-shadow: 0 0 0 1vmin var(--color-0) inset;
+  box-shadow: 0 0 0 1vmin var(--color-base) inset;
   /* transform: matrix3d(1.1, 1.1, 1.1, 1.1); */
 }
 </style>

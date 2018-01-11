@@ -75,7 +75,7 @@ export default {
   transform: scale(0.9);
 }
 .app-nav > * {
-  color: var(--color-0);
+  color: var(--color-base);
 }
 .app-nav > *:hover {
   color: white;

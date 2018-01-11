@@ -210,7 +210,6 @@ export default {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: var(--color-1-op);
   z-index: 40;
 }
 .sort-filter-menu {
@@ -252,19 +251,6 @@ select {
   height: calc(100vh - 10vmin);
 }
 
-.guziki {
-  position: fixed;
-  top: 0;
-  left: 0;
-  /*width: 100vw;*/
-  /*height: 100vh;*/
-}
-
-.guziki * {
-  background-color: midnightblue;
-  color: white;
-  transition: 1s;
-}
 #scrollable-container {
   overflow-y: scroll;
 }
@@ -276,9 +262,9 @@ select {
   border-top: 7vmin solid transparent;
   border-bottom: 7vmin solid transparent;
 
-  border-right: 7vmin solid var(--color-0);
-  /*border-left:5vmin solid var(--color-0);*/
-  /*background: var(--color-0);*/
+  border-right: 7vmin solid var(--color-base);
+  /*border-left:5vmin solid var(--color-base);*/
+  /*background: var(--color-base);*/
   top: calc(50vh - 3.5vmin);
   left: calc(100vmin + 1vmin);
 
