@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <app-nav @staty="showStats = true" @votingList="showList = !showList"></app-nav>
+  <app-nav @staty="showStats = true" @votingList="showList = !showList" @ostronie="showAbout = !showAbout"></app-nav>
 
   <popup v-if="showHello" @close="showHello = false">
     <h1 slot="header">Witaj!</h1>
@@ -16,6 +16,10 @@
     <popup v-if="showStats" @close="showStats = false">
       <h1 slot="header">Statystyki</h1>
       <stats slot="content"></stats>
+    </popup>
+    <popup v-if="showAbout" @close="showAbout = false">
+      <h1 slot="header">O stronie <a href="/">wybornie.org</a>!</h1>
+      <about slot="content"></about>
     </popup>
 
   <transition name="fade">
@@ -35,6 +39,7 @@
 import Popup from '@/components/generic/Popup'
 import AppFooter from '@/components/AppFooter'
 import Stats from '@/components/Stats'
+import About from '@/components/About'
 import Voting from '@/components/Voting'
 import VotingsList from '@/components/VotingsList'
 import AppNav from '@/components/AppNav'
@@ -45,6 +50,7 @@ export default {
     Popup,
     AppNav,
     Stats,
+    About,
     AppFooter,
     Voting,
     VotingsList
@@ -53,6 +59,7 @@ export default {
     return {
       showHello: true,
       showStats: false,
+      showAbout: false,
       showList: this.isMobile
     }
   },

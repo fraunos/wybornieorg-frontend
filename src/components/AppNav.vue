@@ -1,12 +1,10 @@
 <template>
 <div class="app-nav">
-    <div :class="['logo']" id="logo"></div>
+    <div :class="['logo']" id="logo" @click="$emit('ostronie')"></div>
     <check-square-icon @click="$emit('staty')" />
-    <list-icon id="listBtn" @click="$emit('votingList')" />
     <arrow-left-icon @click="switchVoting(-1)" />
     <arrow-right-icon @click="switchVoting(1)" />
-    <a target="_blank" href="https://www.facebook.com/wybornieorg"><facebook-icon /></a>
-    <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon /></a>
+    <list-icon id="listBtn" @click="$emit('votingList')" />
 </div>
 </template>
 
@@ -14,11 +12,9 @@
 import {
   BoxIcon,
   CheckSquareIcon,
-  FacebookIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  ListIcon,
-  GithubIcon
+  ListIcon
 } from 'vue-feather-icons'
 
 export default {
@@ -41,11 +37,9 @@ export default {
   components: {
     BoxIcon,
     CheckSquareIcon,
-    FacebookIcon,
     ArrowLeftIcon,
     ArrowRightIcon,
-    ListIcon,
-    GithubIcon
+    ListIcon
   },
   methods: {
     switchVoting (direction) {
