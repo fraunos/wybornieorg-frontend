@@ -49,11 +49,6 @@ export default {
     Voting,
     VotingsList
   },
-  watch: {
-    '$route': function () {
-      document.querySelector('.voting').scrollTo({top: 0, behavior: 'smooth'})
-    }
-  },
   data () {
     return {
       showHello: true,

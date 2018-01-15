@@ -116,6 +116,7 @@ export default {
       if (this.currentVoting === undefined) {
         this.fetchVoting()
       }
+      document.querySelector('.voting').scrollTo({top: 0, behavior: 'smooth'})
     }
   },
   computed: {
