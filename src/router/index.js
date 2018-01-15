@@ -15,12 +15,17 @@ export default new Router({
       component: Loading,
       props: true
     },
-    {
-      path: '/',
-      redirect: '/glosowania/'
-    },
+    // {
+    //   path: '/',
+    //   redirect: '/glosowania/'
+    // },
     {
       path: '/glosowania/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?',
+      props: true,
+      redirect: '/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?'
+    },
+    {
+      path: '/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?',
       name: 'voting',
       component: Voting,
       props: true
