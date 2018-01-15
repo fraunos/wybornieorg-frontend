@@ -4,25 +4,25 @@
     Wybierz projekt z listy!
   </div>
     <div v-else id="cp" class="currentVoting">
-      <h2>Przegłosowane projekty</h2>
-        <div id="project-data" v-for="project in currentVoting.projects">
-          <h3># {{project.drukNr}}</h3>
-          <h4>{{project.tytul}}</h4>
+      <h1>Przegłosowane projekty</h1>
+        <div class="project-data" v-for="project in currentVoting.projects">
+          <h3>#{{project.drukNr}}</h3>
+          <h3>{{project.tytul}}</h3>
           <p>{{project.opis}}</p>
           <!-- <p>{{project.deputies.length}}</p> -->
 
-          <div><a target="_blank" :href="project.przebiegLink"><activity-icon />przebieg projektu</a></div>
-          <div><a target="_blank" :href="project.trescLink"><file-text-icon />treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'" title="Działa wyłącznie na Mozilla Firefox">(uzasadnienie*)</a></div>
-          <div><a target="_blank" :href="project.isapLink"><folder-icon />ISAP tekst ustawy</a></div>
-          <div><a target="_blank" :href="project.komisje"><users-icon />Komisje i podkomisje</a></div>
-          <div><a target="_blank" :href="mediaLink(project.tytul)"><tv-icon />media o projekcie</a></div>
+          <div class="link"><a target="_blank" :href="project.przebiegLink"><activity-icon />przebieg projektu</a></div>
+          <div class="link"><a target="_blank" :href="project.trescLink"><file-text-icon />treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'" title="Działa wyłącznie na Mozilla Firefox">(uzasadnienie*)</a></div>
+          <div class="link"><a target="_blank" :href="project.isapLink"><folder-icon />ISAP tekst ustawy</a></div>
+          <div class="link"><a target="_blank" :href="project.komisje"><users-icon />Komisje i podkomisje</a></div>
+          <div class="link"><a target="_blank" :href="mediaLink(project.tytul)"><tv-icon />media o projekcie</a></div>
         </div>
 
-        <div id="voting-data">
+        <div class="voting-data">
           <h2>Dane głosowania</h2>
           <p>{{currentVoting.status}} {{votingTime.calendar().toLowerCase()}}</p>
-          <p>Frekwencja {{Math.floor(currentVoting.frekwencja*100)}}%</p>
-          <p><a target="_blank" :href="currentVoting.votingLink"><check-square-icon />decydujące głosowanie</a></p>
+          <p>frekwencja {{Math.floor(currentVoting.frekwencja*100)}}%</p>
+          <div class="link"><a target="_blank" :href="currentVoting.votingLink"><check-square-icon />decydujące głosowanie</a></div>
         </div>
 
         <div id="ocena">
@@ -189,24 +189,49 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .voting{
+  .voting {
     display: flex;
     background: #444;
-    color: #ddd;
+    color: #eee;
     width: 100%;
     padding: 5vmin;
   }
-  .novoting{
+  .novoting {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  #project-data svg {
+  .project-data{
+    color: black;
+    background: white;
+    padding: 2vmin;
+    margin: 2vmin 0;
+    border-radius: 1vmin;
+  }
+  #cp svg {
     margin-right: 0.5em;
   }
-  a{
+  .link > a {
+    display: flex;
+    align-items: center;
+  }
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1vmin;
+    background-color: #eee;
+    margin: .5em 0;
+    padding: .2em .5em;
     text-transform: uppercase;
-    filter: brightness(2);
+  }
+  .link a:hover {
+    color: black;
+  }
+  .voting-data p {
+    font-weight: bold;
+    font-size: 150%;
   }
   h1, h2, h3 {
     /* text-decoration: underline; */
