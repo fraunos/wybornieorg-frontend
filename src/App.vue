@@ -75,14 +75,15 @@ export default {
 </script>
 
 <style>
-@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(/static/Lato2OFLWeb/LatoLatin/latolatinfonts.css);
+
 #votings-list {
 
 }
 
 body {
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'LatoLatinWeb', sans-serif;
   font-size: 2vmin;
   background: #444;
 }
