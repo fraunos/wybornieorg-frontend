@@ -15,18 +15,8 @@
 </template>
 
 <script>
-import {
-  FacebookIcon,
-  GithubIcon,
-  MailIcon,
-  GlobeIcon
-} from 'vue-feather-icons'
 export default {
   components: {
-    FacebookIcon,
-    GithubIcon,
-    MailIcon,
-    GlobeIcon
   }
   // data () {
   //   return {}

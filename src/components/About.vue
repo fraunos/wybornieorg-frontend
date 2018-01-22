@@ -1,7 +1,14 @@
 <template>
 <div class="about">
-  <a target="_blank" href="https://www.facebook.com/wybornieorg"><facebook-icon /></a>
-  <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><github-icon /></a>
+  <div class="social-links">
+    <a target="_blank" href="https://discord.gg/M4xp9NZ"><font-awesome-icon :icon="['fab', 'discord']"/></a>
+    <a target="_blank" href="https://trello.com/b/X1Jp1EXO/wybornieorg-nazwy-zwyczajowe-projekt%C3%B3w"><font-awesome-icon :icon="['fab', 'trello']"/></a>
+    <a target="_blank" href="https://www.facebook.com/wybornieorg"><font-awesome-icon :icon="['fab', 'facebook']"/></a>
+    <a target="_blank" href="https://www.facebook.com/groups/766936056847305/"><font-awesome-icon :icon="['fab', 'facebook']"/></i></a>
+    <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><font-awesome-icon :icon="['fab', 'github']"/></a>
+    <a target="_blank" href="https://github.com/fraunos/wybornieorg-backend"><font-awesome-icon :icon="['fab', 'github']"/></a>
+  </div>
+
   <p>Projekt ma na celu zwiększenie odpowiedzialności posłów za działania podejmowane podczas pełnienia kadencji w sejmie.</p>
   <p>Aplikacja pobiera wszystkie projekty (uchwalone lub odrzucone) ze strony sejmu <a target="_blank" href="http://www.sejm.gov.pl/Sejm8.nsf/page.xsp/przeglad_projust">przegląd projektów ustaw</a> oraz odpowiednich stron <a target="_blank" href="http://www.sejm.gov.pl/Sejm8.nsf/page.xsp/archiwum">archiwum</a>, a następnie pozwala zagłosować
     na nie wyświetlając przy tym wszelkie zebrane informacje, by ułatwić wybór. Po zagłosowaniu na wybrane przez siebie projekty użytkownik może przejść do podstrony Statystyki, by zobaczyć z którymi z posłów i ugrupowań najbardziej się zgadza.</p>
@@ -32,11 +39,6 @@
 </template>
 
 <script>
-import {
-  FacebookIcon,
-  GithubIcon
-} from 'vue-feather-icons'
-
 export default {
   data () {
     return {
@@ -48,8 +50,6 @@ export default {
     this.fetchTrelloData()
   },
   components: {
-    FacebookIcon,
-    GithubIcon
   },
   methods: {
     fetchTrelloData () {
@@ -75,7 +75,14 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-
+.social-links svg{
+  width: 2em;
+  height: 2em;
+}
+.social-links {
+  display: flex;
+  justify-content: space-around;
+}
 a {
   white-space: nowrap;
 }

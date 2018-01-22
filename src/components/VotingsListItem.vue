@@ -24,10 +24,6 @@
 </template>
 
 <script>
-import {
-  CheckIcon
-} from 'vue-feather-icons'
-
 export default {
   name: 'votings-list-item',
   props: ['voting', 'id'],
@@ -35,7 +31,6 @@ export default {
     return {}
   },
   components: {
-    CheckIcon
   },
   computed: {
     currentVotingVote () {

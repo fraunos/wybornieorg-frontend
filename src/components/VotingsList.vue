@@ -62,15 +62,6 @@
 </template>
 
 <script>
-import {
-  LayersIcon,
-  BarChartIcon,
-  FilterIcon,
-  ListIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  SearchIcon
-} from 'vue-feather-icons'
 import VotingsListItem from '@/components/VotingsListItem'
 import AppNav from '@/components/AppNav'
 
@@ -102,15 +93,8 @@ export default {
     }
   },
   components: {
-    LayersIcon,
     AppNav,
-    VotingsListItem,
-    BarChartIcon,
-    FilterIcon,
-    ListIcon,
-    ArrowLeftIcon,
-    ArrowRightIcon,
-    SearchIcon
+    VotingsListItem
   },
   computed: {
     votingsProcessed () {

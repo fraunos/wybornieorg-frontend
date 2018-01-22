@@ -8,6 +8,17 @@ import store from './store'
 import VueResource from 'vue-resource'
 import moment from 'moment'
 
+import fontawesome from '@fortawesome/fontawesome'
+import brands from '@fortawesome/fontawesome-free-brands'
+import solid from '@fortawesome/fontawesome-free-solid'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+console.log(brands)
+
+fontawesome.library.add(solid)
+fontawesome.library.add(brands)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 Vue.prototype.moment = moment
 moment.locale('pl')
 

@@ -6,10 +6,6 @@
 </template>
 
 <script>
-import {
-
-} from 'vue-feather-icons'
-
 export default {
 
 }

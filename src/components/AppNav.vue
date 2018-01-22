@@ -1,26 +1,19 @@
 <template>
 <div class="app-nav">
-    <div :class="['logo']" id="logo" @click="$emit('ostronie')"></div>
-    <check-square-icon @click="$emit('staty')" />
-    <arrow-left-icon @click="switchVoting(-1)" />
-    <arrow-right-icon @click="switchVoting(1)" />
-    <list-icon id="listBtn" @click="$emit('votingList')" />
+    <div :class="['logo']" id="logo" @click="$emit('ostronie')" @mouseover="wybornie = true" @mouseleave="wybornie = false"><font-awesome-icon icon="info" v-show="wybornie"/></div>
+    <font-awesome-icon icon="chart-bar" @click="$emit('staty')"/>
+    <font-awesome-icon icon="arrow-circle-left" @click="switchVoting(-1)"/>
+    <font-awesome-icon icon="arrow-circle-right" @click="switchVoting(1)"/>
+    <font-awesome-icon icon="list" id="listBtn" @click="$emit('votingList')"/>
 </div>
 </template>
 
 <script>
-import {
-  BoxIcon,
-  CheckSquareIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ListIcon
-} from 'vue-feather-icons'
-
 export default {
   name: 'nav',
   data () {
     return {
+      wybornie: false,
       showMenu: false
     }
   },
@@ -35,11 +28,6 @@ export default {
     })
   },
   components: {
-    BoxIcon,
-    CheckSquareIcon,
-    ArrowLeftIcon,
-    ArrowRightIcon,
-    ListIcon
   },
   methods: {
     switchVoting (direction) {
@@ -61,15 +49,16 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.logo * {
+}
 .app-nav * {
   height: 10vmin;
   width: 10vmin;
   user-select: none;
-  cursor: pointer;
-  transform: scale(0.9);
 }
 .app-nav > * {
   color: var(--color-base);
+  cursor: pointer;
 }
 .app-nav > *:hover {
   color: white;

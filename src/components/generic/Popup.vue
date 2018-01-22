@@ -5,7 +5,7 @@
   <div class="popup-window">
     <div class="header">
       <slot name="header"></slot>
-      <x-icon @click="$emit('close')"></x-icon>
+      <font-awesome-icon icon="window-close" size="3x" @click="$emit('close')"/>
     </div>
     <div class="content">
       <slot name="content"></slot>
@@ -15,17 +15,12 @@
 </template>
 
 <script>
-import {
-  XIcon
-} from 'vue-feather-icons'
-
 export default {
   data () {
     return {
     }
   },
   components: {
-    XIcon
   },
   mounted () {
     document.addEventListener('keydown', (event) => {
@@ -74,8 +69,6 @@ export default {
   justify-content: space-between;
 }
 svg {
-  width: 7vh;
-  height: 7vh;
   cursor: pointer;
 }
 </style>
