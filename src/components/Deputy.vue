@@ -96,7 +96,7 @@ div {
 }
 
 .nieobecnosc {
-  fill: #111;
+  fill: black;
 }
 
 .wstrzymanie {
@@ -107,7 +107,7 @@ circle {
   stroke: none;
   stroke-width: 2;
   /*transition: 0.5s;*/
-  fill: black;
+  fill: #777;
 }
 
 /*circle:hover {

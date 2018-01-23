@@ -240,6 +240,7 @@ select {
 
 #scrollable-container {
   overflow-y: scroll;
+  background: #333;
 }
 
 #fold-button {

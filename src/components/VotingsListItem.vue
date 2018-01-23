@@ -72,7 +72,7 @@ export default {
   background-color: blue;
 }
 .tytul{
-  font-weight: 100;
+  font-weight: 400;
   /*font-size: 80%;*/
 }
 .kadencja {

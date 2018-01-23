@@ -78,12 +78,11 @@ export default {
 @import url(/static/Lato2OFLWeb/LatoLatin/latolatinfonts.css);
 
 #votings-list {
-
 }
 
 body {
   margin: 0;
-  font-family: 'LatoLatinWeb', sans-serif;
+  font-family: 'Lato', 'LatoLatinWeb', sans-serif;
   font-size: 2vmin;
   background: #444;
 }
@@ -106,7 +105,7 @@ a:hover {
   color: inherit;
 }
 
-a:active, svg:active{
+a:active{
   /* color: inherit; */
   outline: 2px solid black;
 }

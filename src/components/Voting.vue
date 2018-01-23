@@ -192,7 +192,7 @@ export default {
     margin: 2vmin 0;
     border-radius: 1vmin;
   }
-  #cp svg {
+  .project-data svg, .voting-data svg {
     margin-right: 0.5em;
   }
   .link > a {
@@ -250,9 +250,6 @@ export default {
     border-bottom: 1vmin solid black;
     filter: brightness(0.9);
   }
-  .vote-button svg {
-    margin: 0;
-  }
   .button-voted {
     filter: none;
     border-bottom: 0.3vmin solid black;
@@ -267,7 +264,8 @@ export default {
   }
 
   .vote-button svg {
-    transform: scale(2);
+    width: 5vmin;
+    height: 5vmin;
   }
 
   #deputies {
