@@ -17,11 +17,15 @@ export default {
     }
   },
   computed: {
+    currentVotingVote () {
+      return this.$store.state.userVotes[`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`]
+    },
     isMobile () {
       return this.$store.getters.isMobile
     },
     zgodnosc () {
-      return this.$store.state.userVotes[`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`] === this.singleDeputy.vote
+      let deputyVote = this.singleDeputy.vote === 'Za' ? 1 : this.singleDeputy.vote === 'Przeciw' ? -1 : 0
+      return this.currentVotingVote * deputyVote > 0
     },
     koloruj () {
       let result = ''
@@ -29,7 +33,7 @@ export default {
         result = 'wstrzymanie'
       } else if (this.singleDeputy.vote === 'Nieobecny') {
         result = 'nieobecnosc'
-      } else if (this.$store.state.userVotes[`${this.$route.params.kadencja}/${this.$route.params.posiedzenie}/${this.$route.params.glosowanie}`] === undefined) {} else {
+      } else if (this.currentVotingVote === undefined || this.currentVotingVote === 0) {} else {
         result = this.zgodnosc ? 'zgodny' : 'niezgodny'
       }
       // if (this.singleDeputy.group === 'PiS') {

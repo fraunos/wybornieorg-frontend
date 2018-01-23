@@ -31,7 +31,7 @@
           <div :class="['vote-button', 'green', {'button-voted': currentVotingVote > 0}]" @click="userVote(true)">
             <font-awesome-icon icon="thumbs-up"/>
           </div>
-          <div :class="['vote-button', 'grey', {'button-voted': currentVotingVote === undefined}]" @click="userVote(true)">
+          <div :class="['vote-button', 'grey', {'button-voted': currentVotingVote === undefined || currentVotingVote === 0}]" @click="userVote(null)">
             <font-awesome-icon icon="question"/>
           </div>
           <div :class="['vote-button', 'red', {'button-voted': currentVotingVote < 0}]" @click="userVote(false)">
@@ -84,11 +84,11 @@ export default {
     document.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowUp') {
         event.preventDefault()
-        this.userVote('Za')
+        this.userVote(true)
       }
       if (event.key === 'ArrowDown') {
         event.preventDefault()
-        this.userVote('Przeciw')
+        this.userVote(false)
       }
     })
   },

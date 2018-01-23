@@ -87,7 +87,8 @@ export default {
               niezgodne: new Set()
             }
           }
-          if (this.userVotes[numbers] === deputy.vote) {
+          let deputyVote = deputy.vote === 'Za' ? 1 : deputy.vote === 'Przeciw' ? -1 : 0
+          if (this.userVotes[numbers] === deputyVote) {
             temp.niezgodne.delete(numbers)
             temp.zgodne.add(numbers)
           } else {

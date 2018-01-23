@@ -14,7 +14,11 @@ export default new Vuex.Store({
   },
   mutations: {
     userVote: (state, props) => {
-      Vue.set(state.userVotes, props.numbers, props.vote)
+      if (props.vote === null) {
+        Vue.delete(state.userVotes, props.numbers)
+      } else {
+        Vue.set(state.userVotes, props.numbers, props.vote ? 1 : -1)
+      }
     },
     loadingUp (state) {
       state.loading++
@@ -26,6 +30,9 @@ export default new Vuex.Store({
       state.userData.displayHello = false
     },
     loadSavedData: (state, props) => {
+      for (let variable in props) {
+        props[variable] = props[variable] === 'Za' ? 1 : props[variable] === 'Przeciw' ? -1 : props[variable]
+      }
       state.userVotes = props
     },
     cacheVoting: (state, props) => {
