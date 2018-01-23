@@ -3,6 +3,7 @@
   <div class="social-links">
     <a target="_blank" href="https://discord.gg/M4xp9NZ"><font-awesome-icon :icon="['fab', 'discord']"/></a>
     <a target="_blank" href="https://trello.com/b/X1Jp1EXO/wybornieorg-nazwy-zwyczajowe-projekt%C3%B3w"><font-awesome-icon :icon="['fab', 'trello']"/></a>
+    <a target="_blank" href="https://trello.com/b/EEORaGl3/wybornieorg-rozw%C3%B3j"><font-awesome-icon :icon="['fab', 'trello']"/></a>
     <a target="_blank" href="https://www.facebook.com/wybornieorg"><font-awesome-icon :icon="['fab', 'facebook']"/></a>
     <a target="_blank" href="https://www.facebook.com/groups/766936056847305/"><font-awesome-icon :icon="['fab', 'facebook']"/></i></a>
     <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><font-awesome-icon :icon="['fab', 'github']"/></a>
