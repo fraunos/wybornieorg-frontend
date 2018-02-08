@@ -10,8 +10,7 @@
         <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><font-awesome-icon :icon="['fab', 'github']"/></a>
       </div>
     </div>
-    <!-- <router-link class="aplikacja" :to="{ name: 'voting', params: {} }">Przejdź do aplikacji!</router-link> -->
-    <a class="aplikacja" href="/glosowania">Przejdź do aplikacji!</a>
+    <router-link class="aplikacja" :to="{ name: 'voting', params: {} }">Przejdź do aplikacji!</router-link>
   </div>
   <video src="https://fraunos.keybase.pub/wybornieorg/wybornie.webm" width="100%" controls controlsList="nodownload">
   </video>
@@ -73,14 +72,8 @@
 import About from '@/components/About'
 
 export default {
-  data () {
-  },
-  created () {
-  },
   components: {
     About
-  },
-  methods: {
   }
 }
 </script>

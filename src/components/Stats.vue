@@ -4,7 +4,7 @@
   <p v-if='!Object.keys(this.userVotes).length'>Brak statystyk! Zagłosuj najpierw</p>
   <div v-else>
     <div class="export">
-      <a :href="'/wczytaj/' + this.userVotesEncoded">Zapisz swoje głosowania zachowując ten adres</a>
+      <router-link :to="{ name: 'loading', params: { dane: this.userVotesEncoded } }">Zapisz swoje głosowania zachowując ten adres</router-link>
     </div>
     <div class="stats">
     <stats-deputy v-if="doneLoading" v-for="(value, key, index) of deputiesStats" :deputy="value"></stats-deputy>
