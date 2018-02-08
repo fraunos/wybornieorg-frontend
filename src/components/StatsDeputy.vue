@@ -5,7 +5,7 @@
     <a target="_blank" :href="'https://encrypted.google.com/search?q=' + deputy[0].replace(' ', '+')">{{deputy[0]}}</a>
   </div>
   <div class="bar">
-    <div class="zgodne" :title="deputy[1].zgodne" :style="{ width: deputy[1].zgodnoscProcent + '%'}"></div>
+    <div class="zgodne" :title="JSON.stringify(deputy[1].zgodne)" :style="{ width: deputy[1].zgodnoscProcent + '%'}"></div>
     <div class="niezgodne" :title="JSON.stringify(deputy[1].niezgodne)" :style="{ width: (100 - deputy[1].zgodnoscProcent) + '%'}"></div>
   </div>
   <span>{{deputy[1].zgodne.size}}/{{deputy[1].zgodne.size + deputy[1].niezgodne.size}}, {{deputy[1].zgodnoscProcent}}%</span>
