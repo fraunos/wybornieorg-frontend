@@ -4,7 +4,8 @@
     Wybierz projekt z listy!
   </div>
     <div v-else id="cp" class="currentVoting">
-      <h1>Przegłosowane projekty<a class="offerName" target="_blank" :href="'mailto:michalwoloszyn+3buotfyq3fngqjkf5paj@boards.trello.com?subject=TUTAJ WPISZ PROPONOWANĄ NAZWĘ&body=nie kasuj tej linijki! http://wybornie.org' + $route.path"><font-awesome-icon icon="lightbulb"/> zaproponuj nazwę zwyczajową</a></h1>
+      <h1 v-if="currentVoting.nazwa">{{currentVoting.nazwa.nazwaZwyczajowa}}</h1>
+      <h2>Przegłosowane projekty<a class="offerName" target="_blank" :href="'mailto:michalwoloszyn+3buotfyq3fngqjkf5paj@boards.trello.com?subject=TUTAJ WPISZ PROPONOWANĄ NAZWĘ&body=nie kasuj tej linijki! http://wybornie.org' + $route.path"><font-awesome-icon icon="lightbulb"/> zaproponuj nazwę zwyczajową</a></h2>
         <div class="project-data" v-for="project in currentVoting.projects">
           <h3>#{{project.drukNr}}</h3>
           <h3>{{project.tytul}}</h3>
@@ -164,7 +165,10 @@ export default {
       let result = ''
       try {
         result = 'https://encrypted.google.com/search?q=' + tytul.replace(/ /g, '+').replace(/"/g, '') + '&tbm=nws'
-      } catch (e) {} finally {}
+      } catch (e) {}
+      if (this.currentVoting.nazwa) {
+        result = 'https://encrypted.google.com/search?q=' + this.currentVoting.nazwa.nazwaZwyczajowa
+      }
       return result
     }
   }
