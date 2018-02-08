@@ -1,10 +1,13 @@
 <template>
 <div class="app-nav">
-    <div :class="['logo']" id="logo" @click="$emit('ostronie')" @mouseover="wybornie = true" @mouseleave="wybornie = false"><font-awesome-icon icon="info" v-show="wybornie"/></div>
-    <font-awesome-icon icon="chart-bar" @click="$emit('staty')"/>
-    <font-awesome-icon icon="arrow-circle-left" @click="switchVoting(-1)"/>
-    <font-awesome-icon icon="arrow-circle-right" @click="switchVoting(1)"/>
-    <font-awesome-icon icon="list" id="listBtn" @click="$emit('votingList')"/>
+  <router-link :class="['logo']" :to="{ name: 'home' }"><font-awesome-icon icon="info" v-show="wybornie"/></router-link>
+  <!-- <div  id="logo" @click="$emit('ostronie')" @mouseover="wybornie = true" @mouseleave="wybornie = false"></div> -->
+  <font-awesome-icon icon="chart-bar" @click="$emit('staty')"/>
+  <font-awesome-icon icon="arrow-circle-left" @click="switchVoting(-1)"/>
+  <font-awesome-icon icon="arrow-circle-right" @click="switchVoting(1)"/>
+  <font-awesome-icon icon="bars" id="listBtn" @click="$emit('votingList')"/>
+  <router-link :to="{ name: 'loading', params: {dane: this.userVotes} }"><font-awesome-icon icon="save"/></router-link>
+  <!-- <a :href="'/wczytaj/' + this.userVotes"><font-awesome-icon icon="save"/></a> -->
 </div>
 </template>
 
@@ -27,7 +30,10 @@ export default {
       }
     })
   },
-  components: {
+  computed: {
+    userVotes () {
+      return window.btoa(JSON.stringify(this.$store.state.userVotes))
+    }
   },
   methods: {
     switchVoting (direction) {
