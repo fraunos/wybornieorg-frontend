@@ -4,9 +4,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    userData: {
-      displayHello: true
-    },
     userVotes: {},
     domain: 'http://wybornie.org',
     votingsCache: {},
@@ -25,9 +22,6 @@ export default new Vuex.Store({
     },
     loadingDown (state) {
       state.loading--
-    },
-    hideHello (state) {
-      state.userData.displayHello = false
     },
     loadSavedData: (state, props) => {
       for (let variable in props) {

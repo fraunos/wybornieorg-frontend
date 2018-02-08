@@ -2,20 +2,17 @@
   <div class="voting-menu">
     <div class="sort-filter-menu">
       <div>
-        <!-- <layers-icon /> -->
         <select v-model="kadencje">
          <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">{{item}}</option>
         </select>
       </div>
       <div>
-        <!-- <bar-chart-icon /> -->
         <select v-model="sortowanie">
           <option value="votingDate">Najnowsze</option>
           <option value="frekwencja">Frekwencja</option>
         </select>
       </div>
       <div class="filtrowanie-status">
-        <!-- <filter-icon /> -->
         <div>
           <input id="uchwalonoCB" type="checkbox" value="uchwalono" v-model="filtrowanieStatus">
           <label for="uchwalonoCB">Uchwalone</label>

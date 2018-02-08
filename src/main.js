@@ -12,7 +12,6 @@ import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import solid from '@fortawesome/fontawesome-free-solid'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-console.log(brands)
 
 fontawesome.library.add(solid)
 fontawesome.library.add(brands)
