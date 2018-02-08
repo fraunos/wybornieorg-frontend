@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div id="svg-container">
+        <div v-if="currentVoting.frekwencja" id="svg-container">
           <svg id="deputies-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              viewBox="0 0 220 130">
             <text text-anchor="middle" dominant-baseline="hanging" x="0" y="0" font-family="mono" font-weight="bold" font-size="10" stroke="none" fill="black">{{currentVoting.drukNr}}</text>
@@ -54,6 +54,9 @@
               <text  x='174' y='125' font-size="8" fill="red" font-weight="bold">Niezgodny</text>
             </g>
           </svg>
+        </div>
+        <div v-else>
+          <h2>Brak imiennych wyników głosowania!</h2>
         </div>
 
   </div>
