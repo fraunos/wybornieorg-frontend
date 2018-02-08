@@ -24,9 +24,6 @@ export default new Vuex.Store({
       state.loading--
     },
     loadSavedData: (state, props) => {
-      for (let variable in props) {
-        props[variable] = props[variable] === 'Za' ? 1 : props[variable] === 'Przeciw' ? -1 : props[variable]
-      }
       state.userVotes = props
     },
     cacheVoting: (state, props) => {
