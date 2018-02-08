@@ -4,7 +4,7 @@
     Wybierz projekt z listy!
   </div>
     <div v-else id="cp" class="currentVoting">
-      <h1>Przegłosowane projekty</h1>
+      <h1>Przegłosowane projekty<a class="offerName" target="_blank" :href="'mailto:michalwoloszyn+3buotfyq3fngqjkf5paj@boards.trello.com?subject=TUTAJ WPISZ PROPONOWANĄ NAZWĘ&body=nie kasuj tej linijki! http://wybornie.org' + $route.path"><font-awesome-icon icon="lightbulb"/> zaproponuj nazwę zwyczajową</a></h1>
         <div class="project-data" v-for="project in currentVoting.projects">
           <h3>#{{project.drukNr}}</h3>
           <h3>{{project.tytul}}</h3>
@@ -213,6 +213,9 @@ export default {
   .link a:hover {
     color: black;
   }
+  .offerName{
+    font-size: 75%;
+  }
   .voting-data p {
     font-weight: bold;
     font-size: 150%;
@@ -223,6 +226,8 @@ export default {
     padding-bottom: 0.5em;
     border-bottom: 0.1em solid #ddd;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
   }
   #button-container {
     margin: 5vh 0;
