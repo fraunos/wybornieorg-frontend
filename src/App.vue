@@ -1,59 +1,16 @@
 <template>
 <div id="app">
-  <app-nav @staty="showStats = true" @votingList="showList = !showList" @ostronie="showAbout = !showAbout"></app-nav>
-
-  <popup v-if="showHello" @close="showHello = false">
-    <h1 slot="header">Witaj!</h1>
-    <div slot="content">
-      <p>Znajdujesz się na stronie <a href="/">wybornie.org</a>! Jest to aplikacja poświęcona wyborom. Jeśli tu jesteś to za pewne zastanawiasz się na kogo zagłosować? Kto jest godny Twojego zaufania? Właśnie w tym postaram się Ci pomóc!</p>
-      <p>Dzięki tej aplikacji możesz głosować zupełnie jak posłowie. Wystarczy znaleźć interesujące Cię projekty ustaw i wybrać głos 'Za' lub 'Przeciw'. Następnie, po przejściu w zakładkę Statystyk program wyświetli wyniki - w kolejności - z którym z posłów
-        zgadzasz się najbardziej!</p>
-      <p>Powodzenia i rozsądnych wyborów!</p>
-      <h3>Wybornie!</h3>
-    </div>
-    </popup>
-
-    <popup v-if="showStats" @close="showStats = false">
-      <h1 slot="header">Statystyki</h1>
-      <stats slot="content"></stats>
-    </popup>
-    <popup v-if="showAbout" @close="showAbout = false">
-      <h1 slot="header">O stronie <a href="/">wybornie.org</a>!</h1>
-      <about slot="content"></about>
-    </popup>
-
-  <transition name="fade">
-    <div v-show="this.loading" id="loading-thing"></div>
-  </transition>
-  <transition name="fade">
-    <votings-list @hideList="showList = !showList" v-show="!this.isMobile || showList"></votings-list>
-  </transition>
-  <transition name="blink">
-    <router-view></router-view>
-  </transition>
-
+  <router-view></router-view>
 </div>
 </template>
 
 <script>
-import Popup from '@/components/generic/Popup'
-import AppFooter from '@/components/AppFooter'
-import Stats from '@/components/Stats'
-import About from '@/components/About'
-import Voting from '@/components/Voting'
-import VotingsList from '@/components/VotingsList'
-import AppNav from '@/components/AppNav'
+import MainApp from '@/components/MainApp'
 
 export default {
   name: 'app',
   components: {
-    Popup,
-    AppNav,
-    Stats,
-    About,
-    AppFooter,
-    Voting,
-    VotingsList
+    MainApp
   },
   data () {
     return {
@@ -77,34 +34,28 @@ export default {
 <style>
 @import url(/static/Lato2OFLWeb/LatoLatin/latolatinfonts.css);
 
-#votings-list {
-}
-
 body {
   margin: 0;
   font-family: 'Lato', 'LatoLatinWeb', sans-serif;
   font-size: 2vmin;
   background: #444;
 }
-
 #app {
   display: flex;
-  flex-direction: row;
-  /*height: 100vh;*/
-  /*width: 100vw;*/
+  /* flex-direction: row; */
+  justify-content: center;
+  /* height: 100vh; */
+  /* width: 100vw; */
 }
-
 a {
   text-decoration: none;
   font-weight: bold;
   outline: none;
   color: var(--color-base);
 }
-
 a:hover {
   color: inherit;
 }
-
 a:active{
   /* color: inherit; */
   outline: 2px solid black;
@@ -117,21 +68,6 @@ a:active{
   --color-red2: #870B1E;
   --color-purple: #D018E1;
   --color-blue: #0E6387;
-}
-
-#loading-thing{
-  position: fixed;
-  top: 15vmin;
-  left: calc(50vw - 5.5vmin);
-  z-index: 99;
-  height: 10vmin;
-  width: 10vmin;
-  border: 2vmin solid crimson;
-  border-left: 2vmin solid white;
-  border-bottom: 2vmin solid white;
-  border-radius: 100%;
-  animation: 1s rotate360 infinite ease-in-out;
-  box-shadow: white 0 0 5vmin 0vmin inset, white 0 0 5vmin 0;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -153,9 +89,6 @@ a:active{
 @media screen and (max-device-aspect-ratio: 1/1) {
   body{
     font-size: 3.5vmin;
-  }
-  #app{
-    flex-direction: column;
   }
   .list-hidden {
     visibility: hidden;

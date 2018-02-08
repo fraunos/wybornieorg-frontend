@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import MainApp from '@/components/MainApp'
+import Home from '@/components/Home'
 import Voting from '@/components/Voting'
 import NotFound from '@/components/NotFound'
 import Loading from '@/components/Loading'
@@ -10,25 +12,33 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/wczytaj/:dane',
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/wczytaj/:dane?',
       name: 'loading',
       component: Loading,
       props: true
     },
-    // {
-    //   path: '/',
-    //   redirect: '/glosowania/'
-    // },
-    {
-      path: '/glosowania/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?',
-      props: true,
-      redirect: '/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?'
-    },
     {
       path: '/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?',
-      name: 'voting',
-      component: Voting,
-      props: true
+      props: true,
+      redirect: '/glosowania/:kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?'
+    },
+    {
+      path: '/glosowania/',
+      children: [
+        {
+          path: ':kadencja(\\d+)?/:posiedzenie(\\d+)?/:glosowanie(\\d+)?',
+          name: 'voting',
+          component: Voting,
+          props: true
+        }
+      ],
+      name: 'main-app',
+      component: MainApp
     },
     {
       path: '*',
