@@ -1,6 +1,9 @@
 <template>
 <router-link :class="['voting-list-item', voting.status, {za: currentVotingVote>0, przeciw: currentVotingVote<0}]" :to="{ name: 'voting', params: { kadencja: voting.numbers.kadencja, posiedzenie: voting.numbers.posiedzenie, glosowanie: voting.numbers.glosowanie } }">
-  {{voting.nazwaZwyczajowa}}
+  <div v-if="voting.nazwa" class="nazwa-zwyczajowa">
+    {{voting.nazwa.nazwaZwyczajowa}}
+  </div>
+
   <div class="numery">
     <div class="kadencja">k{{voting.numbers.kadencja}}</div><div class="posiedzenie">p{{voting.numbers.posiedzenie}}</div><div class="glosowanie">g{{voting.numbers.glosowanie}}</div>
   </div><br>
@@ -87,6 +90,9 @@ export default {
 }
 .uchwalono .status{
   background-color: forestgreen;
+}
+.nazwa-zwyczajowa {
+  font-variant: small-caps;
 }
 
 .odrzucony {
