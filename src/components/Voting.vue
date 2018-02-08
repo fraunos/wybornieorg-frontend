@@ -11,7 +11,7 @@
           <p>{{project.opis}}</p>
           <!-- <p>{{project.deputies.length}}</p> -->
           <div class="link"><a target="_blank" :href="project.przebiegLink"><font-awesome-icon icon="bolt"/>przebieg projektu</a></div>
-          <div class="link"><a target="_blank" :href="project.trescLink"><font-awesome-icon icon="file-alt"/>treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'" title="Działa wyłącznie na Mozilla Firefox"><font-awesome-icon icon="file-pdf"/>(uzasadnienie*)</a></div>
+          <div class="link"><a target="_blank" :href="project.trescLink"><font-awesome-icon icon="file-alt"/>treść projektu</a> <a target="_blank" :href="project.drukPdfLink + '#search=UZASADNIENIE'" title="Działa wyłącznie na Mozilla Firefox"><font-awesome-icon icon="file-pdf"/>uzasadnienie</a></div>
           <div class="link"><a target="_blank" :href="project.isapLink"><font-awesome-icon icon="file"/>ISAP tekst ustawy</a></div>
           <div class="link" v-if="project.komisje"><a target="_blank" :href="project.komisje"><font-awesome-icon icon="comments"/>Komisje i podkomisje</a></div>
           <div class="link"><a target="_blank" :href="mediaLink(project.tytul)"><font-awesome-icon icon="tv"/>media o projekcie</a></div>

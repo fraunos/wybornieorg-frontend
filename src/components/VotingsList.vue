@@ -45,9 +45,9 @@
           <label for="przeciw">Przeciw</label>
         </div>
       </div> -->
-      <!-- <div>
-        Liczba projektów: {{votingsProcessed.length}}
-      </div> -->
+      <div>
+        Wyników: {{votingsProcessed.length}}
+      </div>
     </div>
 
     <div id="scrollable-container">
