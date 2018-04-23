@@ -13,6 +13,12 @@
     </div>
     <router-link class="aplikacja" :to="{ name: 'voting', params: {} }">Przejdź do aplikacji!</router-link>
   </div>
+  <div class="info gradient">
+    <div class="info-inside">
+      <font-awesome-icon :icon="['fas', 'wrench']"/>
+      Strona jest w budowie, jeśli jest błąd lub masz pomysł jak ją ulepszyć - <a href="mailto:michalwoloszyn+qn4cepjbzdv0zj3zg7yf@boards.trello.com">skontaktuj się</a>!
+    </div>
+  </div>
   <video src="https://fraunos.keybase.pub/wybornieorg/wybornie.webm" controls controlsList="nodownload"></video>
 
   <div class="">
@@ -131,6 +137,26 @@ video{
 .social-links {
   display: flex;
   justify-content: space-between;
+}
+.info{
+  font-weight: bold;
+  text-align: center;
+  padding: 5vmin;
+}
+.info-inside{
+  background: hsl(50, 100%, 50%);
+  padding: 1em;
+  border-radius: 1vmin;
+}
+.gradient {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      hsl(50, 100%, 50%),
+      hsl(50, 100%, 50%) 10px,
+      hsl(0, 0%, 20%) 10px,
+      hsl(0, 0%, 20%) 20px /* determines size */
+    );
 }
 .aplikacja {
   display: flex;
