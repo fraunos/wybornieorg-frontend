@@ -41,13 +41,13 @@
       <li>kompatybilność - działa na wszystkich urządzeniach</li>
     </ul>
   </div>
-  <!-- <div class="support">
-    <h2>Serwis wspierają</h2>
+  <div class="support">
+    <h2>Partnerzy</h2>
     <div class="supporters brands">
       <a href="https://mamprawowiedziec.pl/"><img src="https://mamprawowiedziec.pl/elementy/mamprawowiedziec-540.png" alt="MamPrawoWiedziec.pl"></a>
       <a href="https://kodujdlapolski.pl/"><img src="https://kodujdlapolski.pl/wp-content/themes/kdp/images/logo.png" alt="kodujdlapolski.pl"></a>
     </div>
-  </div> -->
+  </div>
   <div class="brands">
     <h2>Ta aplikacja nigdy nie powstałaby, gdyby nie twórcy wolnego oprogramowania</h2>
 
