@@ -12,8 +12,8 @@
     </div>
     <router-link class="aplikacja" :to="{ name: 'voting', params: {} }">Przejdź do aplikacji!</router-link>
   </div>
-  <video src="https://fraunos.keybase.pub/wybornieorg/wybornie.webm" width="100%" controls controlsList="nodownload">
-  </video>
+  <video src="https://fraunos.keybase.pub/wybornieorg/wybornie.webm" controls controlsList="nodownload"></video>
+
   <div class="">
     <h1>Witaj!</h1>
     <p>Znajdujesz się na stronie <a href="/">wybornie.org</a>! Jest to aplikacja poświęcona wyborom. Jeśli tu jesteś to za pewne zastanawiasz się na kogo zagłosować? Kto jest godny Twojego zaufania? Właśnie w tym postaram się Tobie pomóc!</p>
@@ -61,7 +61,7 @@
     </a>
     <a target="-_blank" href="http://www.latofonts.com/">Lato</a>
   </div>
-  <div class="">
+  <div class="brands">
     <h2>Media o projekcie</h2>
     <a href="http://antyweb.pl/wybornie-org-glosuj-na-projekty-ustaw/"><img src="https://static01.helion.com.pl/helion/img/rozne/patroni/PODSTA/AW_logo.jpg" alt=""></a>
   </div>
@@ -88,12 +88,20 @@ export default {
   width: 100vmin;
   padding: 5vmin;
 }
+.home > div {
+  box-shadow: hsla(0, 0%, 0%, .1) 0 1vmin 2vmin 0;
+  margin: 2vmin;
+  padding: 2vmin;
+  border-radius: 1vmin;
+}
 .logo {
   display: flex;
   flex-direction: column;
   width: auto;
   align-self: flex-start;
-  font-size: 125%;
+}
+.logo > * {
+  font-weight: 900;
 }
 .logo > a {
   display: flex;
@@ -103,20 +111,21 @@ export default {
   margin: 0 .25em .25em 0;
 }
 video{
-  margin: 5vmin;
-  border-radius: 2vmin;
+  width: 100%;
+  border-radius: 1vmin;
+  box-shadow: hsl(0, 0%, 90%) 0 1vmin 2vmin 0;
 }
 .header{
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  font-size: 200%;
   justify-content: space-around;
-  border-radius: 2vmin;
-  background: #444;
+  background: hsl(0, 0%, 25%);
+  font-size: 200%;
+  color: white;
 }
-.header > * {
-  margin: 3vmin;
+.header > *{
+  margin: 1vmin;
 }
 .social-links {
   display: flex;
@@ -128,13 +137,11 @@ video{
   color: white;
   background: var(--color-base);
   padding: .5em;
-  border-radius: 2vmin;
+  border-radius: 1vmin;
 }
-a:hover{
-  color: white;
-}
-.aplikacja:hover{
-  background: black;
+.aplikacja:hover {
+  background: white;
+  color: var(--color-base);
 }
 div{
   width: 100%;
@@ -148,7 +155,6 @@ img{
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  padding: 2vmin;
 }
 .brands img{
   margin: 2vmin;

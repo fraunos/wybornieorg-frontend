@@ -217,9 +217,6 @@ export default {
     padding: .2em .5em;
     text-transform: uppercase;
   }
-  .link a:hover {
-    color: black;
-  }
   .offerName{
     font-size: 75%;
   }
@@ -300,7 +297,7 @@ export default {
 
   @media screen and (max-device-aspect-ratio: 1/1) {
     .voting{
-      width: calc(100vw - 10vmin);
+      width: 100vw;
     }
     svg#deputies-graph {
       height: 55vmin;
@@ -308,7 +305,7 @@ export default {
   }
   @media screen and (min-device-aspect-ratio: 1/1) {
     .voting{
-      height: calc(100vh - 10vmin);
+      height: 100vh;
       overflow-y: scroll;
     }
   }

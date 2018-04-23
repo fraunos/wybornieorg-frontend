@@ -40,25 +40,36 @@ body {
   font-size: 2vmin;
   background: #444;
 }
+div {
+  box-sizing: border-box;
+}
 #app {
   display: flex;
-  /* flex-direction: row; */
   justify-content: center;
-  /* height: 100vh; */
-  /* width: 100vw; */
 }
 a {
   text-decoration: none;
   font-weight: bold;
   outline: none;
   color: var(--color-base);
+  transition: .2s;
 }
 a:hover {
-  color: inherit;
+  color: white;
+  filter: drop-shadow(0 0 0.2em var(--color-base)) drop-shadow(0 0 0.1em var(--color-base));
 }
 a:active{
-  /* color: inherit; */
-  outline: 2px solid black;
+  color: inherit;
+}
+.gradient {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      yellow,
+      yellow 10px,
+      red 10px,
+      red 20px /* determines size */
+    );
 }
 :root {
   --color-base: #D4213D;

@@ -112,7 +112,6 @@ export default {
   padding: 2vmin;
   margin-bottom: 1vmin;
   border-radius: 1vmin;
-  /*border: 0.2vmin black solid;*/
 }
 .voting-list-item > * {
   margin-right: 1em;
@@ -123,29 +122,16 @@ export default {
   justify-content: space-between;
   margin-top: 1vmin;
 }
-.info > *{
-  /*float: left;*/
-}
-.status{
-}
-
 a {
   color: black;
-}
-
-a:hover {
-  /*color: var(--color-base);*/
-  /*background-color: orange;*/
 }
 .za {
   background-color: lightgreen;
 }
-
 .przeciw {
   background-color: lightpink;
 }
 a.router-link-exact-active {
   box-shadow: 0 0 0 1vmin var(--color-base) inset;
-  /* transform: matrix3d(1.1, 1.1, 1.1, 1.1); */
 }
 </style>

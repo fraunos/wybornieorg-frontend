@@ -49,6 +49,8 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   background: #222;
+  min-height: 10vmin;
+  min-width: 10vmin;
 }
 .logo {
   background-image: url("/static/img/icons/logo.svg");

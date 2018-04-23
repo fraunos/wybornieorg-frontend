@@ -220,32 +220,6 @@ select {
   overflow-y: scroll;
   background: #333;
 }
-
-#fold-button {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 7vmin solid transparent;
-  border-bottom: 7vmin solid transparent;
-
-  border-right: 7vmin solid var(--color-base);
-  /*border-left:5vmin solid var(--color-base);*/
-  /*background: var(--color-base);*/
-  top: calc(50vh - 3.5vmin);
-  left: calc(100vmin + 1vmin);
-
-  /*border-radius: 100%;*/
-  opacity: 0.7;
-  transition: opacity 0.5s;
-  cursor: pointer;
-}
-
-#fold-button:hover {
-  opacity: 1;
-}
-.strzalka{
-  transition: 1s;
-}
 .error{
   color: red;
   transition: none;
