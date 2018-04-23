@@ -72,6 +72,11 @@
     <h2>Media o projekcie</h2>
     <a href="http://antyweb.pl/wybornie-org-glosuj-na-projekty-ustaw/"><img src="https://static01.helion.com.pl/helion/img/rozne/patroni/PODSTA/AW_logo.jpg" alt=""></a>
   </div>
+  <div class="donation">
+  <font-awesome-icon :icon="['fas', 'heart']"/>
+  <h3>Serwis wybornie.org jest udostępniany <i>pro bono</i>, na zawsze za darmo. Możesz wesprzeć projekt wpłacając drobną kwotę na podany numer konta:</h3>
+  Michał Wołoszyn, tytułem: wybornie, 30 1160 2202 0000 0002 9120 5807
+</div>
 </div>
 </template>
 
@@ -185,5 +190,12 @@ img{
 }
 .brands img{
   margin: 2vmin;
+}
+.donation{
+  background: var(--color-base);
+  color: white;
+  box-sizing: border-box;
+  padding: 3em;
+  text-align: center;
 }
 </style>
