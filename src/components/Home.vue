@@ -4,10 +4,11 @@
     <div class="logo">
       <a href="/"><img src="/static/img/icons/logo.svg" alt=""> wybornie.org</a>
       <div class="social-links">
-        <a target="_blank" href="https://discord.gg/M4xp9NZ"><font-awesome-icon :icon="['fab', 'discord']"/></a>
-        <a target="_blank" href="https://trello.com/b/EEORaGl3/wybornieorg-rozw%C3%B3j"><font-awesome-icon :icon="['fab', 'trello']"/></a>
         <a target="_blank" href="https://www.facebook.com/wybornieorg"><font-awesome-icon :icon="['fab', 'facebook']"/></a>
-        <a target="_blank" href="https://github.com/fraunos/wybornieorg-frontend"><font-awesome-icon :icon="['fab', 'github']"/></a>
+        <a target="_blank" href="https://github.com/wybornieorg"><font-awesome-icon :icon="['fab', 'github']"/></a>
+        <a target="_blank" href="https://trello.com/wybornieorg"><font-awesome-icon :icon="['fab', 'trello']"/></a>
+        <a target="_blank" href="https://join.slack.com/t/wybornieorg/shared_invite/enQtMzUyNDc2NjY3NjcwLTIyY2FmMGVlMzY3YmQyOGNmMzFjMjA0NGM4YjllMGNiZDY4YWM3Mzg4NmEyYjI1YjI0ZGIwODkxM2Y1ZWJmNzE"><font-awesome-icon :icon="['fab', 'slack']"/></a>
+        <a target="_blank" href="https://discord.gg/M4xp9NZ"><font-awesome-icon :icon="['fab', 'discord']"/></a>
       </div>
     </div>
     <router-link class="aplikacja" :to="{ name: 'voting', params: {} }">Przejdź do aplikacji!</router-link>
