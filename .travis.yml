@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- '9'
+cache:
+  directories:
+  - node_modules
+install:
+- "./.travis/install.sh"
+script:
+- "./.travis/run.sh"
+deploy:
+  - provider: pages
+    repo: wybornieorg/wybornieorg.github.io
+    fqdn: wybornie.org
+    skip-cleanup: true
+    keep-history: false
+    target-branch: master
+    local-dir: dist/
+    github-token: $GITHUB_TOKEN
+    on:
+      branch: master
