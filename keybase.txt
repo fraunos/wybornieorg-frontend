@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/fraunos
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://wybornie.org
+  * I am fraunos (https://keybase.io/fraunos) on keybase.
+  * I have a public key ASCaJyjQujP9AhsKsoNAHyXM-nVcq6xnn4hHxJFPDN4Cbgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01018128ae11ff77781a98282e07d5d8bf59485168bae8d31c3acdc5b93e53a9f4d30a",
+      "host": "keybase.io",
+      "kid": "01209a2728d0ba33fd021b0ab283401f25ccfa755cabac679f8847c4914f0cde026e0a",
+      "uid": "a685a10219012d28c998029aaf6cef19",
+      "username": "fraunos"
+    },
+    "merkle_root": {
+      "ctime": 1513947872,
+      "hash": "c8a2b37df3420a2bac300b623f0d71236e4946e7f047d1236acce7f6d03b521ea2e2db3ffa725bd9efbf865532ac925ea77eb9bbb793b9acf75416e2e99e3461",
+      "hash_meta": "5451879bb0a9dc3ce903b42cca7df68ef78e3bcfb8d44d6b346d60454f834d49",
+      "seqno": 1849525
+    },
+    "service": {
+      "hostname": "wybornie.org",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.38"
+  },
+  "ctime": 1513947934,
+  "expire_in": 504576000,
+  "prev": "f97215d84aee01fa6e9f61aae4d3fb9129b4617b103e5d2f432a5feb9e0b9670",
+  "seqno": 15,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgmico0Loz/QIbCrKDQB8lzPp1XKusZ5+IR8SRTwzeAm4Kp3BheWxvYWTFA0N7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxODEyOGFlMTFmZjc3NzgxYTk4MjgyZTA3ZDVkOGJmNTk0ODUxNjhiYWU4ZDMxYzNhY2RjNWI5M2U1M2E5ZjRkMzBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwOWEyNzI4ZDBiYTMzZmQwMjFiMGFiMjgzNDAxZjI1Y2NmYTc1NWNhYmFjNjc5Zjg4NDdjNDkxNGYwY2RlMDI2ZTBhIiwidWlkIjoiYTY4NWExMDIxOTAxMmQyOGM5OTgwMjlhYWY2Y2VmMTkiLCJ1c2VybmFtZSI6ImZyYXVub3MifSwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE1MTM5NDc4NzIsImhhc2giOiJjOGEyYjM3ZGYzNDIwYTJiYWMzMDBiNjIzZjBkNzEyMzZlNDk0NmU3ZjA0N2QxMjM2YWNjZTdmNmQwM2I1MjFlYTJlMmRiM2ZmYTcyNWJkOWVmYmY4NjU1MzJhYzkyNWVhNzdlYjliYmI3OTNiOWFjZjc1NDE2ZTJlOTllMzQ2MSIsImhhc2hfbWV0YSI6IjU0NTE4NzliYjBhOWRjM2NlOTAzYjQyY2NhN2RmNjhlZjc4ZTNiY2ZiOGQ0NGQ2YjM0NmQ2MDQ1NGY4MzRkNDkiLCJzZXFubyI6MTg0OTUyNX0sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJ3eWJvcm5pZS5vcmciLCJwcm90b2NvbCI6Imh0dHA6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjM4In0sImN0aW1lIjoxNTEzOTQ3OTM0LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwicHJldiI6ImY5NzIxNWQ4NGFlZTAxZmE2ZTlmNjFhYWU0ZDNmYjkxMjliNDYxN2IxMDNlNWQyZjQzMmE1ZmViOWUwYjk2NzAiLCJzZXFubyI6MTUsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RA7KIkLOFuZh3HyIMCcTCo+PgULt5JWn1dPCfXfFWFxwCg3FX3XFlEcG+kOIf9fa3rZ4pZOHgb+1t5N/jfiqllCqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIK5sMvoDErp9aNx2p6jBEXWq+VHAnKpLIOZFdF82f8qao3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/fraunos
+
+==================================================================

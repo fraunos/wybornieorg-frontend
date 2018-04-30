@@ -98,6 +98,15 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
+    // copy keybase proof
+    new CopyWebpackPlugin([
+      {
+        from: 'keybase.txt',
+        to: console.log(config.build.assetsRoot),
+        toType: 'file',
+        context: '.'
+      }
+    ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({
       cacheId: 'test',
