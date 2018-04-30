@@ -2,7 +2,7 @@
 <g>
   <title v-if="!isMobile" class="tooltip">{{i+1}}. {{singleDeputy.name}} {{singleDeputy.vote}} {{singleDeputy.group}}</title>
   <circle :cx='cx' :cy='cy' :r="dotSize" :class="koloruj" :id="i"></circle>
-  <text v-if="!isMobile" :x="cx - dotSize * 0.44" :y="cy + dotSize * 0.5" font-family="mono" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
+  <text v-if="!isMobile" :x="cx" :y="cy" font-family="mono" :font-size="dotSize * 1.4" stroke="none" fill="white">{{singleDeputy.name[0]}}</text>
 </g>
 </template>
 
@@ -70,7 +70,10 @@ export default {
 div {
   width: 100px;
 }
-
+text {
+  dominant-baseline: central;
+  text-anchor: middle;
+}
 .pis {
   stroke: firebrick;
 }
