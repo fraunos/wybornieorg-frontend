@@ -107,6 +107,15 @@ const webpackConfig = merge(baseWebpackConfig, {
         context: '.'
       }
     ]),
+    // copy 404
+    new CopyWebpackPlugin([
+      {
+        from: '404.html',
+        to: console.log(config.build.assetsRoot),
+        toType: 'file',
+        context: '.'
+      }
+    ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({
       cacheId: 'test',

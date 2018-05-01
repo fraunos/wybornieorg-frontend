@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>wybornie.org</title>
+  </head>
+  <body>
+    <img src="/static/img/logo.png" alt="">
+  </body>
+  <script type="text/javascript">
+    console.log(window.location);
+    setTimeout(()=>{
+      window.location.href = window.location.href.replace('org/', 'org/#/')
+    },1000)
+
+  </script>
+  <style media="screen">
+    html{
+      height: 100%;
+    }
+    body {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  </style>
+</html>
