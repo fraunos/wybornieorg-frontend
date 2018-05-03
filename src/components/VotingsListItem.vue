@@ -4,24 +4,24 @@
     {{voting.nazwa.nazwaZwyczajowa}}
   </div>
 
-  <div class="numery">
-    <div class="kadencja">k{{voting.numbers.kadencja}}</div><div class="posiedzenie">p{{voting.numbers.posiedzenie}}</div><div class="glosowanie">g{{voting.numbers.glosowanie}}</div>
-  </div><br>
   <div v-if="voting.projects.length > 1" class="">
     Rozpatrywano wspólnie
   </div>
   <div class="projekty" v-for="project in voting.projects">
-    <div class="numery" >
+    <div v-tooltip="'numer druku'" class="numery" >
       <div class="drukNr">#{{project.drukNr}}</div>
     </div>
-    <div v-if="project.prawoUE" class="ue">
+    <div v-tooltip="'wprowadza prawo Unii Europejskiej'" v-if="project.prawoUE" class="ue">
       EU
     </div>
     <div class="tytul">{{project.tytul}}</div>
   </div>
   <div class="info">
-    <div class="frekwencja" :style="{backgroundColor: 'teal'}">f: {{Math.floor(voting.frekwencja * 100)}}%</div>
-    <div class="status">{{voting.status}} {{moment(voting.votingDate).calendar().toLowerCase()}}</div>
+    <div v-tooltip="'kadencja, posiedzenie, głosowanie'" class="numery">
+      <div class="kadencja">k{{voting.numbers.kadencja}}</div><div class="posiedzenie">p{{voting.numbers.posiedzenie}}</div><div class="glosowanie">g{{voting.numbers.glosowanie}}</div>
+    </div>
+    <div v-tooltip="'frekwencja'" class="frekwencja">f: {{Math.floor(voting.frekwencja * 100)}}%</div>
+    <div v-tooltip="'data głosowania'" class="status">{{voting.status}} {{moment(voting.votingDate).calendar().toLowerCase()}}</div>
   </div>
 </router-link>
 </template>
@@ -70,26 +70,26 @@ export default {
 }
 .tytul{
   font-weight: 400;
-  /*font-size: 80%;*/
+  /*font-size: 70%;*/
 }
 .kadencja {
   /*border-top-left-radius: 5vmin;*/
-  background-color: yellow;
+  background-color: hsla(60, 100%, 70%, 1);
 }
 .posiedzenie {
-  background-color: orange;
+  background-color: hsla(39, 100%, 70%, 1);
 }
 .glosowanie {
-  background-color: red;
+  background-color: hsla(0, 100%, 70%, 1);
 }
 .drukNr {
-  background-color: lightskyblue;
+  background-color: hsla(240, 100%, 80%, 1);
 }
 .uchwalono {
   border-right: 1.75vmin solid forestgreen;
 }
 .uchwalono .status{
-  background-color: forestgreen;
+  background-color: hsla(120, 50%, 70%, 1);
 }
 .nazwa-zwyczajowa {
   font-variant: small-caps;
@@ -99,13 +99,15 @@ export default {
   border-right: 1.75vmin solid red;
 }
 .odrzucony .status{
-  background-color: crimson;
+  background-color: hsla(348, 50%, 70%, 1);
 }
 .status, .frekwencja{
   font-variant: small-caps;
   padding: 0 0.5em;
   border-radius: 1vmin;
-  color: white;
+}
+.frekwencja {
+  background-color: hsla(180, 50%, 70%, 1);
 }
 .voting-list-item {
   background: #eee;

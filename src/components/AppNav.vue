@@ -1,13 +1,26 @@
 <template>
 <div class="app-nav">
-  <router-link :class="['logo']" :to="{ name: 'home' }"><font-awesome-icon icon="info" v-show="wybornie"/></router-link>
+  <div>
+    <!--  -->
+    <router-link class="logo" :to="{ name: 'home' }"><img src="/static/img/icons/logo.svg" alt="wybornie"></router-link>
+  </div>
+
   <!-- <div  id="logo" @click="$emit('ostronie')" @mouseover="wybornie = true" @mouseleave="wybornie = false"></div> -->
-  <font-awesome-icon icon="chart-bar" @click="$emit('staty')"/>
-  <font-awesome-icon icon="arrow-circle-left" @click="switchVoting(-1)"/>
-  <font-awesome-icon icon="arrow-circle-right" @click="switchVoting(1)"/>
-  <font-awesome-icon icon="bars" id="listBtn" @click="$emit('votingList')"/>
-  <router-link :to="{ name: 'loading', params: {dane: this.userVotes} }"><font-awesome-icon icon="save"/></router-link>
-  <!-- <a :href="'/wczytaj/' + this.userVotes"><font-awesome-icon icon="save"/></a> -->
+  <div class="glow">
+    <font-awesome-icon v-tooltip="'Statystyki'" icon="chart-bar" @click="$emit('staty')"/>
+  </div>
+  <div class="glow">
+    <font-awesome-icon v-tooltip="'Poprzednie głosowanie'" icon="arrow-circle-left" @click="switchVoting(-1)"/>
+  </div>
+  <div class="glow">
+    <font-awesome-icon v-tooltip="'Następne głosowanie'" icon="arrow-circle-right" @click="switchVoting(1)"/>
+  </div>
+  <div id="listBtn" class="glow">
+    <font-awesome-icon icon="bars" @click="$emit('votingList')"/>
+  </div>
+  <div>
+    <router-link :to="{ name: 'loading', params: {dane: this.userVotes} }"><font-awesome-icon v-tooltip="'Zapisz swoje głosy'" icon="save"/></router-link>
+  </div>
 </div>
 </template>
 
@@ -16,8 +29,6 @@ export default {
   name: 'nav',
   data () {
     return {
-      wybornie: false,
-      showMenu: false
     }
   },
   mounted () {
@@ -50,27 +61,30 @@ export default {
   justify-content: space-around;
   background: #222;
   min-height: 10vmin;
-  min-width: 10vmin;
 }
 .logo {
-  background-image: url("/static/img/icons/logo.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.logo * {
-}
-.app-nav * {
   height: 10vmin;
   width: 10vmin;
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+.app-nav * {
   user-select: none;
 }
-.app-nav > * {
-  color: var(--color-base);
+.app-nav > div {
+  height: 10vmin;
+  width: 10vmin;
   cursor: pointer;
+  padding: 1vmin;
+  box-sizing: border-box;
 }
-.app-nav > *:hover {
-  color: white;
+.app-nav svg {
+  height: 8vmin;
+  width: 8vmin;
 }
+
 #listBtn{
   display: none;
 }

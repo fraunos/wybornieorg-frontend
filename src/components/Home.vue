@@ -1,22 +1,21 @@
 <template>
 <div class="home">
   <div class="header">
-    <div class="logo">
+    <div class="logo center">
       <a href="/"><img src="/static/img/icons/logo.svg" alt=""> wybornie.org</a>
       <div class="social-links">
-        <a target="_blank" href="https://www.facebook.com/wybornieorg"><font-awesome-icon :icon="['fab', 'facebook']"/></a>
-        <a target="_blank" href="https://github.com/wybornieorg"><font-awesome-icon :icon="['fab', 'github']"/></a>
-        <a target="_blank" href="https://trello.com/wybornieorg"><font-awesome-icon :icon="['fab', 'trello']"/></a>
-        <a target="_blank" href="https://join.slack.com/t/wybornieorg/shared_invite/enQtMzUyNDc2NjY3NjcwLTIyY2FmMGVlMzY3YmQyOGNmMzFjMjA0NGM4YjllMGNiZDY4YWM3Mzg4NmEyYjI1YjI0ZGIwODkxM2Y1ZWJmNzE"><font-awesome-icon :icon="['fab', 'slack']"/></a>
-        <a target="_blank" href="https://discord.gg/M4xp9NZ"><font-awesome-icon :icon="['fab', 'discord']"/></a>
+        <a v-tooltip.bottom="'Facebook'" target="_blank" href="https://www.facebook.com/wybornieorg"><font-awesome-icon :icon="['fab', 'facebook']"/></a>
+        <a v-tooltip.bottom="'Github'" target="_blank" href="https://github.com/wybornieorg"><font-awesome-icon :icon="['fab', 'github']"/></a>
+        <a v-tooltip.bottom="'Trello'" target="_blank" href="https://trello.com/wybornieorg"><font-awesome-icon :icon="['fab', 'trello']"/></a>
+        <a v-tooltip.bottom="'Slack'" target="_blank" href="https://join.slack.com/t/wybornieorg/shared_invite/enQtMzUyNDc2NjY3NjcwLTIyY2FmMGVlMzY3YmQyOGNmMzFjMjA0NGM4YjllMGNiZDY4YWM3Mzg4NmEyYjI1YjI0ZGIwODkxM2Y1ZWJmNzE"><font-awesome-icon :icon="['fab', 'slack']"/></a>
+        <a  v-tooltip.bottom="'Discord'" target="_blank" href="https://discord.gg/M4xp9NZ"><font-awesome-icon :icon="['fab', 'discord']"/></a>
       </div>
     </div>
     <router-link class="aplikacja" :to="{ name: 'voting', params: {} }">Przejdź do aplikacji!</router-link>
   </div>
   <div class="info gradient">
     <div class="info-inside">
-      <font-awesome-icon :icon="['fas', 'wrench']"/>
-      Strona jest w budowie, jeśli jest błąd lub masz pomysł jak ją ulepszyć - <a href="mailto:michalwoloszyn+qn4cepjbzdv0zj3zg7yf@boards.trello.com">skontaktuj się</a>!
+      <font-awesome-icon :icon="['fas', 'wrench']"/>Strona jest w budowie, jeśli jest błąd lub masz pomysł jak ją ulepszyć - <a href="mailto:michalwoloszyn+qn4cepjbzdv0zj3zg7yf@boards.trello.com">skontaktuj się</a>!
     </div>
   </div>
   <video src="https://fraunos.keybase.pub/wybornieorg/wybornie.webm" controls controlsList="nodownload"></video>
@@ -27,7 +26,7 @@
     <p>Dzięki tej aplikacji możesz głosować zupełnie jak posłowie. Wystarczy znaleźć interesujące Cię projekty ustaw i wybrać głos 'Za' lub 'Przeciw'. Następnie, po przejściu w zakładkę „Statystyki” program wyświetli wyniki - w kolejności - z którym z posłów
       zgadzasz się najbardziej!</p>
     <p>Powodzenia i rozsądnych wyborów!</p>
-    <h3>Wybornie!</h3>
+    <h3>Wybornie! Twój wybór!</h3>
   </div>
   <!-- <router-link class="aplikacja" :to="{ name: 'main-app' }"><img src="/static/img/icons/logo.svg" alt="">Przejdź do aplikacji!</router-link> -->
 
@@ -51,29 +50,29 @@
   <div class="brands">
     <h2>Ta aplikacja nigdy nie powstałaby, gdyby nie twórcy wolnego oprogramowania</h2>
 
-    <a target="-_blank" href="https://distrowatch.com/">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Classic_flat_look_v1.1.svg" alt="">
+    <a target="_blank" href="https://distrowatch.com/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Classic_flat_look_v1.1.svg" alt="Linux">
     </a>
-    <a target="-_blank" href="https://atom.io/">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/1118px-Atom_editor_logo.svg.png" alt="">
+    <a target="_blank" href="https://atom.io/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/1118px-Atom_editor_logo.svg.png" alt="Atom Editor">
     </a>
-    <a target="-_blank" href="https://vuejs.org/">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png" alt="">
+    <a target="_blank" href="https://vuejs.org/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png" alt="Vue.js">
     </a>
-    <a target="-_blank" href="https://nodejs.org/">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="">
+    <a target="_blank" href="https://nodejs.org/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
     </a>
-    <a target="-_blank" href="https://www.postgresql.org/">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="">
+    <a target="_blank" href="https://www.postgresql.org/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL">
     </a>
-    <a target="-_blank" href="http://www.latofonts.com/">Lato</a>
+    <a target="_blank" href="http://www.latofonts.com/">Lato</a>
   </div>
   <div class="brands">
     <h2>Media o projekcie</h2>
     <a href="http://antyweb.pl/wybornie-org-glosuj-na-projekty-ustaw/"><img src="https://static01.helion.com.pl/helion/img/rozne/patroni/PODSTA/AW_logo.jpg" alt=""></a>
   </div>
   <div class="donation">
-  <font-awesome-icon :icon="['fas', 'heart']"/>
+  <font-awesome-icon class="heart" :icon="['fas', 'heart']"/>
   <h3>Serwis wybornie.org jest udostępniany <i>pro bono</i>, na zawsze za darmo. Możesz wesprzeć projekt wpłacając drobną kwotę na podany numer konta:</h3>
   Michał Wołoszyn, tytułem: wybornie, 30 1160 2202 0000 0002 9120 5807
 </div>
@@ -197,5 +196,8 @@ img{
   box-sizing: border-box;
   padding: 3em;
   text-align: center;
+}
+.heart{
+  stroke: white;
 }
 </style>

@@ -1,40 +1,122 @@
 <template>
   <div class="voting-menu">
     <div class="sort-filter-menu">
-      <div>
-        <select v-model="kadencje">
-         <option v-for="item in [3, 4, 5, 6, 7, 8].reverse()" :value="item">{{item}}</option>
-        </select>
-      </div>
-      <div>
-        <select v-model="sortowanie">
-          <option value="votingDate">Najnowsze</option>
-          <option value="frekwencja">Frekwencja</option>
-        </select>
-      </div>
+      <v-popover
+        offset="16"
+      >
+        <div class="tooltip-target b3 glow">
+          <span>{{kadencje}}</span>
+        </div>
+
+        <template slot="popover">
+          <div v-for="item in [3, 4, 5, 6, 7, 8].reverse()">
+            <input v-close-popover :id="'k' + item" type="radio" :value="item" v-model="kadencje">
+            <label :for="'k' + item">{{item}}</label>
+          </div>
+        </template>
+      </v-popover>
+
+      <v-popover
+        offset="16"
+      >
+        <div class="tooltip-target b3 glow">
+          <font-awesome-icon v-if="sortowanie === 'data'" icon="calendar" />
+          <font-awesome-icon v-if="sortowanie === 'frekwencja'" icon="users" />
+          <font-awesome-icon v-if="sortowanieKierunek === 'rosnaco'" icon="sort-up" />
+          <font-awesome-icon v-if="sortowanieKierunek === 'malejaco'" icon="sort-down" />
+        </div>
+
+        <template slot="popover">
+          <div>
+            <div>
+              <input type="radio" id="malejaco" value="malejaco" v-model="sortowanieKierunek">
+              <label for="malejaco"><font-awesome-icon icon="sort-down" />malejąco</label>
+            </div>
+            <div>
+              <input type="radio" id="rosnaco" value="rosnaco" v-model="sortowanieKierunek">
+              <label for="rosnaco"><font-awesome-icon icon="sort-up" />rosnąco</label>
+            </div>
+          </div>
+          <div>
+            <div>
+              <input v-close-popover type="radio" id="data" value="data" v-model="sortowanie">
+              <label for="data"><font-awesome-icon icon="calendar" />data</label>
+            </div>
+            <div>
+              <input v-close-popover type="radio" id="frekwencja" value="frekwencja" v-model="sortowanie">
+              <label for="frekwencja"><font-awesome-icon icon="users" />frekwencja</label>
+            </div>
+          </div>
+        </template>
+      </v-popover>
+
+      <v-popover
+        offset="16"
+      >
+        <div class="tooltip-target b3 glow"><font-awesome-icon icon="filter" /></div>
+
+        <template slot="popover">
+          <div class="filtrowanie-status">
+            <div>
+              <input id="uchwalonoCB" type="checkbox" value="uchwalono" v-model="filtrowanieStatus">          <label for="uchwalonoCB">uchwalone</label>
+            </div>
+            <div>
+              <input id="odrzuconyCB" type="checkbox" value="odrzucony" v-model="filtrowanieStatus">
+              <label for="odrzuconyCB">odrzucone</label>
+            </div>
+            <div>
+              <input id="nazwane" type="checkbox" value="nazwane" v-model="filtrowanieNazwane">
+              <label for="nazwane">nazwane</label>
+            </div>
+            <div>
+              <input id="prawoUE" type="checkbox" v-model="filtrowanieUE">
+              <label for="prawoUE">prawo UE</label>
+            </div>
+          </div>
+        </template>
+      </v-popover>
+
+      <v-popover
+        offset="16" @show="focusSearch"
+      >
+        <div class="tooltip-target b3 glow search"><font-awesome-icon icon="search" /></div>
+
+        <template slot="popover">
+          <div class="filtrowanie-nazwa">
+            <input type="text" id="filtrowanieNazwa" v-model="filtrowanieNazwa" placeholder="Filtruj tytuły, np. 'podatk'">
+          </div>
+        </template>
+      </v-popover>
+
+
+
+
+      <!--
+
       <div class="filtrowanie-status">
         <div>
           <input id="uchwalonoCB" type="checkbox" value="uchwalono" v-model="filtrowanieStatus">
-          <label for="uchwalonoCB">Uchwalone</label>
+          <label for="uchwalonoCB">uchwalone</label>
         </div>
         <div>
           <input id="odrzuconyCB" type="checkbox" value="odrzucony" v-model="filtrowanieStatus">
-          <label for="odrzuconyCB">Odrzucone</label>
+          <label for="odrzuconyCB">odrzucone</label>
         </div>
         <div>
           <input id="nazwane" type="checkbox" value="nazwane" v-model="filtrowanieNazwane">
           <label for="nazwane">Nazwane</label>
         </div>
-        <!-- <div>
+        <div>
           <input id="prawoUE" type="checkbox" v-model="filtrowanieUE">
           <label for="prawoUE">Wprowadza prawo UE</label>
-        </div> -->
+        </div>
       </div>
-      <div class="filtrowanie-nazwa">
-        <!-- <search-icon /> -->
+
+      <div v-tooltip="'Wpisz dowolny tekst i szukaj'" class="filtrowanie-nazwa">
+        <search-icon />
         <label for="filtrowanieNazwa"></label>
         <input type="text" name="filtrowanieNazwa" v-model="filtrowanieNazwa" placeholder="Filtruj tytuły, np. 'podatk'">
-      </div>
+      </div> -->
       <!-- <div class="filtrowanie-glos">
         <div>
           <input id="za" type="checkbox" name="za" value="za" v-model="filtrowanieGlos">
@@ -45,8 +127,8 @@
           <label for="przeciw">Przeciw</label>
         </div>
       </div> -->
-      <div>
-        Wyników: {{votingsProcessed.length}}
+      <div class="center nowrap">
+        Σ {{votingsProcessed.length}}
       </div>
     </div>
 
@@ -71,11 +153,12 @@ export default {
       itemsPerPage: 10,
       listHidden: true,
       kadencje: this.$route.params.kadencja,
-      sortowanie: 'votingDate',
+      sortowanie: 'data',
       filtrowanieStatus: ['odrzucony', 'uchwalono'],
       filtrowanieUE: true,
       filtrowanieNazwane: false,
       // filtrowanieGlos: ['za', 'przeciw'],
+      sortowanieKierunek: 'malejaco',
       filtrowanieNazwa: ''
     }
   },
@@ -102,8 +185,8 @@ export default {
         }) && (!this.filtrowanieNazwane || item.nazwa !== null)
         return result
       }).sort((a, b) => {
-        if (this.sortowanie === 'votingDate') {
-          return new Date(b[this.sortowanie]) - new Date(a[this.sortowanie])
+        if (this.sortowanie === 'data') {
+          return new Date(b['votingDate']) - new Date(a['votingDate'])
         } else {
           return b[this.sortowanie] - a[this.sortowanie]
         }
@@ -163,6 +246,11 @@ export default {
         })
       } catch (e) {
       }
+    },
+    focusSearch () {
+      setTimeout(() => {
+        document.querySelector('#filtrowanieNazwa').focus()
+      }, 100)
     }
   }
 }
@@ -185,19 +273,48 @@ export default {
   background: #333;
   color: white;
   height: 10vmin;
+  font-size: 150%;
 }
-.sort-filter-menu > * {
+.sort-filter-menu > div {
+  width: 10vmin;
+  height: 10vmin;
+  user-select: none;
+}
+.b3 {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  height: 10vmin;
+  width: 10vmin;
+  font-weight: bold;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.b3 svg{
+  height: 8vmin;
+  width: 8vmin;
+}
+span{
+  vertical-align: middle;
+  font-size: 10vmin;
+  height: 10vmin;
+}
+.b3 * {
+  position: absolute;
+}
+.tooltip-inner label{
+  cursor: pointer;
 }
 .filtrowanie-nazwa{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 .filtrowanie-nazwa input{
-  background-color: white;
-  /*width: 90px;*/
-  font-size: 2vmin;
+  color: black;
+  background-color: transparent;
+  width: 13em;
   border: none;
 }
 .filtrowanie-status{
@@ -205,9 +322,12 @@ export default {
   align-items: flex-start;
 }
 
-select {
-  border-radius: 0.5vmin;
-  font-size: inherit;
+input[type=radio]{
+  visibility: hidden;
+  position: absolute;
+}
+.nowrap{
+  white-space: nowrap;
 }
 
 .voting-list {
@@ -228,6 +348,10 @@ select {
 @media screen and (max-device-aspect-ratio: 1/1) {
   .voting-menu{
     position: fixed;
+  }
+
+  .tooltip-inner * {
+    font-size: 5vmin;
   }
 }
 </style>

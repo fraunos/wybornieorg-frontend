@@ -2,11 +2,11 @@
 <div class="loaded-data">
   <div class="">
     <div class="hint">
-      <h3><font-awesome-icon icon="lightbulb"/> Wskazówka!</h3>
-      Zapisz tę stronę w zakładce <font-awesome-icon icon="bookmark"/> żeby móc powrócić do swoich głosów!
+      <h3><font-awesome-icon icon="lightbulb"/>Wskazówka!</h3>
+      Zapisz tę stronę w zakładce <font-awesome-icon icon="bookmark"/>żeby móc powrócić do swoich głosów!
     </div>
-    <div class="button-confirm" @click="confirm()">
-      <font-awesome-icon icon="check-circle"/> Wczytaj głosy
+    <div class="button-confirm glow" @click="confirm">
+      <font-awesome-icon icon="check-circle"/>Wczytaj głosy
     </div>
   </div>
   <div class="votes-container">
@@ -74,6 +74,7 @@ export default {
   }
   .votes-container{
     padding: 0 5vmin;
+    color: white;
   }
   .votes:after {
   content: "";
@@ -83,14 +84,14 @@ export default {
     border-radius: 1vmin;
     padding: .2em .3em;
     margin: .2em;
-    background-color: #bbb;
     font-weight: bold;
+    color: black;
   }
   .za {
-    color: green;
+    background: hsla(120, 50%, 70%, 1);
   }
   .przeciw {
-    color: red;
+    background: hsla(348, 50%, 70%, 1);
   }
   #saved-data {
     width: 30vmin;

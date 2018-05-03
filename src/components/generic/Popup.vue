@@ -57,7 +57,7 @@ export default {
   z-index: 99;
   padding: 5vmin;
   border-radius: 1vmin;
-  box-shadow: black 0 10 10vmin 0;
+  box-shadow: hsla(0, 0%, 0%, 90%) 0 1vmin 10vmin 0;
 }
 .content {
   max-width: 80vmin;

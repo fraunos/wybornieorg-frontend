@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import VueResource from 'vue-resource'
 import moment from 'moment'
+import Vtooltip from 'v-tooltip'
 
 import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
@@ -23,6 +24,7 @@ moment.locale('pl')
 
 Vue.use(VueResource)
 Vue.use(router)
+Vue.use(Vtooltip)
 
 Vue.config.productionTip = false
 

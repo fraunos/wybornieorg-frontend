@@ -5,7 +5,7 @@
   </div>
     <div v-else id="cp" class="currentVoting">
       <h1 v-if="currentVoting.nazwa">{{currentVoting.nazwa.nazwaZwyczajowa}}</h1>
-      <h2>Przegłosowane projekty<a class="offerName" target="_blank" :href="'mailto:michalwoloszyn+3buotfyq3fngqjkf5paj@boards.trello.com?subject=TUTAJ WPISZ PROPONOWANĄ NAZWĘ&body=nie kasuj tej linijki! http://wybornie.org' + $route.path"><font-awesome-icon icon="lightbulb"/> zaproponuj nazwę zwyczajową</a></h2>
+      <h2>Przegłosowane projekty<a v-tooltip="'Zaproponuj nazwę zwyczajową!'" class="offerName" target="_blank" :href="'mailto:michalwoloszyn+3buotfyq3fngqjkf5paj@boards.trello.com?subject=TUTAJ WPISZ PROPONOWANĄ NAZWĘ&body=nie kasuj tej linijki! http://wybornie.org' + $route.path"><font-awesome-icon icon="lightbulb"/></a></h2>
         <div class="project-data" v-for="project in currentVoting.projects">
           <h3>#{{project.drukNr}}</h3>
           <h3>{{project.tytul}}</h3>
@@ -48,10 +48,17 @@
               <deputy v-for="(deputy, index) in currentVoting.deputies" :singleDeputy='deputy' :cx="placeX(index)" :cy="placeY(index)" :i="index"></deputy>
             </g>
             <g>
-              <text  x='5' y='125' font-size="8" fill="darkorchid" font-weight="bold">Wstrzymał się</text>
-              <text  x='73' y='125' font-size="8" fill="black" font-weight="bold">Nieobecny</text>
-              <text  x='130' y='125' font-size="8" fill="green" font-weight="bold">Zgodny</text>
-              <text  x='174' y='125' font-size="8" fill="red" font-weight="bold">Niezgodny</text>
+              <text x='5' y='125' font-size="8" stroke-width="5" stroke-linejoin="bevel" stroke-linecap="round" stroke="darkorchid" fill="white">Wstrzymał się</text>
+              <text x='5' y='125' font-size="8" stroke="none" fill="white">Wstrzymał się</text>
+
+              <text x='73' y='125' font-size="8" stroke-width="5" stroke-linejoin="bevel" stroke-linecap="round" stroke="black" fill="white">Nieobecny</text>
+              <text x='73' y='125' font-size="8" stroke="none" fill="white">Nieobecny</text>
+
+              <text x='130' y='125' font-size="8" stroke-width="5" stroke-linejoin="bevel" stroke-linecap="round" stroke="green" fill="white">Zgodny</text>
+              <text x='130' y='125' font-size="8" stroke="none" fill="white">Zgodny</text>
+
+              <text x='174' y='125' font-size="8" stroke-width="5" stroke-linejoin="bevel" stroke-linecap="round" stroke="red" fill="white">Niezgodny</text>
+              <text x='174' y='125' font-size="8" stroke="none" fill="white">Niezgodny</text>
             </g>
           </svg>
         </div>
@@ -269,12 +276,11 @@ export default {
   .green{
     background-color: green;
   }
-  .vote-button:active {
-  }
 
   .vote-button svg {
-    width: 5vmin;
-    height: 5vmin;
+    width: 7vmin;
+    height: 7vmin;
+    stroke: white;
   }
 
   #deputies {
