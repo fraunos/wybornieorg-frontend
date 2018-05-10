@@ -1,5 +1,13 @@
 <template>
   <div class="voting-menu">
+    <popup v-if="dbUpdate" @close="dbUpdate = false">
+      <h1 slot="header"><font-awesome-icon icon="sync-alt" />Ups!</h1>
+      <div slot="content">
+        <h3>Właśnie trwa synchronizacja bazy danych <a href="wybornie.org">wybornie.org</a> ze stroną Sejmu!</h3>
+         <p>Z tego powodu nie wszystkie funkcje są dostępne (brak niektórych głosowań, brak artykułów mamprawowiedziec.pl i nazw zwyczajowych). Jeśli Ci to przeszkadza, spróbuj odświeżyć stronę za 5 minut i skorzystaj kiedy przestanie się pojawiać to okno!</p>
+         <strong>Nie zapomnij zapisać swoich głosów, usuną się, jeśli odświeżysz bez zapisania ich!</strong>
+      </div>
+    </popup>
     <div class="sort-filter-menu">
       <v-popover
         offset="16"
@@ -143,12 +151,14 @@
 <script>
 import VotingsListItem from '@/components/VotingsListItem'
 import AppNav from '@/components/AppNav'
+import Popup from '@/components/generic/Popup'
 
 export default {
   name: 'votings-list',
   data () {
     return {
       votings: [],
+      dbUpdate: false,
       pagination: 0,
       itemsPerPage: 10,
       listHidden: true,
@@ -173,6 +183,7 @@ export default {
     }
   },
   components: {
+    Popup,
     AppNav,
     VotingsListItem
   },
@@ -220,7 +231,8 @@ export default {
       this.$store.commit('loadingUp')
       this.$http.get(this.$store.state.domain + ':3000/dev/glosowania/' + kadencja).then(response => {
         this.$store.commit('loadingDown')
-        this.votings = response.body
+        this.dbUpdate = response.body.collectorStatus
+        this.votings = response.body.votings
       }, response => {
         // error callback
       })
